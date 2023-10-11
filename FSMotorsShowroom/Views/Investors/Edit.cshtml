@@ -1,0 +1,47 @@
+﻿@model FSMotorsShowroom.Models.Investor
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+
+<h4>Update Investor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="InvestorId" />
+            <div class="form-group">
+                <label asp-for="InvestorName" class="control-label"></label>
+                <input asp-for="InvestorName" class="form-control" />
+                <span asp-validation-for="InvestorName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InvestorEmail" class="control-label"></label>
+                <input asp-for="InvestorEmail" class="form-control" />
+                <span asp-validation-for="InvestorEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InvestorContact" class="control-label"></label>
+                <input asp-for="InvestorContact" class="form-control" />
+                <span asp-validation-for="InvestorContact" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InvestorAddress" class="control-label"></label>
+                <input asp-for="InvestorAddress" class="form-control" />
+                <span asp-validation-for="InvestorAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+

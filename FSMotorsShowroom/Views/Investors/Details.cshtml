@@ -1,0 +1,43 @@
+﻿@model FSMotorsShowroom.Models.Investor
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Investor</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InvestorName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InvestorName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InvestorEmail)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InvestorEmail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InvestorContact)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InvestorContact)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.InvestorAddress)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InvestorAddress)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.InvestorId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

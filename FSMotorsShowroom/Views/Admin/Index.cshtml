@@ -1,0 +1,81 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+
+<head>
+    <style>
+        /* Add custom card colors */
+        .card.investors {
+            background-color: #FFC107; /* Yellow */
+        }
+
+        .card.users {
+            background-color: #2196F3; /* Blue */
+        }
+
+        .card.cars {
+            background-color: #4CAF50; /* Green */
+        }
+
+        .card.transactions {
+            background-color: #E91E63; /* Pink */
+        }
+
+        /* Remove text color */
+        .card-title,
+        .card-text {
+            color: #fff; /* White text color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Cars Card -->
+            <div class="col-md-3 mb-4">
+                <div class="card investors">
+                    <div class="card-body">
+                        <h5 class="card-title">Cars</h5>
+                        <p class="card-text">&nbsp;</p>
+                        <a href="#" class="btn btn-light">Visit</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Investors Card -->
+            <div class="col-md-3 mb-4">
+                <div class="card users">
+                    <div class="card-body">
+                        <h5 class="card-title">Investors</h5>
+                        <p class="card-text">&nbsp;</p>
+                        <a href="#" class="btn btn-light">Visit</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Card -->
+            <div class="col-md-3 mb-4">
+                <div class="card cars">
+                    <div class="card-body">
+                        <h5 class="card-title">Users</h5>
+                        <p class="card-text">&nbsp;</p>
+                        <a href="#" class="btn btn-light">Visit</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transactions Card -->
+            <div class="col-md-3 mb-4">
+                <div class="card transactions">
+                    <div class="card-body">
+                        <h5 class="card-title">Transactions</h5>
+                        <p class="card-text">&nbsp;</p>
+                        <a href="#" class="btn btn-light">Visit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
