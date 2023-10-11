@@ -21,7 +21,7 @@ namespace FSMotorsShowroom.Controllers
             this._hostEnvironment = hostEnvironment;
         }
 
-        // GET: Cars
+        // GET: Cars added comment
         public async Task<IActionResult> Index()
         {
             return _context.cars != null ?
