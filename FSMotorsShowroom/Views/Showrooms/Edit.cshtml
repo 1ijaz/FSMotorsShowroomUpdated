@@ -5,25 +5,34 @@
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
 }
 
-<h1>Edit</h1>
+<div class="card">
+    <div class="card-header">
+        <h3 class="text-uppercase">Update Showroom</h3>
+    </div>
 
-<h4>Showroom</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <div class="card-body">
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ShowroomId" />
-            <div class="form-group">
-                <label asp-for="ShowroomName" class="control-label" style="position:static"></label>
-                <input asp-for="ShowroomName" class="form-control" />
-                <span asp-validation-for="ShowroomName" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-6">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="ShowroomName" class="control-label"></label>
+                        <input asp-for="ShowroomName" class="form-control" />
+                        <span asp-validation-for="ShowroomName" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="ShowroomAddress" class="control-label"></label>
+                        <input asp-for="ShowroomAddress" class="form-control" />
+                        <span asp-validation-for="ShowroomAddress" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ShowroomAddress" class="control-label" style="position:static"></label>
-                <input asp-for="ShowroomAddress" class="form-control" />
-                <span asp-validation-for="ShowroomAddress" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

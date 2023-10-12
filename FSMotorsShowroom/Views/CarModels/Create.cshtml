@@ -6,19 +6,25 @@
 }
 
 
-<h4>Create Car Model</h4>
+<div class="card">
+    <div class="card-header">
+        <h3 class="text-uppercase">Add Model</h3>
+    </div>
 
-
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <div class="card-body">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CarModelName" class="control-label"></label>
-                <input asp-for="CarModelName" class="form-control" />
-                <span asp-validation-for="CarModelName" class="text-danger"></span>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="CarModelName" class="control-label"></label>
+                        <input asp-for="CarModelName" class="form-control" />
+                        <span asp-validation-for="CarModelName" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
