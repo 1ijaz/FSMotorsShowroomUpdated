@@ -6,6 +6,8 @@ namespace FSMotorsShowroom.Models
     {
         [Key]
         public int CarModelId { get; set; }
+        [Required]
+        [Display(Name = "Model Name")]
         public string? CarModelName { get; set; }
 
     }

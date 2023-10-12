@@ -10,9 +10,17 @@ namespace FSMotorsShowroom.Models
     {
         [Key]
         public int InvestorId { get; set; }
+        [Required]
+        [Display(Name = "Name")]
         public string? InvestorName { get; set; }
+        [Required]
+        [Display(Name = "Email")]
         public string? InvestorEmail { get; set; }
+        [Required]
+        [Display(Name = "Conatct Number")]
         public string? InvestorContact { get; set; }
+        [Required]
+        [Display(Name = "Address")]
         public string? InvestorAddress { get; set; }
 
    
