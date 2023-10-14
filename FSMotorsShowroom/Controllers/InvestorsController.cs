@@ -55,7 +55,7 @@ namespace FSMotorsShowroom.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("InvestorId,InvestorName,InvestorEmail,InvestorContact,InvestorAddress")] Investor investor)
+        public async Task<IActionResult> Create([Bind("InvestorId,InvestorName,InvestorEmail,InvestorContact,InvestorAddress,InvestUnallocatedAmount,TotalInvestAmount")] Investor investor)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace FSMotorsShowroom.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("InvestorId,InvestorName,InvestorEmail,InvestorContact,InvestorAddress")] Investor investor)
+        public async Task<IActionResult> Edit(int id, [Bind("InvestorId,InvestorName,InvestorEmail,InvestorContact,InvestorAddress,InvestUnallocatedAmount,TotalInvestAmount")] Investor investor)
         {
             if (id != investor.InvestorId)
             {

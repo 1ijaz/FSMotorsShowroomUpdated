@@ -50,6 +50,23 @@
             </div>
                     </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="InvestUnallocatedAmount" class="control-label"></label>
+                        <input asp-for="InvestUnallocatedAmount" class="form-control" />
+                        <span asp-validation-for="InvestUnallocatedAmount" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="TotalInvestAmount" class="control-label"></label>
+                        <input asp-for="TotalInvestAmount" class="form-control" />
+                        <span asp-validation-for="TotalInvestAmount" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
