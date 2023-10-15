@@ -28,12 +28,11 @@ namespace FSMotorsShowroom.Controllers
         {
             var accounts = _context.users.Select(a => new
             {
-                a.UserId,
+                a.Id,
                 a.FirstName,
-                a.LastName,
+                a.LastName ,             
                 a.Email,
-                a.Phone,
-                a.IsActive,
+                a.EmailConfirmed
                 //a.IsApproved
             }).ToList();
 
@@ -44,26 +43,24 @@ namespace FSMotorsShowroom.Controllers
         [HttpGet]
         public IActionResult AddAccount()
         {
-            return PartialView("_AddAccountPartial"); // Replace with your actual partial view
+            return PartialView("_AddAccountPartial"); 
         }
 
-        // POST: Account/AddAccount (For adding a new account)
         [HttpPost]
         public async Task<IActionResult> AddAccount(User model)
         {
             if (ModelState.IsValid)
             {
-                // Create and add a new account to the database
-                var newAccount = new User
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Email = model.Email,
-                    Phone = model.Phone,
-                    IsActive = model.IsActive,
-                  //  IsApproved = model.IsApproved
-                    // Add any other properties as needed
-                };
+                //Create and add a new account to the database
+               var newAccount = new User
+               {
+                   FirstName = model.FirstName,
+                   LastName = model.LastName,
+                   //Email = model.Email,
+                   //PasswordHash = model.PasswordHash,
+                   //EmailConfirmed = model.EmailConfirmed
+                   // Add any other properties as needed
+               };
 
                 _context.users.Add(newAccount);
                 await _context.SaveChangesAsync();
@@ -85,13 +82,11 @@ namespace FSMotorsShowroom.Controllers
 
             var model = new User
             {
-                UserId = account.UserId,
+               
                 FirstName = account.FirstName,
                 LastName = account.LastName,
                 Email = account.Email,
-                Phone = account.Phone,
-                IsActive = account.IsActive,
-               // IsApproved = account.IsApproved
+                // IsApproved = account.IsApproved
                 // Add any other properties as needed
             };
 
@@ -102,46 +97,46 @@ namespace FSMotorsShowroom.Controllers
         [HttpPost]
         public async Task<IActionResult> EditAccount(int id, [FromBody] User model)
         {
-            if (id != model.UserId)
-            {
-                return BadRequest();
-            }
+            //if (id != model.UserId)
+            //{
+            //    return BadRequest();
+            //}
 
-            if (ModelState.IsValid)
-            {
-                // Update the existing account in the database
-                var account = await _context.users.FindAsync(id);
-                if (account == null)
-                {
-                    return NotFound();
-                }
+            //if (ModelState.IsValid)
+            //{
+            //    // Update the existing account in the database
+            //    var account = await _context.users.FindAsync(id);
+            //    if (account == null)
+            //    {
+            //        return NotFound();
+            //    }
 
-                account.FirstName = model.FirstName;
-                account.LastName = model.LastName;
-                account.Email = model.Email;
-                account.Phone = model.Phone;
-                account.IsActive = model.IsActive;
-               // account.IsApproved = model.IsApproved;
-                // Update any other properties as needed
+            //    account.FirstName = model.FirstName;
+            //    account.LastName = model.LastName;
+            //    account.Email = model.Email;
+            //    account.Phone = model.Phone;
+            //    account.IsActive = model.IsActive;
+            //   // account.IsApproved = model.IsApproved;
+            //    // Update any other properties as needed
 
-                try
-                {
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AccountExists(id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+            //    try
+            //    {
+            //        await _context.SaveChangesAsync();
+            //    }
+            //    catch (DbUpdateConcurrencyException)
+            //    {
+            //        if (!AccountExists(id))
+            //        {
+            //            return NotFound();
+            //        }
+            //        else
+            //        {
+            //            throw;
+            //        }
+            //    }
 
-                return Json(new { success = true });
-            }
+            //    return Json(new { success = true });
+            //}
 
             return Json(new { success = false, errors = ModelState.Values.SelectMany(v => v.Errors) });
         }
@@ -161,10 +156,10 @@ namespace FSMotorsShowroom.Controllers
             return Json(new { success = true });
         }
 
-        private bool AccountExists(int id)
-        {
-            return _context.users.Any(a => a.UserId == id);
-        }
+        //private bool AccountExists(int id)
+        //{
+        //    return _context.users.Any(a => a.UserId == id);
+        //}
         public IActionResult Login()
         {
             return View("~/Views/Account/Login.cshtml");
