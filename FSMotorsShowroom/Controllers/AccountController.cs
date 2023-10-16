@@ -1,9 +1,7 @@
 ﻿using FSMotorsShowroom.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace FSMotorsShowroom.Controllers
 {
@@ -16,13 +14,11 @@ namespace FSMotorsShowroom.Controllers
             _context = context;
         }
 
-        // GET: Account/Index
         public IActionResult Index()
         {
             return View();
         }
 
-        // GET: Account/GetAllAccounts (For DataTable)
         [HttpGet]
         public IActionResult GetAllAccounts()
         {
@@ -33,6 +29,7 @@ namespace FSMotorsShowroom.Controllers
                 a.LastName ,             
                 a.Email,
                 a.EmailConfirmed
+
                 //a.IsApproved
             }).ToList();
 
@@ -56,9 +53,10 @@ namespace FSMotorsShowroom.Controllers
                {
                    FirstName = model.FirstName,
                    LastName = model.LastName,
-                   //Email = model.Email,
-                   //PasswordHash = model.PasswordHash,
-                   //EmailConfirmed = model.EmailConfirmed
+                   Email = model.Email,
+                  // PasswordHash = hasher.HashPassword(null, "model.PasswordHash"),
+                   PasswordHash = model.PasswordHash,
+                   EmailConfirmed = model.EmailConfirmed
                    // Add any other properties as needed
                };
 

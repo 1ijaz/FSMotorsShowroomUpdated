@@ -1,5 +1,4 @@
-﻿using FS_Motors.Models;
-using FSMotorsShowroom.Models;
+﻿using FSMotorsShowroom.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -40,7 +39,8 @@ namespace FSMotorsShowroom.Models
                     NormalizedUserName = "ADMIN@GMAIL.COM",
                     PasswordHash = hasher.HashPassword(null, "Admin@11"),
                     FirstName="",
-                    LastName="",
+                    LastName=""
+                   
                 }
             );
         }

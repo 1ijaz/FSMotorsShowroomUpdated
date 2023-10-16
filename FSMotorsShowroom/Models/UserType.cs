@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FS_Motors.Models
+namespace FSMotorsShowroom.Models
 {
     public class UserType
     {

@@ -1,6 +1,4 @@
-﻿@{
-    Layout = null;
-}
+﻿
 
 <!DOCTYPE html>
 <html>
@@ -11,7 +9,23 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-
+    <section id="secondary-banner" class="dynamic-image-11">
+        <!--for other /images just change the class name of this section block like, class="dynamic-image-2" and add css for the changed class-->
+        <div class="container">
+            <div class="row align-items-end">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <h2>User's Profile'</h2>
+                    <h4>...!</h4>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <ul class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li>Users</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
     <div class="container mt-4">
         <h2>Account Management</h2>
         <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#addAccountModal">Add Account</button>
@@ -67,10 +81,14 @@
                             <label for="Password">Password</label>
                             <input type="tel" class="form-control" id="Password" name="Password">
                         </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="EmailConfirmed" name="EmailConfirmed">
-                            <label class="form-check-label" for="EmailConfirmed">Active</label>
+                        <div class="form-group">
+                            <label id="EmailConfirmed">Email Confirmation</label>
+                            <select id="EmailConfirmed" class="form-control">
+                                <option value="True">Confirmed</option>
+                                <option value="False">Not Confirmed</option>
+                            </select>
                         </div>
+
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="isApproved" name="isApproved">
                             <label class="form-check-label" for="isApproved">Approved</label>
@@ -153,6 +171,7 @@
                     LastName: $("#lastName").val(),
                     Email: $("#email").val(),
                     Phone: $("#phone").val(),
+                Phone: $("#emailConfirmed").val(),
                 }
                 console.log("formData", formData)
                 // Send an AJAX POST request to your server-side endpoint
