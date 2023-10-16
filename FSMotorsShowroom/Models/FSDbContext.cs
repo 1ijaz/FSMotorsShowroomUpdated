@@ -20,6 +20,7 @@ namespace FSMotorsShowroom.Models
         public DbSet<User> users { get; set; }
         public DbSet<UserType> userTypes { get; set; }
         public DbSet<WorkShop> workShops { get; set; }
+        public DbSet<Investment> investments { get; set; }
         public DbSet<Showroom> Showroom { get; set; } = default!;
 
         //public DbSet<FSMotorsShowroom.Models.Category> Category { get; set; } = default!;

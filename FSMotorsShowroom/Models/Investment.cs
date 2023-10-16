@@ -6,13 +6,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FSMotorsShowroom.Models
 {
-    public class InvestorRecord
+    public class Investment
     {
         [Key]
-        public int InvestorRecordId { get; set; }
-        [Key]
-      
-        [Required]
+        public int InvestmentId { get; set; }  
+       [Required]
         [Display(Name = "Car Name")]
         public string? CarName { get; set; }
         [Required]
