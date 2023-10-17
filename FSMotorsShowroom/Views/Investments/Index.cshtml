@@ -5,17 +5,25 @@
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
 }
 
-<h1>Index</h1>
-
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<style>
+    #investmentTable thead th {
+        color: #FFFFFF; /* Font color */
+        background-color: #333333; /* Background color */
+    }
+</style>
+<h4>Investor</h4>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table id="investmentTable" class="display table-striped table-bordered">
     <thead>
         <tr>
-            <th>
+           @* <th>
                 @Html.DisplayNameFor(model => model.CarName)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.BuyingPrice)
             </th>
@@ -49,9 +57,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+           @* <td>
                 @Html.DisplayFor(modelItem => item.CarName)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.BuyingPrice)
             </td>
@@ -88,3 +96,8 @@
 }
     </tbody>
 </table>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#investmentTable').DataTable();
+    });
+</script>

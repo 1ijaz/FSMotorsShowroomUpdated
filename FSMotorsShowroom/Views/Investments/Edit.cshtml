@@ -5,64 +5,103 @@
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
 }
 
-<h1>Edit</h1>
+<div class="card">
+    <div class="card-header">
+        <h3 class="text-uppercase">Update Investment</h3>
+    </div>
 
-<h4>Investment</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+    <div class="card-body">
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="InvestmentId" />
-            <div class="form-group">
-                <label asp-for="CarName" class="control-label"></label>
-                <input asp-for="CarName" class="form-control" />
-                <span asp-validation-for="CarName" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-6">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label asp-for="CarId" class="control-label"></label>
+                            <select asp-for="CarId" class="form-control" asp-items="ViewBag.CarId" id="CarIdDropdown"></select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="InvestorId" class="control-label"></label>
+                        <select asp-for="InvestorId" class="form-control" asp-items="ViewBag.InvestorId"></select>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="BuyingPrice" class="control-label"></label>
-                <input asp-for="BuyingPrice" class="form-control" />
-                <span asp-validation-for="BuyingPrice" class="text-danger"></span>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label asp-for="BuyingPrice" class="control-label"></label>
+                            <input asp-for="BuyingPrice" class="form-control" />
+                            <span asp-validation-for="BuyingPrice" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="SellingPrice" class="control-label"></label>
+                        <input asp-for="SellingPrice" class="form-control" />
+                        <span asp-validation-for="SellingPrice" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="SellingPrice" class="control-label"></label>
-                <input asp-for="SellingPrice" class="form-control" />
-                <span asp-validation-for="SellingPrice" class="text-danger"></span>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label asp-for="MaintananceCost" class="control-label"></label>
+                            <input asp-for="MaintananceCost" class="form-control" />
+                            <span asp-validation-for="MaintananceCost" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="ShowroomCost" class="control-label"></label>
+                        <input asp-for="ShowroomCost" class="form-control" />
+                        <span asp-validation-for="ShowroomCost" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="MaintananceCost" class="control-label"></label>
-                <input asp-for="MaintananceCost" class="form-control" />
-                <span asp-validation-for="MaintananceCost" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label asp-for="SalesTax" class="control-label"></label>
+                            <input asp-for="SalesTax" class="form-control" />
+                            <span asp-validation-for="SalesTax" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="SoldDate" class="control-label"></label>
+                        <input asp-for="SoldDate" class="form-control" />
+                        <span asp-validation-for="SoldDate" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ShowroomCost" class="control-label"></label>
-                <input asp-for="ShowroomCost" class="form-control" />
-                <span asp-validation-for="ShowroomCost" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SalesTax" class="control-label"></label>
-                <input asp-for="SalesTax" class="form-control" />
-                <span asp-validation-for="SalesTax" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SoldDate" class="control-label"></label>
-                <input asp-for="SoldDate" class="form-control" />
-                <span asp-validation-for="SoldDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CarStatus" class="control-label"></label>
-                <input asp-for="CarStatus" class="form-control" />
-                <span asp-validation-for="CarStatus" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CarId" class="control-label"></label>
-                <select asp-for="CarId" class="form-control" asp-items="ViewBag.CarId"></select>
-                <span asp-validation-for="CarId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="InvestorId" class="control-label"></label>
-                <select asp-for="InvestorId" class="form-control" asp-items="ViewBag.InvestorId"></select>
-                <span asp-validation-for="InvestorId" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label asp-for="CarStatus" class="control-label"></label>
+                            <input asp-for="CarStatus" class="form-control" />
+                            <span asp-validation-for="CarStatus" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -71,7 +110,43 @@
     </div>
 </div>
 
+
+
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+
+<script>
+    $(document).ready(function () {
+        // Get references to form fields
+        var buyingPriceInput = $("input[name='BuyingPrice']");
+        var sellingPriceInput = $("input[name='SellingPrice']");
+        var maintenanceCostInput = $("input[name='MaintananceCost']");
+        var showroomCostInput = $("input[name='ShowroomCost']");
+        var salesTaxInput = $("input[name='SalesTax']");
+
+        // Handle the dropdown change event
+        $("#CarIdDropdown").on("change", function () {
+            var selectedCarId = $(this).val();
+            if (selectedCarId) {
+                // Make an AJAX request to the server to get car details
+                $.ajax({
+                    url: "/Investments/GetCarDetails", // Replace with the actual URL
+                    method: "GET",
+                    data: { carId: selectedCarId },
+                    success: function (data) {
+                        console.log("data", data)
+                        // Update the form fields with the retrieved data
+                        buyingPriceInput.val(data.buyingPrice);
+                        sellingPriceInput.val(data.sellingPrice);
+                        maintenanceCostInput.val(data.maintananceCost);
+                        showroomCostInput.val(data.showroomCost);
+                        salesTaxInput.val(data.salesTax);
+                    }
+                });
+            }
+        });
+    });
+</script>
 

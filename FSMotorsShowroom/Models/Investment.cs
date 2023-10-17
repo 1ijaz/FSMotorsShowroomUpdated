@@ -10,9 +10,9 @@ namespace FSMotorsShowroom.Models
     {
         [Key]
         public int InvestmentId { get; set; }  
-       [Required]
-        [Display(Name = "Car Name")]
-        public string? CarName { get; set; }
+       //[Required]
+       // [Display(Name = "Car Name")]
+       // public string? CarName { get; set; }
         [Required]
         [Display(Name = "Buying Price")]
         public decimal BuyingPrice { get; set; }
@@ -32,11 +32,12 @@ namespace FSMotorsShowroom.Models
         [Display(Name = "Sold Date")]
         public DateTime SoldDate { get; set; }
         public string CarStatus { get; set; }
-       
+        [Display(Name = "Car")]
         public int CarId { get; set; }
         [ForeignKey("CarId")] // This sets up the foreign key relationship.
         public Car Car { get; set; }
-        
+
+        [Display(Name = "Investor")]
         public int InvestorId { get; set; }
         [ForeignKey("InvestorId")]
         public Investor Investor { get; set; }

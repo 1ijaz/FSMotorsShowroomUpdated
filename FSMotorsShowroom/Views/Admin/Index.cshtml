@@ -1,7 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout_Admin.cshtml";
 }
-
+@model List<RecordCountModel>
 <head>
     <style>
         /* Add custom card colors */
@@ -26,10 +26,31 @@
         .card-text {
             color: #fff; /* White text color */
         }
+        /* Add your own custom colors */
+.card-color-1 {
+            background-color: #FFC107; /* Example color 1 */
+}
+
+.card-color-2 {
+            background-color: #E91E63; /* Example color 2 */
+}
+
+.card-color-3 {
+    background-color: #5733FF; /* Example color 3 */
+}
+
+        .card-color-4 {
+            background-color: #2196F3; /* Example color 3 */
+        }
+
+        .card-color-5 {
+            background-color: #4CAF50; /* Example color 3 */
+        }
+/* Add more colors as needed */
     </style>
 </head>
 <body>
-    <div class="container mt-5">
+  @*  <div class="container mt-5">
         <div class="row">
             <!-- Cars Card -->
             <div class="col-md-3 mb-4">
@@ -75,7 +96,43 @@
                 </div>
             </div>
         </div>
+    </div>*@
+
+    <!-- Your HTML for Bootstrap Cards -->
+    <div class="container">
+        <div class="row">
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                string colorClass = "card-color-" + (i % 5 + 1); // Change the number to the number of colors you have
+                var recordCount = Model[i];
+
+                <div class="col-md-3">
+                    <div class="card mb-3 @colorClass">
+                        <div class="card-body">
+                            <h5 class="card-title">@recordCount.Name</h5>
+                            <p class="card-text">Total Records: @recordCount.CountNumber</p>
+                            <a href="@recordCount.Link" class="btn btn-primary">Visit</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 
-
+    <!-- Add JavaScript to make an AJAX request -->
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '@Url.Action("GetRecordCounts", "Admin")',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // Loop through the data and populate the cards
+                    for (var i = 0; i < data.length; i++) {
+                        $("#card_" + i + " .card-text").text("Count: " + data[i].CountNumber);
+                    }
+                }
+            });
+        });
+    </script>
 </body>

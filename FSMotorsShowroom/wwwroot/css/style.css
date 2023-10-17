@@ -2731,10 +2731,10 @@ input[type="text"], textarea, textarea[name="msg"], select, div.custom-select, i
 
 }
 
-div.custom-select, select, input[type="file"]:after {
+/*div.custom-select, select, input[type="file"]:after {
 	background: url(../images/custom-select.png) no-repeat center right;
 	border-radius: 4px 4px;
-}
+}*/
 
 div.styled, div.custom-select {
 	padding: 0;

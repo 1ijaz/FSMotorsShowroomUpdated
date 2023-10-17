@@ -17,10 +17,12 @@
                 <div class="col-md-6">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                          <div class="form-group">
-                <label asp-for="CarId" class="control-label"></label>
-                            <select asp-for="CarId" class="form-control" asp-items="ViewBag.CarId" id="CarIdDropdown"></select>
-            </div>
+                        <div class="form-group">
+                            <label asp-for="CarId" class="control-label"></label>
+                            <select asp-for="CarId" class="form-control" asp-items="ViewBag.CarId" id="CarIdDropdown">
+                                <option value="">Please Select Car</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -100,7 +102,6 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                  
                     </div>
                 </div>
             </div>
@@ -137,7 +138,7 @@
                     method: "GET",
                     data: { carId: selectedCarId },
                     success: function (data) {
-                        console.log("data",data)
+                        console.log("data", data)
                         // Update the form fields with the retrieved data
                         buyingPriceInput.val(data.buyingPrice);
                         sellingPriceInput.val(data.sellingPrice);
