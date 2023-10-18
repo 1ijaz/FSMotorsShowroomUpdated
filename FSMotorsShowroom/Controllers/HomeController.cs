@@ -27,6 +27,18 @@ namespace FSMotorsShowroom.Controllers
         {
             return View("~/Views/Home/WebAboutUs.cshtml");
         }
+        public IActionResult Careers()
+        {
+            return View("~/Views/Home/Careers.cshtml");
+        }
+         public IActionResult CEOMessage()
+        {
+            return View("~/Views/Home/CEOMessage.cshtml");
+        }
+        public IActionResult Feedback()
+        {
+            return View("~/Views/Home/Feedback.cshtml");
+        }
 
         public IActionResult ContactUs()
         {
