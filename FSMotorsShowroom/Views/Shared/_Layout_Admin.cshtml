@@ -76,10 +76,10 @@
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-mobile" aria-controls="navbar-collapse-mobile" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
-                            <a class="navbar-brand" href="/home/index-2">
+                            <a class="navbar-brand" href="/Admin/index">
                                 <img src="~/images/fs-logo.jpg" alt="FS Motors Showroom Logo">
                             </a>
-                            @*<a class="navbar-brand" href="/home/index-2"><span class="logo"><span class="primary_text">FS Motors</span> <span class="secondary_text">Showroom</span></span></a>*@
+                            @*<a class="navbar-brand" href="/Admin/index-2"><span class="logo"><span class="primary_text">FS Motors</span> <span class="secondary_text">Showroom</span></span></a>*@
                         </div>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -91,7 +91,8 @@
                                     <ul class="dropdown-menu">
 
                                         <li><a href="/Investors/Index">View Investors</a></li>
-                                        <li><a href="/Investors/Create">Add Investors</a></li>
+                                        <li><a href="/identity/account/register">Add Investors</a></li>
+                                        @* <li><a href="/Investors/Create">Add Investors</a></li> *@
 
 
                                     </ul>
@@ -135,15 +136,29 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Transactions <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown">
-                                            <a href="/Investments/Index">Manage Investment <b class="caret"></b></a>
+                                            <a href="/Admin/inventory_boxed_sidebar_left">Add Transaction <b class="caret"></b></a>
                                         </li>
                                         <li class="dropdown">
-                                            <a href="/home/inventory_wide_sidebar_left">View  <b class="caret"></b></a>
+                                            <a href="/Admin/inventory_wide_sidebar_left">View Transaction <b class="caret"></b></a>
+                                        </li>
+
+                                    </ul>
+                                </li> 
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown">
+                                            <a href="/Admin/inventory_boxed_sidebar_left">Update Profile <b class="caret"></b></a>
+                                        </li>
+                                        <li>
+                                            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Admin", new { area = "" })">
+                                                <button  type="submit">Logout</button>
+                                            </form>
                                         </li>
 
                                     </ul>
                                 </li>
-                                <li><a href="/home/index">Log Out</a></li>
+                                
                             </ul>
                         </div>
 
@@ -199,18 +214,18 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage Transactions <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown">
-                                            <a href="/Investments/Index">Manage Investment <b class="caret"></b></a>
+                                            <a href="/Admin/inventory_boxed_sidebar_left">View <b class="caret"></b></a>
                                         </li>
                                         <li class="dropdown">
-                                            <a href="/home/inventory_wide_sidebar_left">View  <b class="caret"></b></a>
+                                            <a href="/Admin/inventory_wide_sidebar_left">View  <b class="caret"></b></a>
                                         </li>
 
                                     </ul>
                                 </li>
-                                <li><a href="/home/index">Log Out</a></li>
+                                <li><a href="/Adm/index">Log Out</a></li>
                             </ul>
                         </div>
-                       
+
                         <!-- /.navbar-collapse -->
                     </div>
                     <!-- /.container-fluid -->

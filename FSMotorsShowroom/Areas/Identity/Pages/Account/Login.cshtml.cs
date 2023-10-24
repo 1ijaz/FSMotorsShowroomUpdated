@@ -76,7 +76,7 @@ namespace FSMotorsShowroom.Areas.Identity.Pages.Account
             returnUrl ??= Url.Content("~/");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-        
+
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
@@ -85,7 +85,8 @@ namespace FSMotorsShowroom.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    // Redirect to the "Index" action in the "Admin" controller
+                    return RedirectToAction("Index", "Admin");
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -106,5 +107,6 @@ namespace FSMotorsShowroom.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
+
     }
 }

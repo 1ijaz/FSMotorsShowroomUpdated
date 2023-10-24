@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using FSMotorsShowroom.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +10,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<FSDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+//builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<FSDbContext>();
+ 
+builder.Services.AddDefaultIdentity<IdentityUser>().AddDefaultTokenProviders()
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<FSDbContext>();
+//builder.Services.AddDefaultIdentity<IdentityUser>().AddDefaultTokenProviders() (options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<FSDbContext>();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<FSDbContext>();
 var app = builder.Build();
 
 

@@ -1,4 +1,8 @@
-﻿<!doctype html>
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!doctype html>
 <!--[if IE 7 ]> <html lang="en" class="ie7"> <![endif]-->
 <!--[if IE 8 ]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9 ]> <html lang="en" class="ie9"> <![endif]-->
@@ -69,16 +73,46 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 left_bar">
-                        <ul class="left-none">
-                            <li><a href="/Identity/Account/Login"><i class="fa fa-user"></i> Login</a></li>
-                            <li><a href="#"><i class="fa fa-globe"></i> Languages</a></li>
-                            <li>
+                        <div class="container">
+                            <!-- Your content for the left column goes here -->
+                            <ul class="left-none">
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <li class="nav-item">
+                                        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                            <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                                        </form>
+                                    </li>
+                                }
+                                else
+                                {
+
+                                    <li class="pull-right"><a href="/Identity/Account/Login"><i class="fa fa-user"></i> Login</a></li>
+                                    <li>
+                                        <i class="fa fa-search"></i>
+                                        <input type="search" placeholder="Search" class="search_box">
+                                    </li>
+                                @*<li><a href="#"><i class="fa fa-globe"></i> Languages</a></li>
+                                <li>
                                 <i class="fa fa-search"></i>
                                 <input type="search" placeholder="Search" class="search_box">
-                            </li>
-                        </ul>
+                                </li> *@
+                                }
+                            </ul>
+                           @*  <ul>
+                                <li><a href="/Identity/Account/Login"><i class="fa fa-user"></i> Login</a></li>
+                                <li>
+                                    <i class="fa fa-search"></i>
+                                    <input type="search" placeholder="Search" class="search_box">
+                                </li>
+                            </ul> *@
+                        </div>
                     </div>
-                    <div class="col-lg-6 ">
+                    <div class="col-lg-6">
+                        <!-- Your content for the right column goes here -->
                         <ul class="right-none pull-right company_info">
                             <li><a href="tel:055-3546919"><i class="fa fa-phone"></i> 055-3546919</a></li>
                             <li class="address"><a href="/home/contact"><i class="fa fa-map-marker"></i>Industrial Area 02 Sharjah UAE</a></li>
@@ -86,6 +120,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="toolbar_shadow"></div>
         </section>
         <div class="bottom-header">
@@ -101,7 +136,6 @@
                             <a class="navbar-brand" href="/home/index-2">
                                 <img src="~/images/fs-logo.jpg" alt="FS Motors Showroom Logo">
                             </a>
-                            @*<a class="navbar-brand" href="/home/index-2"><span class="logo"><span class="primary_text">FS Motors</span> <span class="secondary_text">Showroom</span></span></a>*@
                         </div>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -111,69 +145,33 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        @*   <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Footers <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                        <li class="active"><a href="index-2.html">Footer 1</a></li>
-                                        <li><a href="index-footer-2.html">Footer 2</a></li>
-                                        <li><a href="index-footer-3.html">Footer 3</a></li>
-                                        <li><a href="index-footer-4.html">Footer 4</a></li>
-                                        <li><a href="index-footer-5.html">Footer 5</a></li>
-                                        <li><a href="index-footer-6.html">Footer 6</a></li>
-                                        <li><a href="index-no-footer.html">No Footer</a></li>
-                                        </ul>
-                                        </li>*@
-                                        @*                                        <li><a href="/home/NotFound404">404</a></li>
-                                        *@
+                                       
                                         <li><a href="/home/CEOMessage">CEO Message</a></li>
                                         <li><a href="/home/our_team">Our Team</a></li>
                                         <li><a href="/home/AboutUs">About Us</a></li>
                                         <li><a href="/home/faq">FAQ</a></li>
-                                        @*<li><a href="/home/page_fullwidth">Fullwidth Page</a></li>
-                                        <li><a href="/home/page_sidebar">Sidebar Page</a></li>
-                                        <li><a href="/home/pricing_tables">Pricing Tables</a></li>*@
+                                        
                                     </ul>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cars <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        @*                                        <li><a href="/home/demo">Select View Demo</a></li>
-                                        *@
                                         <li class="dropdown">
                                             <a href="/home/inventory_boxed_sidebar_left">Cars For Sale  <b class="caret"></b></a>
-                                            @*<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cars For Sale  <b class="caret"></b></a>*@
-                                            @*<ul class="dropdown-menu">
-                                            <li><a href="/home/inventory_boxed_fullwidth">Boxed Fullwidth</a></li>
-                                            <li><a href="/home/inventory_boxed_sidebar_left">Boxed Sidebar Left</a></li>
-                                            <li><a href="/home/inventory_boxed_sidebar_right">Boxed Sidebar Right</a></li>
-                                            </ul>*@
                                         </li>
                                         <li class="dropdown">
                                             <a href="/home/inventory_wide_sidebar_left">Featured Cars <b class="caret"></b></a>
-                                            @*<ul class="dropdown-menu">
-                                            <li><a href="/home/inventory_wide_fullwidth">Wide Fullwidth</a></li>
-                                            <li><a href="/home/inventory_wide_sidebar_left">Wide Sidebar Left</a></li>
-                                            <li><a href="/home/inventory_wide_sidebar_right">Wide Sidebar Right</a></li>
-                                            </ul>*@
                                         </li>
-                                        <li><a href="/home/inventory_listing">Individual Listing</a></li>
-                                        @*<li class="dropdown">
-                                            <a href="#" class="dropdown_toggle" data-toggle="dropdown">Vehicle Comparison <b class="caret"></b></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="/home/inventory_2_listing_comparison">2 Listing Comparison</a></li>
-                                                <li><a href="/home/inventory_3_listing_comparison">3 Listing Comparison</a></li>
-                                                <li><a href="/home/inventory_4_listing_comparison">4 Listing Comparison</a></li>
-                                            </ul>
-                                        </li>*@
+                                     
                                     </ul>
                                 </li>
                                 <li><a href="/home/service">Services</a></li>
                                 
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog & Updates <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/home/blog">Blog List</a></li>
-                                        <li><a href="/home/blogpost">Blog Single Post</a></li>
+                                        <li><a href="/home/blog">News</a></li>
+                                        <li><a href="/home/blogpost">Notifications</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="/home/Careers">Careers</a></li>
@@ -188,157 +186,38 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        @*   <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Footers <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                        <li class="active"><a href="index-2.html">Footer 1</a></li>
-                                        <li><a href="index-footer-2.html">Footer 2</a></li>
-                                        <li><a href="index-footer-3.html">Footer 3</a></li>
-                                        <li><a href="index-footer-4.html">Footer 4</a></li>
-                                        <li><a href="index-footer-5.html">Footer 5</a></li>
-                                        <li><a href="index-footer-6.html">Footer 6</a></li>
-                                        <li><a href="index-no-footer.html">No Footer</a></li>
-                                        </ul>
-                                        </li>*@
-                                        @*                                        <li><a href="/home/NotFound404">404</a></li>
-                                        *@
                                         <li><a href="/home/our_team">Our Team</a></li>
                                         <li><a href="/home/AboutUs">About Us</a></li>
                                         <li><a href="/home/faq">FAQ</a></li>
-                                        @*<li><a href="/home/page_fullwidth">Fullwidth Page</a></li>
-                                        <li><a href="/home/page_sidebar">Sidebar Page</a></li>
-                                        <li><a href="/home/pricing_tables">Pricing Tables</a></li>*@
                                     </ul>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cars <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        @*                                        <li><a href="/home/demo">Select View Demo</a></li>
-                                        *@
                                         <li class="dropdown">
                                             <a href="/home/inventory_boxed_sidebar_left">Cars For Sale  <b class="caret"></b></a>
-                                            @*<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cars For Sale  <b class="caret"></b></a>*@
-                                            @*<ul class="dropdown-menu">
-                                            <li><a href="/home/inventory_boxed_fullwidth">Boxed Fullwidth</a></li>
-                                            <li><a href="/home/inventory_boxed_sidebar_left">Boxed Sidebar Left</a></li>
-                                            <li><a href="/home/inventory_boxed_sidebar_right">Boxed Sidebar Right</a></li>
-                                            </ul>*@
-                                        </li>
+                                            </li>
                                         <li class="dropdown">
                                             <a href="/home/inventory_wide_sidebar_left">Featured Cars <b class="caret"></b></a>
-                                            @*<ul class="dropdown-menu">
-                                            <li><a href="/home/inventory_wide_fullwidth">Wide Fullwidth</a></li>
-                                            <li><a href="/home/inventory_wide_sidebar_left">Wide Sidebar Left</a></li>
-                                            <li><a href="/home/inventory_wide_sidebar_right">Wide Sidebar Right</a></li>
-                                            </ul>*@
                                         </li>
                                         <li><a href="/home/inventory_listing">Individual Listing</a></li>
-                                    @*    <li class="dropdown">
-                                            <a href="#" class="dropdown_toggle" data-toggle="dropdown">Vehicle Comparison <b class="caret"></b></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="/home/inventory_2_listing_comparison">2 Listing Comparison</a></li>
-                                                <li><a href="/home/inventory_3_listing_comparison">3 Listing Comparison</a></li>
-                                                <li><a href="/home/inventory_4_listing_comparison">4 Listing Comparison</a></li>
-                                            </ul>
-                                        </li>*@
                                     </ul>
                                 </li>
                                 <li><a href="/home/service">Services</a></li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog & Updates <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/home/blog">Blog List</a></li>
-                                        <li><a href="/home/blogpost">Blog Single Post</a></li>
+                                        <li><a href="/home/blog">News</a></li>
+                                        <li><a href="/home/blogpost">Notifications</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="/home/Careers">Careers</a></li>
                                 <li><a href="/home/ContactUs">Contact</a></li>
                                 <li><a href="/home/Feedback">Feedback</a></li>
-                                <li><a href="/Account/Login">Login</a></li>
+                                <li><a href="Identity/Account/Login">Login</a></li>
                             </ul>
                         </div>
-                        @* <div class="mobile-menu-dropdown collapse navbar-collapse" id="navbar-collapse-mobile">
-                        <ul class="nav navbar-nav pull-right">
-                        <li class="active"><a href="/home/index">Home</a></li>
-                        <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Alternate Footers <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        <li class="active"><a href="/home/index_2">Footer 1</a></li>
-                        <li><a href="/home/index_footer_2">Footer 2</a></li>
-                        <li><a href="/home/index_footer_3">Footer 3</a></li>
-                        <li><a href="/home/index_footer_4">Footer 4</a></li>
-                        <li><a href="/home/index_footer_5">Footer 5</a></li>
-                        <li><a href="/home/index_footer_6">Footer 6</a></li>
-                        <li><a href="/home/index_no_footer">No Footer</a></li>
-                        </ul>
-                        </li>
-                        <li><a href="/home/NotFound404">404</a></li>
-                        <li><a href="/home/about">About Us</a></li>
-                        <li><a href="/home/faq">FAQ</a></li>
-                        <li><a href="/home/page_fullwidth">Fullwidth Page</a></li>
-                        <li><a href="/home/page_sidebar">Sidebar Page</a></li>
-                        <li><a href="/home/pricing_tables">Pricing Tables</a></li>
-                        </ul>
-                        </li>
-                        <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inventory <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        <li><a href="/home/demo">Select View Demo</a></li>
-                        <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Boxed Layout <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        <li><a href="/home/inventory_boxed_fullwidth">Boxed Fullwidth</a></li>
-                        <li><a href="/home/inventory_boxed_sidebar_left">Boxed Sidebar Left</a></li>
-                        <li><a href="/home/inventory_boxed_sidebar_right">Boxed Sidebar Right</a></li>
-                        </ul>
-                        </li>
-                        <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Wide Layout <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        <li><a href="/home/inventory_wide_fullwidth">Wide Fullwidth</a></li>
-                        <li><a href="/home/inventory_wide_sidebar_left">Wide Sidebar Left</a></li>
-                        <li><a href="/home/inventory_wide_sidebar_right">Wide Sidebar Right</a></li>
-                        </ul>
-                        </li>
-                        <li><a href="/home/inventory_listing">Individual Listing</a></li>
-                        <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vehicle Comparison <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        <li><a href="/home/inventory_2_listing_comparison">2 Listing Comparison</a></li>
-                        <li><a href="/home/inventory_3_listing_comparison">3 Listing Comparison</a></li>
-                        <li><a href="/home/inventory_4_listing_comparison">4 Listing Comparison</a></li>
-                        </ul>
-                        </li>
-                        </ul>
-                        </li>
-                        <li><a href="/home/service">Services</a></li>
-                        <li><a href="/home/our-team">Our Team</a></li>
-                        <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        <li><a href="/home/portfolio_2_column">2 Column Portfolio</a></li>
-                        <li><a href="/home/portfolio_2_column_details">2 Column Portfolio Details</a></li>
-                        <li><a href="/home/portfolio_3_column">3 Column Portfolio</a></li>
-                        <li><a href="/home/portfolio_3_column_details">3 Column Portfolio Details</a></li>
-                        <li><a href="/home/portfolio_4_column">4 Column Portfolio</a></li>
-                        <li><a href="/home/portfolio_4_column_details">4 Column Portfolio Details</a></li>
-                        <li><a href="/home/portfolio_single_project_split">Portfolio Single Project Split</a></li>
-                        <li><a href="/home/portfolio_single_project_wide">Portfolio Single Project Wide</a></li>
-                        </ul>
-                        </li>
-                        <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        <li><a href="/home/blog">Blog List</a></li>
-                        <li><a href="/home/blog_post">Blog Single Post</a></li>
-                        </ul>
-                        </li>
-                        <li><a href="/home/contact">Contact</a></li>
-                        </ul>
-                        </div>*@
+                        
                         <!-- /.navbar-collapse -->
                     </div>
                     <!-- /.container-fluid -->

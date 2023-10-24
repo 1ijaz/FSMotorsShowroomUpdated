@@ -1,23 +1,53 @@
 ﻿using FSMotorsShowroom.Models;
+using FSMotorsShowroom.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 
 namespace FSMotorsShowroom.Controllers
 {
+    //[Authorize(Roles = "Admin")]
     public class AccountController : Controller
     {
         private readonly FSDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AccountController(FSDbContext context)
+
+        public AccountController(FSDbContext context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            _context = context;
+            _userManager = userManager;
+            _roleManager = roleManager;
+          //  _context = context;
+           
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var usersWithRoles = new List<UserWithRolesViewModel>();
+
+            var users = _userManager.Users.ToList();
+
+            foreach (var user in users)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                var userWithRoles = new UserWithRolesViewModel
+                {
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    Password = user.PasswordHash,
+                    PhoneNumber = user.PhoneNumber,
+                    EmailConfirmed = user.EmailConfirmed,,
+                    Roles = roles.ToList()
+                };
+                usersWithRoles.Add(userWithRoles);
+            }
+
+            return View(usersWithRoles);
         }
+
 
         [HttpGet]
         public IActionResult GetAllAccounts()
