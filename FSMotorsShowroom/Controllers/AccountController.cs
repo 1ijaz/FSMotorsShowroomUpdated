@@ -39,7 +39,7 @@ namespace FSMotorsShowroom.Controllers
                     Email = user.Email,
                     Password = user.PasswordHash,
                     PhoneNumber = user.PhoneNumber,
-                    EmailConfirmed = user.EmailConfirmed,,
+                    EmailConfirmed = user.EmailConfirmed,
                     Roles = roles.ToList()
                 };
                 usersWithRoles.Add(userWithRoles);
