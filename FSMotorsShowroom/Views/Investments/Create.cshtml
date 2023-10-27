@@ -94,9 +94,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <div class="form-group">
-                            <label asp-for="CarStatus" class="control-label"></label>
-                            <input asp-for="CarStatus" class="form-control" />
-                            <span asp-validation-for="CarStatus" class="text-danger"></span>
+                            <label asp-for="CarStatus">Car Status</label>
+                            <select asp-for="CarStatus" asp-items="ViewBag.CarStatusEnum" class="form-control"></select>
                         </div>
                     </div>
                 </div>

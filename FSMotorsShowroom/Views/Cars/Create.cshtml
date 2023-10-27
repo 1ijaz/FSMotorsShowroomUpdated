@@ -27,217 +27,215 @@
                     </div>
                 </div>
                 <div class="col-md-6">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label asp-for="CarModelId" class="control-label"></label>
+                            <select asp-for="CarModelId" class="form-control" asp-items="ViewBag.CarModelId" id="CarIdDropdown">
+                                <option value="">Please Select Car Model</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="TransmissionMode">Transmission</label>
+                        <select asp-for="TransmissionMode" asp-items="ViewBag.TransmissionTypes" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="FuelType" class="control-label"></label>
+                        <input asp-for="FuelType" class="form-control" />
+                        <span asp-validation-for="FuelType" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="Color" class="control-label"></label>
                         <input asp-for="Color" class="form-control" />
                         <span asp-validation-for="Color" class="text-danger"></span>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="Transmission" class="control-label"></label>
-                <input asp-for="Transmission" class="form-control" />
-                <span asp-validation-for="Transmission" class="text-danger"></span>
-            </div>
-            </div>
-                    <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="FuelType" class="control-label"></label>
-                <input asp-for="FuelType" class="form-control" />
-                <span asp-validation-for="FuelType" class="text-danger"></span>
-            </div>
-             </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="FuelMilage" class="control-label"></label>
-                <input asp-for="FuelMilage" class="form-control" />
-                <span asp-validation-for="FuelMilage" class="text-danger"></span>
-            </div>
-                </div>
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="Features" class="control-label"></label>
-                <input asp-for="Features" class="form-control" />
-                <span asp-validation-for="Features" class="text-danger"></span>
+                    <div class="form-group">
+                        <label asp-for="Features" class="control-label"></label>
+                        <input asp-for="Features" class="form-control" />
+                        <span asp-validation-for="Features" class="text-danger"></span>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
                 </div>
                 <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="EngineNo" class="control-label"></label>
-                <input asp-for="EngineNo" class="form-control" />
-                <span asp-validation-for="EngineNo" class="text-danger"></span>
-            </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="BuyingPrice" class="control-label"></label>
-                <input asp-for="BuyingPrice" class="form-control" />
-                <span asp-validation-for="BuyingPrice" class="text-danger"></span>
-            </div>
-                </div>
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="SellingPrice" class="control-label"></label>
-                <input asp-for="SellingPrice" class="form-control" />
-                <span asp-validation-for="SellingPrice" class="text-danger"></span>
-            </div>
-             </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="MaintananceCost" class="control-label"></label>
-                <input asp-for="MaintananceCost" class="form-control" />
-                <span asp-validation-for="MaintananceCost" class="text-danger"></span>
-            </div>
-                </div>
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="ShowroomCost" class="control-label"></label>
-                <input asp-for="ShowroomCost" class="form-control" />
-                <span asp-validation-for="ShowroomCost" class="text-danger"></span>
-            </div>
-             </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="SalesTax" class="control-label"></label>
-                <input asp-for="SalesTax" class="form-control" />
-                <span asp-validation-for="SalesTax" class="text-danger"></span>
-            </div>
-                </div>
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="MakeCompany" class="control-label"></label>
-                <input asp-for="MakeCompany" class="form-control" />
-                <span asp-validation-for="MakeCompany" class="text-danger"></span>
-            </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="MakeYear" class="control-label"></label>
-                <input asp-for="MakeYear" class="form-control" />
-                <span asp-validation-for="MakeYear" class="text-danger"></span>
-            </div>
-              </div>
-                    <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="NoOfCylinders" class="control-label"></label>
-                <input asp-for="NoOfCylinders" class="form-control" />
-                <span asp-validation-for="NoOfCylinders" class="text-danger"></span>
-            </div>
-             </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="HoresPower" class="control-label"></label>
-                <input asp-for="HoresPower" class="form-control" />
-                <span asp-validation-for="HoresPower" class="text-danger"></span>
-            </div>
-                </div>
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="TransmissionMode" class="control-label"></label>
-                <input asp-for="TransmissionMode" class="form-control" />
-                <span asp-validation-for="TransmissionMode" class="text-danger"></span>
-            </div>
-                </div>
-            </div>
-
-          
-
-            <div class="row">
-                <div class="col-md-6">
-                      <div class="form-group">
-                <label asp-for="TankCapacity" class="control-label"></label>
-                <input asp-for="TankCapacity" class="form-control" />
-                <span asp-validation-for="TankCapacity" class="text-danger"></span>
-           
-            </div>
-          
-                </div>
-                <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="PassangerCapacity" class="control-label"></label>
-                <input asp-for="PassangerCapacity" class="form-control" />
-                <span asp-validation-for="PassangerCapacity" class="text-danger"></span>
-            </div>
+                    <div class="form-group">
+                        <label asp-for="EngineNo" class="control-label"></label>
+                        <input asp-for="EngineNo" class="form-control" />
+                        <span asp-validation-for="EngineNo" class="text-danger"></span>
+                    </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="FrontImageFile" class="control-label"></label>
-                <input asp-for="FrontImageFile" accept="image/*" />
-                <span asp-validation-for="FrontImageFile" class="text-danger"></span>
-            </div>
+                    <div class="form-group">
+                        <label asp-for="BuyingPrice" class="control-label"></label>
+                        <input asp-for="BuyingPrice" class="form-control" />
+                        <span asp-validation-for="BuyingPrice" class="text-danger"></span>
+                    </div>
                 </div>
                 <div class="col-md-6">
-            @*   <div class="form-group">
-            <label asp-for="FrontImage" class="control-label"></label>
-            <input asp-for="FrontImage" class="form-control" />
-            <span asp-validation-for="FrontImage" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="BackImageFile" class="control-label"></label>
-                <input asp-for="BackImageFile" accept="image/*" />
-                <span asp-validation-for="BackImageFile" class="text-danger"></span>
-            </div>
-             </div>
+                    <div class="form-group">
+                        <label asp-for="SellingPrice" class="control-label"></label>
+                        <input asp-for="SellingPrice" class="form-control" />
+                        <span asp-validation-for="SellingPrice" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="InteriorImageFile" class="control-label"></label>
-                <input asp-for="InteriorImageFile" accept="image/*" />
-                <span asp-validation-for="InteriorImageFile" class="text-danger"></span>
-            </div>
+                    <div class="form-group">
+                        <label asp-for="MaintananceCost" class="control-label"></label>
+                        <input asp-for="MaintananceCost" class="form-control" />
+                        <span asp-validation-for="MaintananceCost" class="text-danger"></span>
+                    </div>
                 </div>
                 <div class="col-md-6">
-
-
-            <div class="form-group">
-                <label asp-for="EngineImageFile" class="control-label"></label>
-                <input asp-for="EngineImageFile" accept="image/*" />
-                <span asp-validation-for="EngineImageFile" class="text-danger"></span>
+                    <div class="form-group">
+                        <label asp-for="ShowroomCost" class="control-label"></label>
+                        <input asp-for="ShowroomCost" class="form-control" />
+                        <span asp-validation-for="ShowroomCost" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="SalesTax" class="control-label"></label>
+                        <input asp-for="SalesTax" class="form-control" />
+                        <span asp-validation-for="SalesTax" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="MakeCompany" class="control-label"></label>
+                        <input asp-for="MakeCompany" class="form-control" />
+                        <span asp-validation-for="MakeCompany" class="text-danger"></span>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="BodyImageFile" class="control-label"></label>
-                <input asp-for="BodyImageFile" accept="image/*" />
-                <span asp-validation-for="BodyImageFile" class="text-danger"></span>
+                    <div class="form-group">
+                        <label asp-for="MakeYear" class="control-label"></label>
+                        <input asp-for="MakeYear" class="form-control" />
+                        <span asp-validation-for="MakeYear" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="NoOfCylinders" class="control-label"></label>
+                        <input asp-for="NoOfCylinders" class="form-control" />
+                        <span asp-validation-for="NoOfCylinders" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="HorsePower" class="control-label"></label>
+                        <input asp-for="HorsePower" class="form-control" />
+                        <span asp-validation-for="HorsePower" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="FuelMilage" class="control-label"></label>
+                        <input asp-for="FuelMilage" class="form-control" />
+                        <span asp-validation-for="FuelMilage" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="TankCapacity" class="control-label"></label>
+                        <input asp-for="TankCapacity" class="form-control" />
+                        <span asp-validation-for="TankCapacity" class="text-danger"></span>
+
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="PassengerCapacity" class="control-label"></label>
+                        <input asp-for="PassengerCapacity" class="form-control" />
+                        <span asp-validation-for="PassengerCapacity" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="FrontImageFile" class="control-label"></label>
+                        <input asp-for="FrontImageFile" accept="image/*" />
+                        <span asp-validation-for="FrontImageFile" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+            
+                    <div class="form-group">
+                        <label asp-for="BackImageFile" class="control-label"></label>
+                        <input asp-for="BackImageFile" accept="image/*" />
+                        <span asp-validation-for="BackImageFile" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="InteriorImageFile" class="control-label"></label>
+                        <input asp-for="InteriorImageFile" accept="image/*" />
+                        <span asp-validation-for="InteriorImageFile" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+
+                    <div class="form-group">
+                        <label asp-for="EngineImageFile" class="control-label"></label>
+                        <input asp-for="EngineImageFile" accept="image/*" />
+                        <span asp-validation-for="EngineImageFile" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="BodyImageFile" class="control-label"></label>
+                        <input asp-for="BodyImageFile" accept="image/*" />
+                        <span asp-validation-for="BodyImageFile" class="text-danger"></span>
+                    </div>
 
                 </div>
                 <div class="col-md-6">
@@ -247,18 +245,21 @@
                         <input asp-for="Doors" class="form-control" />
                         <span asp-validation-for="Doors" class="text-danger"></span>
                     </div>
-                  
+
                 </div>
             </div>
-              <div class="row">
-                        <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="CarStatus" class="control-label"></label>
-                <input asp-for="CarStatus" class="form-control" />
-                <span asp-validation-for="CarStatus" class="text-danger"></span>
-            </div>
-                </div>
+            <div class="row">
+
+           
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label asp-for="CarStatus">Car Status</label>
+                            <select asp-for="CarStatus" asp-items="ViewBag.CarStatusEnum" class="form-control"></select>
+                        </div>
                     </div>
+                </div>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

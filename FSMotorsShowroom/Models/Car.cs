@@ -19,9 +19,13 @@ namespace FSMotorsShowroom.Models
         public string? Name { get; set; }
 
         public string? Color { get; set; }
-        public virtual CarModel? CarModel { get; set; }
-        public string? Transmission { get; set; }
+        [Display(Name = "Car Model")]
+        public int CarModelId { get; set; }
+        [ForeignKey("CarModeilId")]
+        public CarModel CarModel { get; set; }
+        [DisplayName("Fuel Type")]
         public string? FuelType { get; set; }
+        [DisplayName("Fuel Milage")]
         public string? FuelMilage { get; set; }
         public string? Features { get; set; }
         public string? Description { get; set; }
@@ -31,30 +35,37 @@ namespace FSMotorsShowroom.Models
         [Required]
         [DisplayName("Buying Price")]
         public decimal BuyingPrice { get; set; }
-        [Required]
         [DisplayName("Selling Price")]
         public decimal? SellingPrice { get; set; }
-        [Required]
         [DisplayName("Maintanance Cost")]
         public decimal? MaintananceCost { get; set; }
-        [Required]
         [DisplayName("Showroom Cost")]
         public decimal? ShowroomCost { get; set; }
-        [Required]
         [DisplayName("Sales Tax")]
         public decimal? SalesTax  { get; set; }
+        [DisplayName("TotalPrice")]
+        public decimal? TotalPrice { get; set; }
         [Required]
         [DisplayName("Make Company")]
         public string? MakeCompany { get; set; }
         [DisplayName("Make Year")]
         public DateTime MakeYear { get; set; }
+        [DisplayName("No of Cylinders")]
         public string? NoOfCylinders { get; set; }
-        public string? HoresPower { get; set; }
+        [DisplayName("Horse Power")]
+        public string? HorsePower { get; set; }
+        public enum TransmissionType
+        {
+            Automatic,
+            Manual
+        }
+        [DisplayName("Transmission Mode")]
         public string? TransmissionMode { get; set; }
+        [DisplayName("Tank Capacity")]
         public string? TankCapacity { get; set; }
         public int Doors { get; set; }
         [DisplayName("Passanger Capacity")]
-        public int PassangerCapacity { get; set; }
+        public int PassengerCapacity { get; set; }
 
         public string? FrontImage { get; set; }
         [NotMapped]
@@ -77,6 +88,12 @@ namespace FSMotorsShowroom.Models
         [DisplayName("Body Image")]
         public IFormFile BodyImageFile { get; set; }
         public string? BodyImage { get; set; }
+        public enum CarStatusEnum
+        {
+            Workshop,
+            Showroom,
+            Sold
+        }
         public string? CarStatus { get; set; } //sold, showroom, worksop
 
 

@@ -40,9 +40,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="Transmission" class="control-label"></label>
-                        <input asp-for="Transmission" class="form-control" />
-                        <span asp-validation-for="Transmission" class="text-danger"></span>
+                        <label asp-for="TransmissionMode">Transmission</label>
+                        <select asp-for="TransmissionMode" asp-items="ViewBag.TransmissionTypes" class="form-control"></select>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -158,18 +157,12 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="HoresPower" class="control-label"></label>
-                        <input asp-for="HoresPower" class="form-control" />
-                        <span asp-validation-for="HoresPower" class="text-danger"></span>
+                        <label asp-for="HorsePower" class="control-label"></label>
+                        <input asp-for="HorsePower" class="form-control" />
+                        <span asp-validation-for="HorsePower" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="TransmissionMode" class="control-label"></label>
-                        <input asp-for="TransmissionMode" class="form-control" />
-                        <span asp-validation-for="TransmissionMode" class="text-danger"></span>
-                    </div>
-                </div>
+             
             </div>
 
 
@@ -186,9 +179,9 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="PassangerCapacity" class="control-label"></label>
-                        <input asp-for="PassangerCapacity" class="form-control" />
-                        <span asp-validation-for="PassangerCapacity" class="text-danger"></span>
+                        <label asp-for="PassengerCapacity" class="control-label"></label>
+                        <input asp-for="PassengerCapacity" class="form-control" />
+                        <span asp-validation-for="PassengerCapacity" class="text-danger"></span>
                     </div>
                 </div>
             </div>
@@ -255,9 +248,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="CarStatus" class="control-label"></label>
-                        <input asp-for="CarStatus" class="form-control" />
-                        <span asp-validation-for="CarStatus" class="text-danger"></span>
+                        <label asp-for="CarStatus">Car Status</label>
+                        <select asp-for="CarStatus" asp-items="ViewBag.CarStatusEnum" class="form-control"></select>
                     </div>
                 </div>
             </div>

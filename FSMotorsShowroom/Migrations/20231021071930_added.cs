@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FSMotorsShowroom.Migrations
 {
     /// <inheritdoc />
-    public partial class _17oct : Migration
+    public partial class added : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -259,8 +259,8 @@ namespace FSMotorsShowroom.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CarModelId = table.Column<int>(type: "int", nullable: true),
-                    Transmission = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CarModelId = table.Column<int>(type: "int", nullable: false),
+                    CarModeilId = table.Column<int>(type: "int", nullable: true),
                     FuelType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FuelMilage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Features = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -271,14 +271,15 @@ namespace FSMotorsShowroom.Migrations
                     MaintananceCost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ShowroomCost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SalesTax = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     MakeCompany = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MakeYear = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NoOfCylinders = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HoresPower = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HorsePower = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TransmissionMode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TankCapacity = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Doors = table.Column<int>(type: "int", nullable: false),
-                    PassangerCapacity = table.Column<int>(type: "int", nullable: false),
+                    PassengerCapacity = table.Column<int>(type: "int", nullable: false),
                     FrontImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BackImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     InteriorImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -290,8 +291,8 @@ namespace FSMotorsShowroom.Migrations
                 {
                     table.PrimaryKey("PK_cars", x => x.CarId);
                     table.ForeignKey(
-                        name: "FK_cars_carModels_CarModelId",
-                        column: x => x.CarModelId,
+                        name: "FK_cars_carModels_CarModeilId",
+                        column: x => x.CarModeilId,
                         principalTable: "carModels",
                         principalColumn: "CarModelId");
                 });
@@ -302,12 +303,12 @@ namespace FSMotorsShowroom.Migrations
                 {
                     InvestmentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CarName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BuyingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SellingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     MaintananceCost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     ShowroomCost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SalesTax = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SoldDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CarStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CarId = table.Column<int>(type: "int", nullable: false),
@@ -333,7 +334,7 @@ namespace FSMotorsShowroom.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "88bc5843-b70a-4d13-b7ba-9b6b25a6b3f9", "User", "Admin@gmail.com", false, "", "", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEB3KWA8m+jlfacYC3+gh1B7yEaozniHmF08zxtf+3/ELugZNxGZDjlT83nsd6N1tjA==", null, false, "aa2788db-4cee-4d59-977b-83a5d1c4d610", false, "Admin@gmail.com" });
+                values: new object[] { "1", 0, "55aedb86-f102-4d1d-998c-23501bdd9af4", "User", "Admin@gmail.com", false, "", "", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEOO8la1jYhiiTTdnu9B6h7g5qJHqyU2UtSh79HFE+gnvrMoDJs6k67fBl3o7bl6laA==", null, false, "ed4feb85-b524-48df-bd51-1d60f0bd78f5", false, "Admin@gmail.com" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -375,9 +376,9 @@ namespace FSMotorsShowroom.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_cars_CarModelId",
+                name: "IX_cars_CarModeilId",
                 table: "cars",
-                column: "CarModelId");
+                column: "CarModeilId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_investments_CarId",

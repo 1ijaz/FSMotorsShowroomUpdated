@@ -472,21 +472,30 @@
                                     <div class="col-md-6">
                                         <div class="min-price select-dropdown">
                                             <div class="my-dropdown min-price-dropdown min-dropdown">
-                                                <select name="min-year" class="css-dropdowns" tabindex="1">
-                                                    <option value="">Min Year</option>
-                                                    <option>2021</option>
-                                                    <option>2020</option>
-                                                    <option>2019</option>
-                                                    <option>2018</option>
-                                                    <option>2017</option>
-                                                    <option>2016</option>
-                                                    <option>2015</option>
-                                                    <option>2014</option>
-                                                    <option>2013</option>
-                                                    <option>2012</option>
-                                                    <option>2011</option>
-                                                    <option>2010</option>
+                                                @*  <select name="min-year" class="css-dropdowns" tabindex="1">
+                                                <option value="">Min Year</option>
+                                                <option>2021</option>
+                                                <option>2020</option>
+                                                <option>2019</option>
+                                                <option>2018</option>
+                                                <option>2017</option>
+                                                <option>2016</option>
+                                                <option>2015</option>
+                                                <option>2014</option>
+                                                <option>2013</option>
+                                                <option>2012</option>
+                                                <option>2011</option>
+                                                <option>2010</option>
+                                                </select> *@
+                                                <select name="min-year" class="css-dropdowns" tabindex="1>
+                                                    <option value="">Select a Year</option>
+                                                    <script>
+                                                        for (var year = 2000; year <= 2021; year++) {
+                                                            document.write('<option>' + year + '</option>');
+                                                        }
+                                                    </script>
                                                 </select>
+
                                             </div>
                                             <span class="my-dropdown">to</span>
                                             <div class="my-dropdown max-price-dropdown min-dropdown">

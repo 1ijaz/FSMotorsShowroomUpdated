@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FSMotorsShowroom.Models;
+using static FSMotorsShowroom.Models.Car;
 
 namespace FSMotorsShowroom.Controllers
 {
@@ -48,6 +49,7 @@ namespace FSMotorsShowroom.Controllers
         // GET: Investments/Create
         public IActionResult Create()
         {
+            ViewBag.CarStatusEnum = GetCarStatusEnum();
             ViewData["CarId"] = new SelectList(_context.cars, "CarId", "Name");
             ViewData["InvestorId"] = new SelectList(_context.investors, "InvestorId", "InvestorName");
             return View();
@@ -190,6 +192,17 @@ namespace FSMotorsShowroom.Controllers
 
             // Handle the case when the car is not found
             return Json(null);
+        }
+        private List<SelectListItem> GetCarStatusEnum()
+        {
+            var carStatusEnum = Enum.GetValues(typeof(CarStatusEnum)).Cast<CarStatusEnum>();
+            var items = carStatusEnum.Select(type => new SelectListItem
+            {
+                Text = type.ToString(),
+                Value = type.ToString()
+            }).ToList();
+
+            return items;
         }
     }
 }

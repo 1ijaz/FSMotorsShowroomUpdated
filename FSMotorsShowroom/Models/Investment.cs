@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -28,6 +29,9 @@ namespace FSMotorsShowroom.Models
         [Required]
         [Display(Name = "Sales Tax")]
         public decimal? SalesTax { get; set; }
+        [Required]
+        [DisplayName("TotalPrice")]
+        public decimal? TotalPrice { get; set; }
         [Required]
         [Display(Name = "Sold Date")]
         public DateTime SoldDate { get; set; }

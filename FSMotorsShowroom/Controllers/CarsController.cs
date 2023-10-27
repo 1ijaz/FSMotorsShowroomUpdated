@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FSMotorsShowroom.Models;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using static FSMotorsShowroom.Models.Car;
 
 namespace FSMotorsShowroom.Controllers
 {
@@ -50,6 +51,9 @@ namespace FSMotorsShowroom.Controllers
         // GET: Cars/Create
         public IActionResult Create()
         {
+            ViewData["CarModelId"] = new SelectList(_context.carModels, "CarModelId", "CarModelName");
+            ViewBag.TransmissionTypes = GetTransmissionTypes();
+            ViewBag.CarStatusEnum = GetCarStatusEnum();
             return View();
         }
 
@@ -58,20 +62,21 @@ namespace FSMotorsShowroom.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CarId,Name,Color,Transmission,FuelType,FuelMilage,Features,Description,EngineNo,BuyingPrice,SellingPrice,MaintananceCost,ShowroomCost,SalesTax,MakeCompany,MakeYear,NoOfCylinders,HoresPower,TransmissionMode,TankCapacity,Doors,PassangerCapacity,FrontImageFile,BackImageFile,InteriorImageFile,EngineImageFile,BodyImageFile,CarStatus")] Car car)
+        public async Task<IActionResult> Create(Car car)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 //Save image to wwwroot/image
                 car.FrontImage = await UploadFileAsync(car.FrontImageFile, "Uploads");
                 car.BackImage = await UploadFileAsync(car.BackImageFile, "Uploads");
                 car.InteriorImage = await UploadFileAsync(car.InteriorImageFile, "Uploads");
                 car.EngineImage = await UploadFileAsync(car.EngineImageFile, "Uploads");
                 car.BodyImage = await UploadFileAsync(car.BodyImageFile, "Uploads");
+                car.TotalPrice = car.BuyingPrice + car.MaintananceCost + car.ShowroomCost  + car.SalesTax;
                 _context.Add(car);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
+       // }
             return View(car);
     }
         // GET: Cars/Edit/5
@@ -95,7 +100,7 @@ namespace FSMotorsShowroom.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CarId,Name,Color,Transmission,FuelType,FuelMilage,Features,Description,EngineNo,BuyingPrice,SellingPrice,MaintananceCost,ShowroomCost,SalesTax,MakeCompany,MakeYear,NoOfCylinders,HoresPower,TransmissionMode,TankCapacity,Doors,PassangerCapacity,FrontImage,BackImage,InteriorImage,EngineImage,BodyImage,CarStatus")] Car car)
+        public async Task<IActionResult> Edit(int id, [Bind("CarId,Name,Color,TransmissionMode,FuelType,FuelMilage,Features,Description,EngineNo,BuyingPrice,SellingPrice,MaintananceCost,ShowroomCost,SalesTax,MakeCompany,MakeYear,NoOfCylinders,HorsePower,TransmissionMode,TankCapacity,Doors,PassengerCapacity,FrontImage,BackImage,InteriorImage,EngineImage,BodyImage,CarStatus")] Car car)
         {
             if (id != car.CarId)
             {
@@ -106,6 +111,7 @@ namespace FSMotorsShowroom.Controllers
             {
                 try
                 {
+                    car.TotalPrice = car.BuyingPrice + car.MaintananceCost + car.ShowroomCost + car.SalesTax;
                     _context.Update(car);
                     await _context.SaveChangesAsync();
                 }
@@ -184,6 +190,28 @@ namespace FSMotorsShowroom.Controllers
                 return uniqueFileName;
             }
             return null;
+        }
+        private List<SelectListItem> GetTransmissionTypes()
+        {
+            var transmissionTypes = Enum.GetValues(typeof(TransmissionType)).Cast<TransmissionType>();
+            var items = transmissionTypes.Select(type => new SelectListItem
+            {
+                Text = type.ToString(),
+                Value = type.ToString()
+            }).ToList();
+
+            return items;
+        }
+        private List<SelectListItem> GetCarStatusEnum()
+        {
+            var carStatusEnum = Enum.GetValues(typeof(CarStatusEnum)).Cast<CarStatusEnum>();
+            var items = carStatusEnum.Select(type => new SelectListItem
+            {
+                Text = type.ToString(),
+                Value = type.ToString()
+            }).ToList();
+
+            return items;
         }
     }
 

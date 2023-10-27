@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FSMotorsShowroom.Migrations
 {
     [DbContext(typeof(FSDbContext))]
-    [Migration("20231017161403_17 oct")]
-    partial class _17oct
+    [Migration("20231021071930_added")]
+    partial class added
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,7 +42,10 @@ namespace FSMotorsShowroom.Migrations
                     b.Property<decimal>("BuyingPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("CarModelId")
+                    b.Property<int?>("CarModeilId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CarModelId")
                         .HasColumnType("int");
 
                     b.Property<string>("CarStatus")
@@ -76,7 +79,7 @@ namespace FSMotorsShowroom.Migrations
                     b.Property<string>("FuelType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HoresPower")
+                    b.Property<string>("HorsePower")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InteriorImage")
@@ -100,7 +103,7 @@ namespace FSMotorsShowroom.Migrations
                     b.Property<string>("NoOfCylinders")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PassangerCapacity")
+                    b.Property<int>("PassengerCapacity")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("SalesTax")
@@ -118,15 +121,16 @@ namespace FSMotorsShowroom.Migrations
                     b.Property<string>("TankCapacity")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Transmission")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal?>("TotalPrice")
+                        .IsRequired()
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("TransmissionMode")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CarId");
 
-                    b.HasIndex("CarModelId");
+                    b.HasIndex("CarModeilId");
 
                     b.ToTable("cars");
                 });
@@ -162,10 +166,6 @@ namespace FSMotorsShowroom.Migrations
                     b.Property<int>("CarId")
                         .HasColumnType("int");
 
-                    b.Property<string>("CarName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CarStatus")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -191,6 +191,10 @@ namespace FSMotorsShowroom.Migrations
 
                     b.Property<DateTime>("SoldDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("TotalPrice")
+                        .IsRequired()
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("InvestmentId");
 
@@ -565,15 +569,15 @@ namespace FSMotorsShowroom.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "88bc5843-b70a-4d13-b7ba-9b6b25a6b3f9",
+                            ConcurrencyStamp = "55aedb86-f102-4d1d-998c-23501bdd9af4",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEB3KWA8m+jlfacYC3+gh1B7yEaozniHmF08zxtf+3/ELugZNxGZDjlT83nsd6N1tjA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOO8la1jYhiiTTdnu9B6h7g5qJHqyU2UtSh79HFE+gnvrMoDJs6k67fBl3o7bl6laA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "aa2788db-4cee-4d59-977b-83a5d1c4d610",
+                            SecurityStamp = "ed4feb85-b524-48df-bd51-1d60f0bd78f5",
                             TwoFactorEnabled = false,
                             UserName = "Admin@gmail.com",
                             FirstName = "",
@@ -585,7 +589,7 @@ namespace FSMotorsShowroom.Migrations
                 {
                     b.HasOne("FSMotorsShowroom.Models.CarModel", "CarModel")
                         .WithMany()
-                        .HasForeignKey("CarModelId");
+                        .HasForeignKey("CarModeilId");
 
                     b.Navigation("CarModel");
                 });
