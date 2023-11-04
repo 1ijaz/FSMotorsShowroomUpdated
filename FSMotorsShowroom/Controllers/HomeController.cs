@@ -22,6 +22,13 @@ namespace FSMotorsShowroom.Controllers
      
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("/Admin/Index");
+            }
+            else { 
+                return View(); 
+            }
             return View();
         }
 

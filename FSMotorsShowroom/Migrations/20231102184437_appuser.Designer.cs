@@ -4,6 +4,7 @@ using FSMotorsShowroom.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FSMotorsShowroom.Migrations
 {
     [DbContext(typeof(FSDbContext))]
-    partial class FSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231102184437_appuser")]
+    partial class appuser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,6 +51,9 @@ namespace FSMotorsShowroom.Migrations
                     b.Property<string>("CarStatus")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -61,25 +67,19 @@ namespace FSMotorsShowroom.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ExteriorColor")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Features")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FrontImage")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("FuelMilage")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("FuelMilage")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FuelType")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HorsePower")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InteriorColor")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InteriorImage")
@@ -96,6 +96,7 @@ namespace FSMotorsShowroom.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NoOfCylinders")
@@ -104,13 +105,6 @@ namespace FSMotorsShowroom.Migrations
                     b.Property<int>("PassengerCapacity")
                         .HasColumnType("int");
 
-<<<<<<< Updated upstream
-                    b.Property<string>("RegistrationNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-=======
->>>>>>> Stashed changes
                     b.Property<decimal?>("SalesTax")
                         .HasColumnType("decimal(18,2)");
 
@@ -214,12 +208,9 @@ namespace FSMotorsShowroom.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InvestorId"));
 
-<<<<<<< Updated upstream
                     b.Property<decimal?>("InvestUnallocatedAmount")
                         .HasColumnType("decimal(18,2)");
 
-=======
->>>>>>> Stashed changes
                     b.Property<string>("InvestorAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -235,6 +226,10 @@ namespace FSMotorsShowroom.Migrations
                     b.Property<string>("InvestorName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("TotalInvestAmount")
+                        .IsRequired()
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("InvestorId");
 
@@ -300,6 +295,99 @@ namespace FSMotorsShowroom.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("transactions");
+                });
+
+            modelBuilder.Entity("FSMotorsShowroom.Models.User", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "c89311e5-e6ad-48e4-a4fb-679d9ad01b7e",
+                            Email = "Admin@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "",
+                            LastName = "",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEENwf1j0Oiy0l6PxmKjJwo8wP6WCv8BRlMl/gBrhPGC5GYg9r378IpqwEvq4+kQ4WA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "12ecbb28-e1bf-4403-bbee-34eca7d337f4",
+                            TwoFactorEnabled = false,
+                            UserName = "Admin@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("FSMotorsShowroom.Models.UserType", b =>
@@ -391,79 +479,6 @@ namespace FSMotorsShowroom.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
-
-                    b.UseTphMappingStrategy();
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -549,57 +564,6 @@ namespace FSMotorsShowroom.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("FSMotorsShowroom.Models.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "eeb67d3c-2b35-4857-ad51-2cc7d80b5074",
-                            AccessFailedCount = 0,
-<<<<<<< Updated upstream
-                            ConcurrencyStamp = "2070c318-4f67-44da-a290-97915660130e",
-=======
-                            ConcurrencyStamp = "fd9d57f9-1afd-4e12-a23c-88930d73bf3b",
->>>>>>> Stashed changes
-                            Email = "Admin@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@GMAIL.COM",
-                            NormalizedUserName = "ADMIN@GMAIL.COM",
-<<<<<<< Updated upstream
-                            PasswordHash = "AQAAAAIAAYagAAAAEGcsBZfsjf7oOs6KLXnW09tOoWqCUoEWTVkv6AZ/xa+9CBmpg9lq44r2mricw7JVgg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "5aca8dcf-a11b-43ef-9ec0-83f8654bb818",
-=======
-                            PasswordHash = "AQAAAAIAAYagAAAAEGLNUPT6zZRib7ZOyPxZRTGyfWteT+1ok/GQLCbQlsb/FsRK3CxotpWv1TlgHtsG0g==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "049b4bd3-fa94-49a2-a5f6-f4b23e89d6d2",
->>>>>>> Stashed changes
-                            TwoFactorEnabled = false,
-                            UserName = "Admin@gmail.com",
-                            FirstName = "Hamza",
-                            LastName = "Khan",
-                            Role = "Admin"
-                        });
-                });
-
             modelBuilder.Entity("FSMotorsShowroom.Models.Car", b =>
                 {
                     b.HasOne("FSMotorsShowroom.Models.CarModel", "CarModel")
@@ -639,7 +603,7 @@ namespace FSMotorsShowroom.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("FSMotorsShowroom.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -648,7 +612,7 @@ namespace FSMotorsShowroom.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("FSMotorsShowroom.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -663,7 +627,7 @@ namespace FSMotorsShowroom.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("FSMotorsShowroom.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -672,7 +636,7 @@ namespace FSMotorsShowroom.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("FSMotorsShowroom.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

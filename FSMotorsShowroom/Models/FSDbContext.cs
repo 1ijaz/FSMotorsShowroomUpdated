@@ -6,7 +6,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FSMotorsShowroom.Models
 {
-    public class FSDbContext : IdentityDbContext<IdentityUser>
+    public class FSDbContext : IdentityDbContext
+
     {
         public FSDbContext(DbContextOptions<FSDbContext> options) : base(options)
         {
@@ -16,33 +17,39 @@ namespace FSMotorsShowroom.Models
         public DbSet<CarModel> carModels { get; set; }
         public DbSet<Investor> investors { get; set; }
         public DbSet<Transaction> transactions { get; set; }
-        public DbSet<User> users { get; set; }
+        public DbSet<ApplicationUser> applicationUsers { get; set; }
         public DbSet<UserType> userTypes { get; set; }
         public DbSet<WorkShop> workShops { get; set; }
         public DbSet<Investment> investments { get; set; }
         public DbSet<Showroom> Showroom { get; set; } = default!;
 
         //public DbSet<FSMotorsShowroom.Models.Category> Category { get; set; } = default!;
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override async void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            var hasher = new PasswordHasher<User>();
+            var hasher = new PasswordHasher<ApplicationUser>();
 
-            builder.Entity<User>().HasData(
-                new User
+            builder.Entity<ApplicationUser>().HasData(
+               
+            new ApplicationUser
                 {
-                    Id = "1",
+                    
                     Email = "Admin@gmail.com",
                     UserName = "Admin@gmail.com",
                     NormalizedEmail = "ADMIN@GMAIL.COM",
                     NormalizedUserName = "ADMIN@GMAIL.COM",
                     PasswordHash = hasher.HashPassword(null, "Admin@11"),
-                    FirstName="",
-                    LastName=""
+                    FirstName="Hamza",
+                    LastName="Khan",
+                    Role = "Admin"
                    
                 }
+               
             );
+            
+            
+
         }
 
     }

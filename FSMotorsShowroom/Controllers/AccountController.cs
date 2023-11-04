@@ -12,54 +12,57 @@ namespace FSMotorsShowroom.Controllers
     public class AccountController : Controller
     {
         private readonly FSDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
 
-        public AccountController(FSDbContext context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public AccountController(FSDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
-          //  _context = context;
+           _context = context;
            
         }
 
         public async Task<IActionResult> Index()
         {
-            var usersWithRoles = new List<UserWithRolesViewModel>();
+            var ulist= await _context.applicationUsers.ToListAsync();
+            var users = await _userManager.Users.ToListAsync();
+            return View(ulist);
+            //var usersWithRoles = new List<UserWithRolesViewModel>();
 
-            var users = _userManager.Users.ToList();
+            //var users = _userManager.Users.ToList();
 
-            foreach (var user in users)
-            {
-                var roles = await _userManager.GetRolesAsync(user);
-                var userWithRoles = new UserWithRolesViewModel
-                {
-                    UserName = user.UserName,
-                    Email = user.Email,
-                    Password = user.PasswordHash,
-                    PhoneNumber = user.PhoneNumber,
-                    EmailConfirmed = user.EmailConfirmed,
-                    Roles = roles.ToList()
-                };
-                usersWithRoles.Add(userWithRoles);
-            }
+            //foreach (var user in users)
+            //{
+            //    var roles = await _userManager.GetRolesAsync(user);
+            //    var userWithRoles = new UserWithRolesViewModel
+            //    {
+            //        UserName = user.UserName,
+            //        Email = user.Email,
+            //        Password = user.PasswordHash,
+            //        PhoneNumber = user.PhoneNumber,
+            //        EmailConfirmed = user.EmailConfirmed,
+            //        Roles = roles.ToList()
+            //    };
+            //    usersWithRoles.Add(userWithRoles);
+       // }
 
-            return View(usersWithRoles);
+            //return View(usersWithRoles);
         }
 
 
         [HttpGet]
         public IActionResult GetAllAccounts()
         {
-            var accounts = _context.users.Select(a => new
+            var accounts = _context.applicationUsers.Select(a => new
             {
                 a.Id,
                 a.FirstName,
                 a.LastName ,             
                 a.Email,
-                a.EmailConfirmed
-
+                a.EmailConfirmed,
+                a.Role
                 //a.IsApproved
             }).ToList();
 
@@ -74,12 +77,12 @@ namespace FSMotorsShowroom.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAccount(User model)
+        public async Task<IActionResult> AddAccount(ApplicationUser model)
         {
             if (ModelState.IsValid)
             {
                 //Create and add a new account to the database
-               var newAccount = new User
+               var newAccount = new ApplicationUser
                {
                    FirstName = model.FirstName,
                    LastName = model.LastName,
@@ -90,7 +93,7 @@ namespace FSMotorsShowroom.Controllers
                    // Add any other properties as needed
                };
 
-                _context.users.Add(newAccount);
+                _context.applicationUsers.Add(newAccount);
                 await _context.SaveChangesAsync();
                 return Json(new { success = true });
             }
@@ -102,13 +105,13 @@ namespace FSMotorsShowroom.Controllers
         [HttpGet]
         public async Task<IActionResult> EditAccount(int id)
         {
-            var account = await _context.users.FindAsync(id);
+            var account = await _context.applicationUsers.FindAsync(id);
             if (account == null)
             {
                 return NotFound();
             }
 
-            var model = new User
+            var model = new ApplicationUser
             {
                
                 FirstName = account.FirstName,
@@ -123,7 +126,7 @@ namespace FSMotorsShowroom.Controllers
 
         // POST: Account/EditAccount/{id} (For updating an account)
         [HttpPost]
-        public async Task<IActionResult> EditAccount(int id, [FromBody] User model)
+        public async Task<IActionResult> EditAccount(int id, [FromBody] ApplicationUser model)
         {
             //if (id != model.UserId)
             //{
@@ -173,13 +176,13 @@ namespace FSMotorsShowroom.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteAccount(int id)
         {
-            var account = await _context.users.FindAsync(id);
+            var account = await _context.applicationUsers.FindAsync(id);
             if (account == null)
             {
                 return NotFound();
             }
 
-            _context.users.Remove(account);
+            _context.applicationUsers.Remove(account);
             await _context.SaveChangesAsync();
             return Json(new { success = true });
         }

@@ -24,7 +24,7 @@ namespace FSMotorsShowroom.Controllers
     {
            new RecordCountModel { Name = "Total Cars", CountNumber = _context.cars.Count(), Link = "/cars/index" },
             new RecordCountModel { Name = "Total Investors", CountNumber = _context.investors.Count(), Link = "/investors/index" },
-            new RecordCountModel { Name = "Total Users", CountNumber = _context.users.Count(), Link = "link3" },
+            new RecordCountModel { Name = "Total Users", CountNumber = _context.applicationUsers.Count(), Link = "link3" },
             new RecordCountModel { Name = "Total Showrooms", CountNumber = _context.workShops.Count(), Link = "link4" },
             new RecordCountModel { Name = "Total Workshops", CountNumber = _context.Showroom.Count(), Link = "link5" },
         // Add more tables as needed
@@ -40,7 +40,7 @@ namespace FSMotorsShowroom.Controllers
             {
             new RecordCountModel { Name = "Total Cars", CountNumber = _context.cars.Count(), Link = "link1" },
             new RecordCountModel { Name = "Total Investors", CountNumber = _context.investors.Count(), Link = "link2" },
-            new RecordCountModel { Name = "Total Users", CountNumber = _context.users.Count(), Link = "link3" },
+            new RecordCountModel { Name = "Total Users", CountNumber = _context.applicationUsers.Count(), Link = "link3" },
             new RecordCountModel { Name = "Total Showrooms", CountNumber = _context.workShops.Count(), Link = "link4" },
             new RecordCountModel { Name = "Total Workshops", CountNumber = _context.Showroom.Count(), Link = "link5" },
             // Add more tables as needed

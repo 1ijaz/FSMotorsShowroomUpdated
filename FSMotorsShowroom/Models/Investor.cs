@@ -22,11 +22,11 @@ namespace FSMotorsShowroom.Models
         [Required]
         [Display(Name = "Address")]
         public string? InvestorAddress { get; set; }
-        [Display(Name = "Unallocated Invest Amount")]
-        public decimal? InvestUnallocatedAmount { get; set; }
-        [Required]
-        [Display(Name = "Total Invest Amount")]
-        public decimal? TotalInvestAmount { get; set; }
+        //[Display(Name = "Unallocated Invest Amount")]
+        //public decimal? InvestUnallocatedAmount { get; set; }
+        //[Required]
+        //[Display(Name = "Total Invest Amount")]
+        //public decimal? TotalInvestAmount { get; set; }
 
     }
 }

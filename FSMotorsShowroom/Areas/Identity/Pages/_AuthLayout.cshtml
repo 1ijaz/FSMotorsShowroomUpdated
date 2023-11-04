@@ -2,28 +2,28 @@
     Layout = "~/Views/Shared/_loginLAyout.cshtml";
 }
 <div class="nav justify-content-center">
-   <div class="col-5 mt-5">
-       <div class="card login-logout-card">
-@*            <div class="card-header">
-               <ul class="nav nav-tabs card-header-tabs">
-               
-                <li class="nav-item">
-                        <a class="nav-link" href="/identity/account/login">Log In</a>
-                </li>
-                <li class="nav-item">
-                        <a class="nav-link" href="/identity/account/register">Register</a>
-                </li>
-                </ul>
-           </div> *@
-           <div class="card-body">
+    <div class="col-5 mt-5">
+        <div class="card login-logout-card">
+            @*            <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+
+            <li class="nav-item">
+            <a class="nav-link" href="/identity/account/login">Log In</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/identity/account/register">Register</a>
+            </li>
+            </ul>
+            </div> *@
+            <div class="card-body">
                 <div class="row justify-content-center">
-                   <div class ="col-10 my-4">
-                       @RenderBody()
-                   </div>
+                    <div class="col-10 my-4">
+                        @RenderBody()
+                    </div>
                 </div>
             </div>
-       </div>
+        </div>
 
-   </div>
+    </div>
 </div>
 @await RenderSectionAsync("Scripts", required: false)

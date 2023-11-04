@@ -56,6 +56,10 @@ namespace FSMotorsShowroom.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                Response.Redirect("/Admin/Index");
+            }
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);
@@ -76,7 +80,7 @@ namespace FSMotorsShowroom.Areas.Identity.Pages.Account
             returnUrl ??= Url.Content("~/");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-
+        
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
@@ -107,6 +111,5 @@ namespace FSMotorsShowroom.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
-
     }
 }
