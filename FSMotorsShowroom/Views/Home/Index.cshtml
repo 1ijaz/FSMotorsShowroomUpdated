@@ -872,6 +872,7 @@
         url: '/Home/GetTenCars', // Replace with your actual controller route
         type: 'GET',
         success: function(cars) {
+                
             // Assuming 'cars' is an array of car objects
             cars.forEach(function(car) {
 
@@ -882,7 +883,7 @@
                         </div>
                         <div class="car-block">
                             <div class="img-flex">
-                                <a href="/home/inventory_listing"><span class="align-center"><i class="fa fa-3x fa-plus-square-o"></i></span></a>
+                                    <a href="/home/inventory_listing_2/${car.carId}"><span class="align-center"><i class="fa fa-3x fa-plus-square-o"></i></span></a>
                                         <img src="/Uploads/${car.frontImage}" alt="" class="img-responsive">
                             </div>
                             <div class="car-block-bottom">
@@ -939,5 +940,5 @@
             });
         });
     });
-
+ 
 </script>

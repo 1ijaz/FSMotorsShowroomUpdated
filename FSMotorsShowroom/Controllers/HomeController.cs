@@ -111,6 +111,11 @@ namespace FSMotorsShowroom.Controllers
         {
             return View("~/Views/Home/inventory-listing.cshtml");
         }
+        public IActionResult inventory_listing_2(int id)
+        {
+            var model = new InventoryModel { Id = id };
+            return View("~/Views/Home/inventory-listing_2.cshtml", model);
+        }
         public IActionResult inventory_wide_fullwidth()
         {
             return View("~/Views/Home/inventory-wide-fullwidth.cshtml");
@@ -219,6 +224,7 @@ namespace FSMotorsShowroom.Controllers
         public IActionResult GetTenCars()
         {
             var tenCars = _context.cars.Take(10).ToList();
+            HttpContext.Session.SetString("FoundTenCar", System.Text.Json.JsonSerializer.Serialize(tenCars));
             return Json(tenCars);
         }
 
