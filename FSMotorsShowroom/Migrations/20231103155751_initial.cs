@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FSMotorsShowroom.Migrations
 {
     /// <inheritdoc />
-    public partial class added : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -76,7 +76,7 @@ namespace FSMotorsShowroom.Migrations
                     InvestorEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InvestorContact = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InvestorAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InvestUnallocatedAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    InvestUnallocatedAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     TotalInvestAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
@@ -257,21 +257,23 @@ namespace FSMotorsShowroom.Migrations
                 {
                     CarId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RegistrationNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InteriorColor = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExteriorColor = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CarModelId = table.Column<int>(type: "int", nullable: false),
                     CarModeilId = table.Column<int>(type: "int", nullable: true),
                     FuelType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FuelMilage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FuelMilage = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Features = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EngineNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BuyingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SellingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    MaintananceCost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ShowroomCost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SalesTax = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SellingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    MaintananceCost = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    ShowroomCost = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    SalesTax = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     MakeCompany = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MakeYear = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NoOfCylinders = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -334,7 +336,7 @@ namespace FSMotorsShowroom.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "55aedb86-f102-4d1d-998c-23501bdd9af4", "User", "Admin@gmail.com", false, "", "", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEOO8la1jYhiiTTdnu9B6h7g5qJHqyU2UtSh79HFE+gnvrMoDJs6k67fBl3o7bl6laA==", null, false, "ed4feb85-b524-48df-bd51-1d60f0bd78f5", false, "Admin@gmail.com" });
+                values: new object[] { "1", 0, "2070c318-4f67-44da-a290-97915660130e", "User", "Admin@gmail.com", false, "", "", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEGcsBZfsjf7oOs6KLXnW09tOoWqCUoEWTVkv6AZ/xa+9CBmpg9lq44r2mricw7JVgg==", null, false, "5aca8dcf-a11b-43ef-9ec0-83f8654bb818", false, "Admin@gmail.com" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

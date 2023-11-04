@@ -1,5 +1,6 @@
 ﻿using FSMotorsShowroom.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,13 @@ namespace FSMotorsShowroom.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly FSDbContext _context;
+        public HomeController(FSDbContext context, ILogger<HomeController> logger)
         {
             _logger = logger;
+            _context = context;
         }
-
+     
         public IActionResult Index()
         {
             return View();
@@ -173,8 +175,54 @@ namespace FSMotorsShowroom.Controllers
             {
                 return View("~/Views/Home/services.cshtml");
             }
-     
+        public IActionResult Search_car_list()
+        {
+            return View("~/Views/Home/search_car_list.cshtml");
         }
-    
+        [HttpPost]
+        public IActionResult getCar(PostCar searchParams)
+        {
+            IQueryable<Car> query = _context.cars;
+
+            // Applying conditions based on search parameters
+            if (!string.IsNullOrEmpty(searchParams.MakeCompany))
+            {
+                query = query.Where(car => car.MakeCompany.Contains(searchParams.MakeCompany));
+            }
+            if (!string.IsNullOrEmpty(searchParams.Name))
+            {
+                query = query.Where(car => car.Name.Contains(searchParams.Name));
+            }
+
+            // Assuming the MakeYear is stored as a DateTime and we are filtering by the year part
+            // query = query.Where(car => car.MakeYear.Year == searchParams.MakeYearMinimum);
+            if (searchParams.FuelMilageMinimum > 0 && searchParams.FuelMilageMaximum > 0)
+            {
+                query = query.Where(car => car.FuelMilage >= searchParams.FuelMilageMinimum && car.FuelMilage <= searchParams.FuelMilageMaximum);
+            }
+            if (searchParams.TotalPriceMinimum > 0 && searchParams.TotalPriceMaximum > 0)
+            {
+                query = query.Where(car => car.TotalPrice >= searchParams.TotalPriceMinimum && car.TotalPrice <= searchParams.TotalPriceMaximum);
+            }
+
+            var foundCar = query.FirstOrDefault();
+
+            if (foundCar != null)
+            {
+                HttpContext.Session.SetString("FoundCar", System.Text.Json.JsonSerializer.Serialize(foundCar));
+                return Json(new { redirectUrl = Url.Action("Search_car_list", "Home") });
+            }
+
+            return Json(new { error = "Car not found" }); // Handle error scenario
+        }
+        [HttpGet]
+        public IActionResult GetTenCars()
+        {
+            var tenCars = _context.cars.Take(10).ToList();
+            return Json(tenCars);
+        }
+
     }
+
+}
 

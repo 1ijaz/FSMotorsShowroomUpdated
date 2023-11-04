@@ -15,10 +15,14 @@ namespace FSMotorsShowroom.Models
         [Key]
         public int CarId { get; set; }
         [Required]
+        [DisplayName("Registration Number")]
+        public string RegistrationNumber { get; set; }
         [DisplayName("Car Name")]
         public string? Name { get; set; }
-
-        public string? Color { get; set; }
+        [DisplayName("Interior Color")]
+        public string? InteriorColor { get; set; }
+        [DisplayName("Exterior Color")]
+        public string? ExteriorColor { get; set; }
         [Display(Name = "Car Model")]
         public int CarModelId { get; set; }
         [ForeignKey("CarModeilId")]
@@ -26,7 +30,7 @@ namespace FSMotorsShowroom.Models
         [DisplayName("Fuel Type")]
         public string? FuelType { get; set; }
         [DisplayName("Fuel Milage")]
-        public string? FuelMilage { get; set; }
+        public decimal? FuelMilage { get; set; }
         public string? Features { get; set; }
         public string? Description { get; set; }
         [Required]

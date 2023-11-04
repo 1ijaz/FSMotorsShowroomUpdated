@@ -21,11 +21,25 @@
                 <div class="col-md-6">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
+                        <label asp-for="RegistrationNumber" class="control-label"></label>
+                        <input asp-for="RegistrationNumber" class="form-control" />
+                        <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
                         <label asp-for="Name" class="control-label"></label>
                         <input asp-for="Name" class="form-control" />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                 </div>
+
+
+            </div>
+
+            <div class="row">
                 <div class="col-md-6">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
@@ -36,17 +50,9 @@
                             </select>
                         </div>
                     </div>
+
                 </div>
 
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="TransmissionMode">Transmission</label>
-                        <select asp-for="TransmissionMode" asp-items="ViewBag.TransmissionTypes" class="form-control"></select>
-                    </div>
-                </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="FuelType" class="control-label"></label>
@@ -59,18 +65,19 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="Color" class="control-label"></label>
-                        <input asp-for="Color" class="form-control" />
-                        <span asp-validation-for="Color" class="text-danger"></span>
+                        <label asp-for="InteriorColor" class="control-label"></label>
+                        <input asp-for="InteriorColor" class="form-control" />
+                        <span asp-validation-for="InteriorColor" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="Features" class="control-label"></label>
-                        <input asp-for="Features" class="form-control" />
-                        <span asp-validation-for="Features" class="text-danger"></span>
+                        <label asp-for="ExteriorColor" class="control-label"></label>
+                        <input asp-for="ExteriorColor" class="form-control" />
+                        <span asp-validation-for="ExteriorColor" class="text-danger"></span>
                     </div>
                 </div>
+
             </div>
 
             <div class="row">
@@ -202,7 +209,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-            
+
                     <div class="form-group">
                         <label asp-for="BackImageFile" class="control-label"></label>
                         <input asp-for="BackImageFile" accept="image/*" />
@@ -249,8 +256,23 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="TransmissionMode">Transmission</label>
+                        <select asp-for="TransmissionMode" asp-items="ViewBag.TransmissionTypes" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Features" class="control-label"></label>
+                        <input asp-for="Features" class="form-control" />
+                        <span asp-validation-for="Features" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
 
-           
+
                 <div class="col-md-6">
                     <div class="form-group">
                         <div class="form-group">
@@ -260,6 +282,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

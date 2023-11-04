@@ -48,9 +48,6 @@ namespace FSMotorsShowroom.Migrations
                     b.Property<string>("CarStatus")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Color")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -64,14 +61,17 @@ namespace FSMotorsShowroom.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ExteriorColor")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Features")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FrontImage")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FuelMilage")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal?>("FuelMilage")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("FuelType")
                         .HasColumnType("nvarchar(max)");
@@ -79,11 +79,13 @@ namespace FSMotorsShowroom.Migrations
                     b.Property<string>("HorsePower")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("InteriorColor")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("InteriorImage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("MaintananceCost")
-                        .IsRequired()
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("MakeCompany")
@@ -94,7 +96,6 @@ namespace FSMotorsShowroom.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NoOfCylinders")
@@ -103,23 +104,23 @@ namespace FSMotorsShowroom.Migrations
                     b.Property<int>("PassengerCapacity")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("SalesTax")
+                    b.Property<string>("RegistrationNumber")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("SalesTax")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("SellingPrice")
-                        .IsRequired()
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("ShowroomCost")
-                        .IsRequired()
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("TankCapacity")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("TotalPrice")
-                        .IsRequired()
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("TransmissionMode")
@@ -211,7 +212,6 @@ namespace FSMotorsShowroom.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InvestorId"));
 
                     b.Property<decimal?>("InvestUnallocatedAmount")
-                        .IsRequired()
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("InvestorAddress")
@@ -566,15 +566,15 @@ namespace FSMotorsShowroom.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "55aedb86-f102-4d1d-998c-23501bdd9af4",
+                            ConcurrencyStamp = "2070c318-4f67-44da-a290-97915660130e",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOO8la1jYhiiTTdnu9B6h7g5qJHqyU2UtSh79HFE+gnvrMoDJs6k67fBl3o7bl6laA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGcsBZfsjf7oOs6KLXnW09tOoWqCUoEWTVkv6AZ/xa+9CBmpg9lq44r2mricw7JVgg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ed4feb85-b524-48df-bd51-1d60f0bd78f5",
+                            SecurityStamp = "5aca8dcf-a11b-43ef-9ec0-83f8654bb818",
                             TwoFactorEnabled = false,
                             UserName = "Admin@gmail.com",
                             FirstName = "",

@@ -463,56 +463,54 @@
                             automotive engineering, blending cutting-edge technology with timeless <span class="alternate-font">craftsmanship.</span>.
                         </p>
                     </div>
+                    <div class="loader" style="display: none;">Loading...</div>
                     <!--welcome ends-->
                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 padding-bottom-40 scroll_effect fadeInUp" data-wow-delay='.2s' style="z-index:100">
-                        <h4 class="margin-bottom-25 margin-top-none"><strong>SEARCH</strong> OUR INVENTORY</h4>
+                        <h4 class="margin-bottom-25 margin-top-none"><strong>SEARCH</strong> OUR CAR</h4>
                         <div class="search-form margin-top-20 padding-vertical-20">
-                            <form method="post" action="#">
+                            <form id="carSearchForm" method="post" action="#">
                                 <div class="select-wrapper row clearfix">
                                     <div class="col-md-6">
                                         <div class="min-price select-dropdown">
                                             <div class="my-dropdown min-price-dropdown min-dropdown">
-                                                @*  <select name="min-year" class="css-dropdowns" tabindex="1">
-                                                <option value="">Min Year</option>
-                                                <option>2021</option>
-                                                <option>2020</option>
-                                                <option>2019</option>
-                                                <option>2018</option>
-                                                <option>2017</option>
-                                                <option>2016</option>
-                                                <option>2015</option>
-                                                <option>2014</option>
-                                                <option>2013</option>
-                                                <option>2012</option>
-                                                <option>2011</option>
-                                                <option>2010</option>
-                                                </select> *@
-                                                <select name="min-year" class="css-dropdowns" tabindex="1>
-                                                    <option value="">Select a Year</option>
-                                                    <script>
-                                                        for (var year = 2000; year <= 2021; year++) {
-                                                            document.write('<option>' + year + '</option>');
-                                                        }
-                                                    </script>
+                                                <select id="minYear" name="min-year" class="css-dropdowns" tabindex="1">
+                                                    <option value="">Min Year</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2021">2021</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2015">2015</option>
+                                                    <option value="2014">2014</option>
+                                                    <option value="2013">2013</option>
+                                                    <option value="2012">2012</option>
+                                                    <option value="2011">2011</option>
+                                                    <option value="2010">2010</option>
                                                 </select>
+                                            </div>
+                                            <span class="my-dropdown">to</span>
+                                            <div class="my-dropdown max-price-dropdown min-dropdown">
+                                                <select id="maxYear" name="max-year" class="css-dropdowns" tabindex="1">
 
-                                            </div>
-                                            <span class="my-dropdown">to</span>
-                                            <div class="my-dropdown max-price-dropdown min-dropdown">
-                                                <select name="max-year" class="css-dropdowns" tabindex="1">
                                                     <option value="">Max Year</option>
-                                                    <option>2021</option>
-                                                    <option>2020</option>
-                                                    <option>2019</option>
-                                                    <option>2018</option>
-                                                    <option>2017</option>
-                                                    <option>2016</option>
-                                                    <option>2015</option>
-                                                    <option>2014</option>
-                                                    <option>2013</option>
-                                                    <option>2012</option>
-                                                    <option>2011</option>
-                                                    <option>2010</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2021">2021</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2015">2015</option>
+                                                    <option value="2014">2014</option>
+                                                    <option value="2013">2013</option>
+                                                    <option value="2012">2012</option>
+                                                    <option value="2011">2011</option>
+                                                    <option value="2010">2010</option>
+
                                                 </select>
                                             </div>
                                         </div>
@@ -520,101 +518,82 @@
                                     <div class="col-md-6">
                                         <div class="min-price select-dropdown">
                                             <div class="my-dropdown min-price-dropdown min-dropdown">
-                                                <select name="min-price" class="css-dropdowns" tabindex="1">
+                                                <select id="minPrice" name="min-price" class="css-dropdowns" tabindex="1">
                                                     <option value="">Min Price</option>
-                                                    <option>0</option>
-                                                    <option>&lt; 10,000</option>
-                                                    <option>&lt; 20,000</option>
-                                                    <option>&lt; 30,000</option>
-                                                    <option>&lt; 40,000</option>
-                                                    <option>&lt; 50,000</option>
-                                                    <option>&lt; 60,000</option>
-                                                    <option>&lt; 70,000</option>
-                                                    <option>&lt; 80,000</option>
-                                                    <option>&lt; 90,000</option>
-                                                    <option>&lt; 100,000</option>
-                                                    <option>&lt; 120,000</option>
-                                                    <option>&lt; 150,000</option>
+                                                    <option value="0">0</option>
+                                                    <option value="100000">100,000</option>
+                                                    <option value="200000">200,000</option>
+                                                    <option value="300000">300,000</option>
+                                                    <option value="400000">400,000</option>
+                                                    <option value="500000">500,000</option>
+                                                    <option value="600000">600,000</option>
+                                                    <option value="700000">700,000</option>
+                                                    <option value="800000">800,000</option>
+                                                    <option value="900000">900,000</option>
+                                                    <option value="1000000">1,000,000</option>
+                                                    <option value="1200000">1,200,000</option>
+                                                    <option value="1500000">1,500,000</option>
                                                 </select>
                                             </div>
                                             <span class="my-dropdown">to</span>
                                             <div class="my-dropdown max-price-dropdown min-dropdown">
-                                                <select name="max-price" class="css-dropdowns" tabindex="1">
+                                                <select id="maxPrice" name="max-price" class="css-dropdowns" tabindex="1">
                                                     <option value="">Max Price</option>
-                                                    <option>0</option>
-                                                    <option>&lt; 10,000</option>
-                                                    <option>&lt; 20,000</option>
-                                                    <option>&lt; 30,000</option>
-                                                    <option>&lt; 40,000</option>
-                                                    <option>&lt; 50,000</option>
-                                                    <option>&lt; 60,000</option>
-                                                    <option>&lt; 70,000</option>
-                                                    <option>&lt; 80,000</option>
-                                                    <option>&lt; 90,000</option>
-                                                    <option>&lt; 100,000</option>
-                                                    <option>&lt; 120,000</option>
-                                                    <option>&lt; 150,000</option>
+                                                    <option value="1000000">100,0000</option>
+                                                    <option value="2000000">200,0000</option>
+                                                    <option value="30000000">3,0000,000</option>
+                                                    <option value="40000000">4,0000,000</option>
+                                                    <option value="50000000">5,0000,000</option>
+                                                    <option value="60000000">6,0000,000</option>
+                                                    <option value="700000000">7,00000,000</option>
+                                                    <option value="80000000">8,0000,000</option>
+                                                    <option value="90000000">9,0000,000</option>
+                                                    <option value="100000000">10,0000,000</option>
+                                                    <option value="120000000">12,0000,000</option>
+                                                    <option value="150000000">15,0000,000</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="select-wrapper row clearfix">
-                                    <div class="col-md-6">
-                                        <div class="my-dropdown make-dropdown">
-                                            <select name="body_style" class="css-dropdowns" tabindex="1">
-                                                <option value="">Body Style</option>
-                                                <option>Cargo</option>
-                                                <option>Compact</option>
-                                                <option>Convertible</option>
-                                                <option>Coupe</option>
-                                                <option>Hatchback</option>
-                                                <option>Minivan</option>
-                                                <option>Sedan</option>
-                                                <option>SUV</option>
-                                                <option>Truck</option>
-                                                <option>Van</option>
-                                                <option>Wagon</option>
-                                            </select>
-                                        </div>
-                                    </div>
                                     <div class="col-md-6">
                                         <div class="min-price select-dropdown">
                                             <div class="my-dropdown min-price-dropdown min-dropdown">
-                                                <select name="min-mileage" class="css-dropdowns" tabindex="1">
+                                                <select id="minMileage" name="min-mileage" class="css-dropdowns" tabindex="1">
                                                     <option value="">Min Mileage</option>
-                                                    <option>0</option>
-                                                    <option>&lt; 10,000</option>
-                                                    <option>&lt; 20,000</option>
-                                                    <option>&lt; 30,000</option>
-                                                    <option>&lt; 40,000</option>
-                                                    <option>&lt; 50,000</option>
-                                                    <option>&lt; 60,000</option>
-                                                    <option>&lt; 70,000</option>
-                                                    <option>&lt; 80,000</option>
-                                                    <option>&lt; 90,000</option>
-                                                    <option>&lt; 100,000</option>
-                                                    <option>&lt; 120,000</option>
-                                                    <option>&lt; 150,000</option>
+                                                    <option value="0">0</option>
+                                                    <option value="100">100</option>
+                                                    <option value="2000">2000</option>
+                                                    <option value="3000">3000</option>
+                                                    <option value="4000">4000</option>
+                                                    <option value="5000">5000</option>
+                                                    <option value="6000">6000</option>
+                                                    <option value="7000">7000</option>
+                                                    <option value="8000">8000</option>
+                                                    <option value="9000">9000</option>
+                                                    <option value="10000">10000</option>
+                                                    <option value="12000">12000</option>
+                                                    <option value="15000">15000</option>
                                                 </select>
                                             </div>
                                             <span class="my-dropdown">to</span>
                                             <div class="my-dropdown max-price-dropdown min-dropdown">
-                                                <select name="max-mileage" class="css-dropdowns" tabindex="1">
+                                                <select id="maxMileage" name="max-mileage" class="css-dropdowns" tabindex="1">
                                                     <option value="">Max Mileage</option>
-                                                    <option>0</option>
-                                                    <option>&lt; 10,000</option>
-                                                    <option>&lt; 20,000</option>
-                                                    <option>&lt; 30,000</option>
-                                                    <option>&lt; 40,000</option>
-                                                    <option>&lt; 50,000</option>
-                                                    <option>&lt; 60,000</option>
-                                                    <option>&lt; 70,000</option>
-                                                    <option>&lt; 80,000</option>
-                                                    <option>&lt; 90,000</option>
-                                                    <option>&lt; 100,000</option>
-                                                    <option>&lt; 120,000</option>
-                                                    <option>&lt; 150,000</option>
+                                                    <option value="0">0</option>
+                                                    <option value="1000">1000</option>
+                                                    <option value="20000">20000</option>
+                                                    <option value="30000">30000</option>
+                                                    <option value="40000">40000</option>
+                                                    <option value="50000">50000</option>
+                                                    <option value="60000">60000</option>
+                                                    <option value="70000">70000</option>
+                                                    <option value="80000">80000</option>
+                                                    <option value="90000">90000</option>
+                                                    <option value="100000">100000</option>
+                                                    <option value="120000">120000</option>
+                                                    <option value="150000">150000</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -623,22 +602,15 @@
                                 <div class="select-wrapper row clearfix">
                                     <div class="col-md-6">
                                         <div class="my-dropdown make-dropdown">
-                                            <select name="model" class="css-dropdowns" tabindex="1">
-                                                <option value="">Model</option>
-                                                <option>Lorem</option>
-                                                <option>ipsum</option>
-                                                <option>dolor</option>
-                                                <option>sit</option>
-                                                <option>amet</option>
-                                            </select>
+                                            <input id="model" class="full-width" type="search" value="" placeholder="Model">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="my-dropdown make-dropdown">
-                                            <select name="transmission" class="css-dropdowns" tabindex="1">
-                                                <option value="">Transmission</option>
-                                                <option>Automatic</option>
-                                                <option>Manual</option>
+                                            <select id="transmission" name="transmission" class="css-dropdowns" tabindex="1">
+                                                <option>Transmission</option>
+                                                <option value="Automatic">Automatic</option>
+                                                <option value="Manual">Manual</option>
                                             </select>
                                         </div>
                                     </div>
@@ -646,41 +618,51 @@
                                 <div class="select-wrapper row clearfix">
                                     <div class="col-md-6">
                                         <div class="my-dropdown make-dropdown">
-                                            <select name="make" class="css-dropdowns" tabindex="1">
+                                            <select id="make" name="make" class="css-dropdowns" tabindex="1">
                                                 <option value="">Make</option>
-                                                <option>Lorem</option>
-                                                <option>ipsum</option>
-                                                <option>dolor</option>
-                                                <option>sit</option>
-                                                <option>amet</option>
+                                                <option value="Toyota">Toyota</option>
+                                                <option value="Ford">Ford</option>
+                                                <option value="Lexus">Lexus</option>
+                                                <option value="Honda">Honda</option>
+                                                <option value="Volkswagen">Volkswagen</option>
+                                                <option value="BMW">BMW</option>
+                                                <option value="Mercedes-Benz">Mercedes-Benz</option>
+                                                <option value="Audi">Audi</option>
+                                                <option value="Tesla">Tesla</option>
+                                                <option value="Nissan">Nissan</option>
+                                                <option value="Hyundai">Hyundai</option>
+                                                <option value="Volvo">Volvo</option>
+                                                <option value="Subaru">Subaru</option>
+                                                <option value="Ferrari">Ferrari</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="my-dropdown">
-                                            <input class="full-width" type="search" value="" placeholder="Refine with keywords">
+                                            <input id="keywords" class="full-width" type="search" value="" placeholder="Refine with Car Name">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="clear"></div>
                                 <div class="select-wrapper row clearfix">
                                     <div class="form-element clearfix">
-                                        <input type="checkbox" id="check">
-                                        <label for="check">Certified</label>
+                                        <input id="certified" type="checkbox" name="certified">
+                                        <label for="certified">Certified</label>
                                     </div>
                                     <div class="form-element">
-                                        <input type="checkbox" id="check2">
-                                        <label for="check2">CARFAX&reg; Verified</label>
+                                        <input id="carfaxVerified" type="checkbox" name="carfax-verified">
+                                        <label for="carfaxVerified">CARFAX&reg; Verified</label>
                                     </div>
                                     <div class="form-element">
-                                        <input type="checkbox" id="check3">
-                                        <label for="check3">Brand New</label>
+                                        <input id="brandNew" type="checkbox" name="brand-new">
+                                        <label for="brandNew">Brand New</label>
                                     </div>
                                     <div class="form-element">
-                                        <input type="submit" value="Find My New Vehicle" class="find_new_vehicle pull-right md-button">
+                                        <input type="submit" value="Find Vehicle" class="find_new_vehicle pull-right md-button">
                                     </div>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                     <!--invetory ends-->
@@ -700,103 +682,7 @@
                         </div>
                         <div class="col-lg-10 col-md-8 col-sm-8 padding-right-none xs-padding-left-none">
                             <div class="carasouel-slider3">
-                                <div class="slide">
-                                    <div class="angled_badge blue">
-                                        <span>405 HP</span>
-                                    </div>
-                                    <div class="car-block">
-                                        <div class="img-flex"> <a href="/home/inventory_listing"><span class="align-center"><i class="fa fa-3x fa-plus-square-o"></i></span></a> <img src="/images/c-car1.jpg" alt="" class="img-responsive"> </div>
-                                        <div class="car-block-bottom">
-                                            <h6><strong>2012 Porsche Cayenne GTS</strong></h6>
-                                            <h6>1 Owner, 26,273 miles</h6>
-                                            <h5>$ 102,995</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide">
-                                    <div class="angled_badge red">
-                                        <span>Just Arrived</span>
-                                    </div>
-                                    <div class="car-block">
-                                        <div class="img-flex"> <a href="/home/inventory_listing"><span class="align-center"><i class="fa fa-3x fa-plus-square-o"></i></span></a> <img src="/images/c-car2.jpg" alt="" class="img-responsive"> </div>
-                                        <div class="car-block-bottom">
-                                            <h6><strong>2009 Porsche Boxster</strong></h6>
-                                            <h6>New Tires, 26,273 miles</h6>
-                                            <h5>$ 34,995</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide">
-                                    <div class="car-block">
-                                        <div class="img-flex"> <a href="/home/inventory_listing"><span class="align-center"><i class="fa fa-3x fa-plus-square-o"></i></span></a> <img src="/images/c-car3.jpg" alt="" class="img-responsive"> </div>
-                                        <div class="car-block-bottom">
-                                            <h6><strong>2019 Porsche Panamera S</strong></h6>
-                                            <h6>Demonstrator, 7,088 miles</h6>
-                                            <h5>$ 63,995</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide">
-                                    <div class="car-block">
-                                        <div class="img-flex"> <a href="/home/inventory_listing"><span class="align-center"><i class="fa fa-3x fa-plus-square-o"></i></span></a> <img src="/images/c-car4.jpg" alt="" class="img-responsive"> </div>
-                                        <div class="car-block-bottom">
-                                            <h6><strong>2010 Porsche Carrera 4S</strong></h6>
-                                            <h6>AWD, 21,900 miles</h6>
-                                            <h5>$ 73,995</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide">
-                                    <div class="car-block">
-                                        <div class="img-flex"> <a href="/home/inventory_listing"><span class="align-center"><i class="fa fa-3x fa-plus-square-o"></i></span></a> <img src="/images/c-car5.jpg" alt="" class="img-responsive"> </div>
-                                        <div class="car-block-bottom">
-                                            <h6><strong>2012 Porsche Carrera S</strong></h6>
-                                            <h6>Convertible, 22,158 miles</h6>
-                                            <h5>$ 56,995</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide">
-                                    <div class="car-block">
-                                        <div class="img-flex"> <a href="/home/inventory_listing"><span class="align-center"><i class="fa fa-3x fa-plus-square-o"></i></span></a> <img src="/images/c-car6.jpg" alt="" class="img-responsive"> </div>
-                                        <div class="car-block-bottom">
-                                            <h6><strong>2019 Porsche Panamera GTS</strong></h6>
-                                            <h6>1 Owner, 3,914 miles</h6>
-                                            <h5>$ 94,995</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide">
-                                    <div class="car-block">
-                                        <div class="img-flex"> <a href="/home/inventory_listing"><span class="align-center"><i class="fa fa-3x fa-plus-square-o"></i></span></a> <img src="/images/c-car7.jpg" alt="" class="img-responsive"> </div>
-                                        <div class="car-block-bottom">
-                                            <h6><strong>2014 Porsche Cayenne GTS</strong></h6>
-                                            <h6>1 Owner, 7 miles</h6>
-                                            <h5>$ 114,995</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide">
-                                    <span class="sold_text">Sold</span>
-                                    <div class="car-block">
-                                        <div class="img-flex"> <a href="/home/inventory_listing"><span class="align-center"><i class="fa fa-3x fa-plus-square-o"></i></span></a> <img src="/images/c-car8.jpg" alt="" class="img-responsive"> </div>
-                                        <div class="car-block-bottom">
-                                            <h6><strong>2014 Porsche GTS</strong></h6>
-                                            <h6>1 Owner, 5 miles</h6>
-                                            <h5>$ 99,995</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide">
-                                    <div class="car-block">
-                                        <div class="img-flex"> <a href="/home/inventory_listing"><span class="align-center"><i class="fa fa-3x fa-plus-square-o"></i></span></a> <img src="/images/c-car9.jpg" alt="" class="img-responsive"> </div>
-                                        <div class="car-block-bottom">
-                                            <h6><strong>2009 Porsche Carrera 4S</strong></h6>
-                                            <h6>1 Owner, 114,239 miles</h6>
-                                            <h5>$ 39,995</h5>
-                                        </div>
-                                    </div>
-                                </div>
+               
                             </div>
                         </div>
                     </div>
@@ -804,8 +690,13 @@
 
                 <!-- Footer Map -->
                 <div class='fullwidth_element_parent margin-top-30 padding-bottom-40'>
-                    <div id='google-map-listing' class='fullwidth_element' data-longitude='-79.38' data-latitude='43.65' data-zoom='12' style='height: 390px;' data-scroll='false' data-style='[{"featureType":"landscape","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"stylers":[{"hue":"#F0F0F0"},{"saturation":-100},{"gamma":2.15},{"lightness":12}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"visibility":"on"},{"lightness":24}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":57}]}]'></div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 recent-vehicles padding-left-none">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3606.704427479217!2d55.40635487452429!3d25.314132826956023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5eac969249d1%3A0x4c3d5135ef8da746!2sIndustrial%20Area%202%20-%20Industrial%20Area%20-%20Sharjah%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2s!4v1698898155165!5m2!1sen!2s" width="1200" height="650" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
+                    </div>  
+                    </div>
+
                 <div class="car-rate-block row clearfix margin-top-30 padding-bottom-40">
                     <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 xs-margin-bottom-40 sm-margin-bottom-none padding-left-none scroll_effect bounceInLeft">
                         <div class="small-block clearfix">
@@ -975,3 +866,78 @@
         </div>
     </div>
 </section>
+<script>
+    $(document).ready(function() {
+    $.ajax({
+        url: '/Home/GetTenCars', // Replace with your actual controller route
+        type: 'GET',
+        success: function(cars) {
+            // Assuming 'cars' is an array of car objects
+            cars.forEach(function(car) {
+
+                var carBlock = `
+                        <div class="slide" style="float: left; list-style: none; position: relative; margin-right: 30px; width: 170px;">
+                        <div class="angled_badge blue">
+                                    <span>${car.carStatus}</span>
+                        </div>
+                        <div class="car-block">
+                            <div class="img-flex">
+                                <a href="/home/inventory_listing"><span class="align-center"><i class="fa fa-3x fa-plus-square-o"></i></span></a>
+                                        <img src="/Uploads/${car.frontImage}" alt="" class="img-responsive">
+                            </div>
+                            <div class="car-block-bottom">
+                                <h6><strong>${car.name}</strong></h6>
+                                    <h6>${car.makeCompany}</h6>
+                                <h5>AED ${car.sellingPrice}</h5>
+                            </div>
+                        </div>
+                    </div>`;
+
+                $('.carasouel-slider3').append(carBlock);
+            });
+        },
+        error: function(err) {
+            console.log('Error fetching cars:', err);
+        }
+    });
+});
+
+    $(document).ready(function () {
+        $('#carSearchForm').submit(function (e) {
+            e.preventDefault();
+            // Show loader before the AJAX request
+            $('.loader').show();
+            var formData = {
+                MakeYearMinimum: $('#minYear').val(),
+                MakeYearMaximum: $('#maxYear').val(),
+                TotalPriceMinimum: $('#minPrice').val(),
+                TotalPriceMaximum: $('#maxPrice').val(),
+                FuelMilageMinimum: $('#minMileage').val(),
+                FuelMilageMaximum: $('#maxMileage').val(),
+                maxPrice: $('#model').val(),
+                TransmissionType: $('#transmission').val(),
+                MakeCompany: $('#make').val(),
+                Name: $('#keywords').val(),
+            };
+            console.log("formData", formData)
+            // Ajax call with form data
+            $.ajax({
+                type: 'POST',
+                url: '/Home/getCar', // Replace with your controller's endpoint
+                data: formData,
+                success: function (data) {
+                    $('.loader').hide();
+                    // Handle the response data as needed
+                    window.location.href = '/Home/Search_car_list';
+                    console.log(data);
+                },
+                error: function (error) {
+                    // Handle error, if any
+                     $('.loader').hide();
+                    console.log('Error:', error);
+                }
+            });
+        });
+    });
+
+</script>
