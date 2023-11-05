@@ -16,7 +16,7 @@ namespace FSMotorsShowroom.Models
         public DbSet<Car> cars { get; set; }
         public DbSet<CarModel> carModels { get; set; }
         public DbSet<Career> careers { get; set; }
-
+        public DbSet<Feedback> feedbacks { get; set; }
         public DbSet<Investor> investors { get; set; }
         public DbSet<Transaction> transactions { get; set; }
         public DbSet<ApplicationUser> applicationUsers { get; set; }
@@ -44,9 +44,10 @@ namespace FSMotorsShowroom.Models
                     PasswordHash = hasher.HashPassword(null, "Admin@11"),
                     FirstName="Hamza",
                     LastName="Khan",
-                    Role = "Admin"
-                   
-                }
+                    Role = "Admin",
+                EmailConfirmed = true
+
+            }
                
             );
             
