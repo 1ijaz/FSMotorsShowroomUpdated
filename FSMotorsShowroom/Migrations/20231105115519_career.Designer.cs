@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FSMotorsShowroom.Migrations
 {
     [DbContext(typeof(FSDbContext))]
-    [Migration("20231103155751_initial")]
-    partial class initial
+    [Migration("20231105115519_career")]
+    partial class career
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -153,6 +153,27 @@ namespace FSMotorsShowroom.Migrations
                     b.ToTable("carModels");
                 });
 
+            modelBuilder.Entity("FSMotorsShowroom.Models.Career", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("careers");
+                });
+
             modelBuilder.Entity("FSMotorsShowroom.Models.Investment", b =>
                 {
                     b.Property<int>("InvestmentId")
@@ -214,9 +235,6 @@ namespace FSMotorsShowroom.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InvestorId"));
 
-                    b.Property<decimal?>("InvestUnallocatedAmount")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("InvestorAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -232,10 +250,6 @@ namespace FSMotorsShowroom.Migrations
                     b.Property<string>("InvestorName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal?>("TotalInvestAmount")
-                        .IsRequired()
-                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("InvestorId");
 
@@ -550,38 +564,44 @@ namespace FSMotorsShowroom.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("FSMotorsShowroom.Models.User", b =>
+            modelBuilder.Entity("FSMotorsShowroom.Models.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("User");
+                    b.HasDiscriminator().HasValue("ApplicationUser");
 
                     b.HasData(
                         new
                         {
-                            Id = "1",
+                            Id = "159066c2-91f5-492d-aa7a-c8733dfc558e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2070c318-4f67-44da-a290-97915660130e",
+                            ConcurrencyStamp = "13dc8662-6452-4b8c-8d5f-ffa5da5c0bab",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGcsBZfsjf7oOs6KLXnW09tOoWqCUoEWTVkv6AZ/xa+9CBmpg9lq44r2mricw7JVgg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEYT2AXdtin8Ty9m28r564oEunn1x396LQyjOZiCUEr0Y0iI66up3sxjisRZF3Y16w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5aca8dcf-a11b-43ef-9ec0-83f8654bb818",
+                            SecurityStamp = "c3c7656f-9cea-4076-9ba3-979beeba9026",
                             TwoFactorEnabled = false,
                             UserName = "Admin@gmail.com",
-                            FirstName = "",
-                            LastName = ""
+                            FirstName = "Hamza",
+                            LastName = "Khan",
+                            Role = "Admin"
                         });
                 });
 

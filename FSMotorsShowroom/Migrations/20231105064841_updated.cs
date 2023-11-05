@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FSMotorsShowroom.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class updated : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,6 +33,8 @@ namespace FSMotorsShowroom.Migrations
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -75,9 +77,7 @@ namespace FSMotorsShowroom.Migrations
                     InvestorName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InvestorEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InvestorContact = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InvestorAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InvestUnallocatedAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    TotalInvestAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    InvestorAddress = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -335,8 +335,8 @@ namespace FSMotorsShowroom.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "1", 0, "2070c318-4f67-44da-a290-97915660130e", "User", "Admin@gmail.com", false, "", "", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEGcsBZfsjf7oOs6KLXnW09tOoWqCUoEWTVkv6AZ/xa+9CBmpg9lq44r2mricw7JVgg==", null, false, "5aca8dcf-a11b-43ef-9ec0-83f8654bb818", false, "Admin@gmail.com" });
+                columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "0f06ff69-183c-4e4e-8724-e21be0c88f59", 0, null, "3c01d753-2d7f-4e93-8e62-fc725be7b312", "ApplicationUser", "Admin@gmail.com", false, "Hamza", "Khan", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEKY73KYTKQ80TjEV1yaLMfTSTOCmXwO3Uh5yXeIzLLnN5GVgtHVgpMpyz18GS61xmQ==", null, false, "Admin", "cc941625-c3a5-44d2-bb10-285bdc6f2c35", false, "Admin@gmail.com" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

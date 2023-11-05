@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FSMotorsShowroom.Migrations
 {
     [DbContext(typeof(FSDbContext))]
-    [Migration("20231104170720_rolecol")]
-    partial class rolecol
+    [Migration("20231105064841_updated")]
+    partial class updated
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,9 +51,6 @@ namespace FSMotorsShowroom.Migrations
                     b.Property<string>("CarStatus")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Color")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -67,19 +64,25 @@ namespace FSMotorsShowroom.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ExteriorColor")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Features")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FrontImage")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FuelMilage")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal?>("FuelMilage")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("FuelType")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HorsePower")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InteriorColor")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InteriorImage")
@@ -96,7 +99,6 @@ namespace FSMotorsShowroom.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NoOfCylinders")
@@ -104,6 +106,10 @@ namespace FSMotorsShowroom.Migrations
 
                     b.Property<int>("PassengerCapacity")
                         .HasColumnType("int");
+
+                    b.Property<string>("RegistrationNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("SalesTax")
                         .HasColumnType("decimal(18,2)");
@@ -559,17 +565,17 @@ namespace FSMotorsShowroom.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "eeb67d3c-2b35-4857-ad51-2cc7d80b5074",
+                            Id = "0f06ff69-183c-4e4e-8724-e21be0c88f59",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fd9d57f9-1afd-4e12-a23c-88930d73bf3b",
+                            ConcurrencyStamp = "3c01d753-2d7f-4e93-8e62-fc725be7b312",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGLNUPT6zZRib7ZOyPxZRTGyfWteT+1ok/GQLCbQlsb/FsRK3CxotpWv1TlgHtsG0g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKY73KYTKQ80TjEV1yaLMfTSTOCmXwO3Uh5yXeIzLLnN5GVgtHVgpMpyz18GS61xmQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "049b4bd3-fa94-49a2-a5f6-f4b23e89d6d2",
+                            SecurityStamp = "cc941625-c3a5-44d2-bb10-285bdc6f2c35",
                             TwoFactorEnabled = false,
                             UserName = "Admin@gmail.com",
                             FirstName = "Hamza",

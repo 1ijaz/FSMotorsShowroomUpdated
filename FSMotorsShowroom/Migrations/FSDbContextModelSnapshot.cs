@@ -104,13 +104,10 @@ namespace FSMotorsShowroom.Migrations
                     b.Property<int>("PassengerCapacity")
                         .HasColumnType("int");
 
-<<<<<<< Updated upstream
                     b.Property<string>("RegistrationNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-=======
->>>>>>> Stashed changes
                     b.Property<decimal?>("SalesTax")
                         .HasColumnType("decimal(18,2)");
 
@@ -151,6 +148,27 @@ namespace FSMotorsShowroom.Migrations
                     b.HasKey("CarModelId");
 
                     b.ToTable("carModels");
+                });
+
+            modelBuilder.Entity("FSMotorsShowroom.Models.Career", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("careers");
                 });
 
             modelBuilder.Entity("FSMotorsShowroom.Models.Investment", b =>
@@ -214,12 +232,6 @@ namespace FSMotorsShowroom.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InvestorId"));
 
-<<<<<<< Updated upstream
-                    b.Property<decimal?>("InvestUnallocatedAmount")
-                        .HasColumnType("decimal(18,2)");
-
-=======
->>>>>>> Stashed changes
                     b.Property<string>("InvestorAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -571,27 +583,17 @@ namespace FSMotorsShowroom.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "eeb67d3c-2b35-4857-ad51-2cc7d80b5074",
+                            Id = "159066c2-91f5-492d-aa7a-c8733dfc558e",
                             AccessFailedCount = 0,
-<<<<<<< Updated upstream
-                            ConcurrencyStamp = "2070c318-4f67-44da-a290-97915660130e",
-=======
-                            ConcurrencyStamp = "fd9d57f9-1afd-4e12-a23c-88930d73bf3b",
->>>>>>> Stashed changes
+                            ConcurrencyStamp = "13dc8662-6452-4b8c-8d5f-ffa5da5c0bab",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-<<<<<<< Updated upstream
-                            PasswordHash = "AQAAAAIAAYagAAAAEGcsBZfsjf7oOs6KLXnW09tOoWqCUoEWTVkv6AZ/xa+9CBmpg9lq44r2mricw7JVgg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEYT2AXdtin8Ty9m28r564oEunn1x396LQyjOZiCUEr0Y0iI66up3sxjisRZF3Y16w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5aca8dcf-a11b-43ef-9ec0-83f8654bb818",
-=======
-                            PasswordHash = "AQAAAAIAAYagAAAAEGLNUPT6zZRib7ZOyPxZRTGyfWteT+1ok/GQLCbQlsb/FsRK3CxotpWv1TlgHtsG0g==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "049b4bd3-fa94-49a2-a5f6-f4b23e89d6d2",
->>>>>>> Stashed changes
+                            SecurityStamp = "c3c7656f-9cea-4076-9ba3-979beeba9026",
                             TwoFactorEnabled = false,
                             UserName = "Admin@gmail.com",
                             FirstName = "Hamza",
