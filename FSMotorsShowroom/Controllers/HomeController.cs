@@ -106,9 +106,9 @@ namespace FSMotorsShowroom.Controllers
         {
             return View("~/Views/Home/inventory-boxed-fullwidth.cshtml");
         }
-        public IActionResult inventory_boxed_sidebar_left()
+        public IActionResult car_for_sale()
         {
-            return View("~/Views/Home/inventory-boxed-sidebar-left.cshtml");
+            return View("~/Views/Home/car_for_sale.cshtml");
         }
         public IActionResult inventory_boxed_sidebar_right()
         {
@@ -123,13 +123,32 @@ namespace FSMotorsShowroom.Controllers
             var model = new InventoryModel { Id = id };
             return View("~/Views/Home/inventory-listing_2.cshtml", model);
         }
+        public IActionResult inventory_listing_3(int id)
+        {
+            var model = new InventoryModel { Id = id };
+            return View("~/Views/Home/inventory-listing_3.cshtml", model);
+        } 
+        public IActionResult inventory_listing_4(int id)
+        {
+            var model = new InventoryModel { Id = id };
+            return View("~/Views/Home/inventory-listing_4.cshtml", model);
+        }  
+        public IActionResult inventory_listing_5(int id)
+        {
+            var model = new InventoryModel { Id = id };
+            return View("~/Views/Home/inventory-listing_5.cshtml", model);
+        }
         public IActionResult inventory_wide_fullwidth()
         {
             return View("~/Views/Home/inventory-wide-fullwidth.cshtml");
         }
-        public IActionResult inventory_wide_sidebar_left()
+        public IActionResult cars_in_worksop()
         {
-            return View("~/Views/Home/inventory-wide-sidebar-left.cshtml");
+            return View("~/Views/Home/cars_in_worksop.cshtml");
+        } 
+        public IActionResult sold_cars()
+        {
+            return View("~/Views/Home/sold_cars.cshtml");
         }
         public IActionResult inventory_wide_sidebar_right()
         {
@@ -233,6 +252,27 @@ namespace FSMotorsShowroom.Controllers
             var tenCars = _context.cars.Take(10).ToList();
             HttpContext.Session.SetString("FoundTenCar", System.Text.Json.JsonSerializer.Serialize(tenCars));
             return Json(tenCars);
+        }  
+        [HttpGet]
+        public IActionResult GetAllAvailableCars()
+        {
+            var availableCars = _context.cars.Where(car => car.CarStatus == "Showroom").ToList();
+            HttpContext.Session.SetString("GetAllAvailableCars", System.Text.Json.JsonSerializer.Serialize(availableCars));
+            return Json(availableCars);
+        } 
+        [HttpGet]
+        public IActionResult GetAllWorkshopCars()
+        {
+            var workshopCars = _context.cars.Where(car => car.CarStatus == "Workshop").ToList();
+            HttpContext.Session.SetString("GetAllWorkshopCars", System.Text.Json.JsonSerializer.Serialize(workshopCars));
+            return Json(workshopCars);
+        } 
+        [HttpGet]
+        public IActionResult GetAllSoldCars()
+        {
+            var soldCars = _context.cars.Where(car => car.CarStatus == "Sold").ToList();
+            HttpContext.Session.SetString("GetAllSoldCars", System.Text.Json.JsonSerializer.Serialize(soldCars));
+            return Json(soldCars);
         }
 
     }

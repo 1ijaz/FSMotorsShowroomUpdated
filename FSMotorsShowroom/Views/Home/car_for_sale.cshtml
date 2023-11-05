@@ -1,0 +1,134 @@
+
+
+<div class="clearfix"></div>
+<section id="secondary-banner" class="dynamic-image-1">
+    <!--for other /images just change the class name of this section block like, class="dynamic-image-2" and add css for the changed class-->
+    <div class="container">
+        <div class="row align-items-end">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <h2>Inventory</h2>
+                <h4>Unlimited Listings, Any Vehicle Type</h4>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <ul class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li>Inventory</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!--secondary-banner ends-->
+<div class="message-shadow"></div>
+<div class="clearfix"></div>
+<section class="content">
+    <div class="container">
+        <div class="inner-page row">
+
+            <div class="clearfix"></div>
+
+            <div class="clearfix"></div>
+            <div class="row car-listings-row">
+                <div class="col-lg-12 col-md-12 col-sm-12 inventory-wide-sidebar-left">
+                    <div class="car_listings car-listings-row row sidebar margin-top-20 clearfix">
+
+
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pagination_container">
+                            <ul class="pagination margin-bottom-none margin-top-25 bottom_pagination md-margin-bottom-none xs-margin-bottom-60 sm-margin-bottom-60">
+                                <li class="disabled"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--container ends-->
+</section>
+<div id="youtube_video">
+    <iframe width="560" height="315" src="#" allowfullscreen style="width: 560px; height: 315px; border: 0;"></iframe>
+</div>
+
+<!--content ends-->
+<div class="clearfix"></div>
+
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: '/Home/GetAllAvailableCars', // Replace with your actual controller route
+            type: 'GET',
+            success: function (cars) {
+                // Assuming 'cars' is an array of car objects
+                cars.forEach(function (car) {
+
+                    var carBlock = `
+                                    <div class="inventory col-lg-12 margin-bottom-20 clearfix scroll_effect fadeIn">
+                                    <input type="checkbox" name="a" class="checkbox compare_vehicle input-checkbox" id="vehicle_1" />
+                                    <label for="vehicle_1"></label>
+                                    <div class="angled_badge blue">
+                                                <span>${car.carStatus}</span>
+                                    </div>
+                                        <a class="inventory" href="/home/inventory_listing_4/${car.carId}">
+                                        <div class="title">${car.name}</div>
+                                            <img src="/Uploads/${car.frontImage}" class="preview" alt="preview">
+                                    <table class="options-primary">
+
+                                        <tr>
+                                            <td class="option primary">Engine:</td>
+                                                <td class="spec">${car.engineNo}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="option primary">Transmission:</td>
+                                                    <td class="spec">${car.transmissionMode}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="option primary">Mileage:</td>
+                                                    <td class="spec">${car.fuelMilage}</td>
+                                        </tr>
+                                    </table>
+                                    <table class="options-secondary">
+                                        <tr>
+                                            <td class="option secondary">Exterior Color:</td>
+                                                    <td class="spec">${car.exteriorColor}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="option secondary">Interior Color:</td>
+                                                    <td class="spec">${car.interiorColor}</td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td class="option secondary">Registration #:</td>
+                                                    <td class="spec">${car.registrationNumber}</td>
+                                        </tr>
+                                    </table>
+                                    <img src="/images/carfax.png" alt="carfax" class="carfax" />
+                                    <div class="price"><b>Price:</b><br>
+                                                <div class="figure">AED ${car.sellingPrice}<br>
+                                        </div>
+                                        <div class="tax">Plus Sales Tax</div>
+                                    </div>
+                                    <div class="view-details gradient_button"><i class='fa fa-plus-circle'></i> View Details </div>
+                                    <div class="clearfix"></div>
+                                    </a>
+                                    <div class="view-video gradient_button" data-youtube-id="3oh7PBc33dk"><i class="fa fa-video-camera"></i> View Video</div>
+                                </div>`;
+
+                    $('.car_listings').append(carBlock);
+                });
+            },
+            error: function (err) {
+                console.log('Error fetching cars:', err);
+            }
+        });
+    });
+</script>
