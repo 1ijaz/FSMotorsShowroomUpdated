@@ -4,7 +4,12 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@if (TempData["FeedbackSuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["FeedbackSuccessMessage"]
+    </div>
+}
 <h1>Create</h1>
 
 <h4>Feedback</h4>
@@ -29,7 +34,7 @@
         </form>
     </div>
 </div>
-
+<a type="btn" asp-controller="Home" asp-action="Index">Close</a>
 
 
 @section Scripts {

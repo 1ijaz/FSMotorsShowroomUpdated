@@ -59,7 +59,9 @@ namespace FSMotorsShowroom.Controllers
             {
                 _context.Add(feedback);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                TempData["FeedbackSuccessMessage"] = "Thank you for your feedback!";
+                return View();
+               // return RedirectToAction("Index", "Home");
             }
             return View(feedback);
         }
