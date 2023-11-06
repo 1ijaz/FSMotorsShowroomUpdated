@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FSMotorsShowroom.Migrations
 {
     /// <inheritdoc />
-    public partial class updated : Migration
+    public partial class initials : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -56,6 +56,20 @@ namespace FSMotorsShowroom.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "careers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Position = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_careers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "carModels",
                 columns: table => new
                 {
@@ -66,6 +80,20 @@ namespace FSMotorsShowroom.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_carModels", x => x.CarModelId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "feedbacks",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_feedbacks", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -336,7 +364,7 @@ namespace FSMotorsShowroom.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "0f06ff69-183c-4e4e-8724-e21be0c88f59", 0, null, "3c01d753-2d7f-4e93-8e62-fc725be7b312", "ApplicationUser", "Admin@gmail.com", false, "Hamza", "Khan", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEKY73KYTKQ80TjEV1yaLMfTSTOCmXwO3Uh5yXeIzLLnN5GVgtHVgpMpyz18GS61xmQ==", null, false, "Admin", "cc941625-c3a5-44d2-bb10-285bdc6f2c35", false, "Admin@gmail.com" });
+                values: new object[] { "e73e7228-0e57-4db7-ae41-b1b66d90a352", 0, null, "e7d5329d-6f54-463e-aeb4-d898de844584", "ApplicationUser", "Admin@gmail.com", true, "Hamza", "Khan", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEEgNmy+cPvNjr5XhQQzfompx7X6Ft08Zws/wmrU2Tdzy5ouqO12OmcP1XdmFMZS+4g==", null, false, "Admin", "b2cb286d-1b2c-4126-8495-ee0f1fe837be", false, "Admin@gmail.com" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -410,6 +438,12 @@ namespace FSMotorsShowroom.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "careers");
+
+            migrationBuilder.DropTable(
+                name: "feedbacks");
 
             migrationBuilder.DropTable(
                 name: "investments");

@@ -604,17 +604,17 @@ namespace FSMotorsShowroom.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8bc66ce1-5de1-4694-905e-51a8b9e841d8",
+                            Id = "e73e7228-0e57-4db7-ae41-b1b66d90a352",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "35c8d4b5-1953-4840-9291-437e42a16971",
+                            ConcurrencyStamp = "e7d5329d-6f54-463e-aeb4-d898de844584",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAENs3j26RLoiTQwEqjHHW1mVFcIklOxW/rnpnKHOWYfIkjSEHQN3S9InxxI38aqWxvw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEgNmy+cPvNjr5XhQQzfompx7X6Ft08Zws/wmrU2Tdzy5ouqO12OmcP1XdmFMZS+4g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "c5064caa-9eca-417e-b7e9-a1d461100d08",
+                            SecurityStamp = "b2cb286d-1b2c-4126-8495-ee0f1fe837be",
                             TwoFactorEnabled = false,
                             UserName = "Admin@gmail.com",
                             FirstName = "Hamza",

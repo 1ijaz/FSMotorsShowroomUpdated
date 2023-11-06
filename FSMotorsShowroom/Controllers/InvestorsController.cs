@@ -158,5 +158,9 @@ namespace FSMotorsShowroom.Controllers
         {
           return (_context.investors?.Any(e => e.InvestorId == id)).GetValueOrDefault();
         }
+        public IActionResult InvestorDashboard()
+        {
+            return View();
+        }
     }
 }
