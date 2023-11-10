@@ -14,6 +14,7 @@ namespace FSMotorsShowroom.Models
         }
 
         public DbSet<Car> cars { get; set; }
+        public DbSet<Application> applications { get; set; }
         public DbSet<CarModel> carModels { get; set; }
         public DbSet<Career> careers { get; set; }
         public DbSet<Feedback> feedbacks { get; set; }

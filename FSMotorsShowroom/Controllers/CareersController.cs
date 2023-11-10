@@ -46,7 +46,7 @@ namespace FSMotorsShowroom.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.careerId = new SelectList(_context.careers, "Id", "Position");
             return View(career);
         }
 
