@@ -22,6 +22,40 @@ namespace FSMotorsShowroom.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("FSMotorsShowroom.Models.Application", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<string>("Age")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("careerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("higEducation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("careerId");
+
+                    b.ToTable("applications");
+                });
+
             modelBuilder.Entity("FSMotorsShowroom.Models.Car", b =>
                 {
                     b.Property<int>("CarId")
@@ -179,11 +213,15 @@ namespace FSMotorsShowroom.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Contact")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -253,6 +291,9 @@ namespace FSMotorsShowroom.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InvestorId"));
 
+                    b.Property<decimal?>("InvestUnallocatedAmount")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("InvestorAddress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -268,6 +309,9 @@ namespace FSMotorsShowroom.Migrations
                     b.Property<string>("InvestorName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("TotalInvestAmount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("InvestorId");
 
@@ -303,32 +347,8 @@ namespace FSMotorsShowroom.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("BuyerAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BuyerContact")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BuyerName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CarId")
+                    b.Property<int>("Amount")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("Profit")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int?>("TaxRate")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime?>("TransactionDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -604,23 +624,34 @@ namespace FSMotorsShowroom.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e73e7228-0e57-4db7-ae41-b1b66d90a352",
+                            Id = "70b9155b-126a-414f-b7f5-d01286f9b933",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e7d5329d-6f54-463e-aeb4-d898de844584",
+                            ConcurrencyStamp = "0a163740-8ce5-4f75-943f-a4afcbfe8cd7",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEgNmy+cPvNjr5XhQQzfompx7X6Ft08Zws/wmrU2Tdzy5ouqO12OmcP1XdmFMZS+4g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPVQJYJP1dbA/mFHzUdvpxAIv7syiNPnm/Xqao6PKUP1liTB+8jjfcd7vQTtZyMuIg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b2cb286d-1b2c-4126-8495-ee0f1fe837be",
+                            SecurityStamp = "6fd3394b-713f-4e67-87e6-dbfc0db8c511",
                             TwoFactorEnabled = false,
                             UserName = "Admin@gmail.com",
                             FirstName = "Hamza",
                             LastName = "Khan",
                             Role = "Admin"
                         });
+                });
+
+            modelBuilder.Entity("FSMotorsShowroom.Models.Application", b =>
+                {
+                    b.HasOne("FSMotorsShowroom.Models.Career", "Career")
+                        .WithMany("Applications")
+                        .HasForeignKey("careerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Career");
                 });
 
             modelBuilder.Entity("FSMotorsShowroom.Models.Car", b =>
@@ -700,6 +731,11 @@ namespace FSMotorsShowroom.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FSMotorsShowroom.Models.Career", b =>
+                {
+                    b.Navigation("Applications");
                 });
 #pragma warning restore 612, 618
         }

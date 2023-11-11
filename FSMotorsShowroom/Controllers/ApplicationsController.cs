@@ -47,43 +47,33 @@ namespace FSMotorsShowroom.Controllers
         // GET: Applications/Create
         public IActionResult Create()
         {
-            ViewData["careerId"] = new SelectList(_context.careers, "Id", "Id");
+            ViewData["careerId"] = new SelectList(_context.careers, "Id", "Position");
             return View();
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Application application)
+        public async Task<IActionResult> Create([Bind("id,name,email,higEducation,Age,careerId")] Application application)
         {
             if (ModelState.IsValid)
             {
-                // Fetch the corresponding Career based on the careerId
-                var career = await _context.careers.FindAsync(application.careerId);
-
-                if (career != null)
+                _context.Add(application);
+                try
                 {
-                    // Associate the career with the application
-                    application.Career = career;
-
-                    // Add the application to the context
-                    _context.Add(application);
-
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                   await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "Thank you for Applying!";
                 }
-                else
+                catch (DbUpdateException ex)
                 {
-                    // Handle the case where the specified careerId doesn't exist
-                    ModelState.AddModelError("careerId", "Invalid career selection.");
+                    TempData["ErrorMessage"] = "An error occurred while saving to the database: " + ex.Message;
                 }
+
+                return View();
+               // return RedirectToAction(nameof(Index));
             }
-
-            // Repopulate the career dropdown
             ViewData["careerId"] = new SelectList(_context.careers, "Id", "Id", application.careerId);
             return View(application);
         }
-
 
         // GET: Applications/Edit/5
         public async Task<IActionResult> Edit(int? id)

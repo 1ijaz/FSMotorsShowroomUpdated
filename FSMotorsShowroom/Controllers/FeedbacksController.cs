@@ -44,24 +44,31 @@ namespace FSMotorsShowroom.Controllers
             return View(feedback);
         }
 
-
+        // GET: Feedbacks/Create
         public IActionResult Create()
         {
             return View();
         }
-
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description")] Feedback feedback)
+        public async Task<IActionResult> Create([Bind("Id,Name,Contact,Description")] Feedback feedback)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(feedback);
-                await _context.SaveChangesAsync();
-                TempData["FeedbackSuccessMessage"] = "Thank you for your feedback!";
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "Thank you for Feedback!";
+                }
+                catch (DbUpdateException ex)
+                {
+                    TempData["ErrorMessage"] = "An error occurred while saving to the database: " + ex.Message;
+                }
+
                 return View();
-               // return RedirectToAction("Index", "Home");
+
+               // return RedirectToAction(nameof(Index));
             }
             return View(feedback);
         }
@@ -87,7 +94,7 @@ namespace FSMotorsShowroom.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description")] Feedback feedback)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Contact,Description")] Feedback feedback)
         {
             if (id != feedback.Id)
             {

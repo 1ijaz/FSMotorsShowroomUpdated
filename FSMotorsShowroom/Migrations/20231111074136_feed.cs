@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FSMotorsShowroom.Migrations
 {
     /// <inheritdoc />
-    public partial class initials : Migration
+    public partial class feed : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -88,7 +88,8 @@ namespace FSMotorsShowroom.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Contact = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -105,7 +106,9 @@ namespace FSMotorsShowroom.Migrations
                     InvestorName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InvestorEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InvestorContact = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InvestorAddress = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    InvestorAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    InvestUnallocatedAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    TotalInvestAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -132,14 +135,7 @@ namespace FSMotorsShowroom.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CarId = table.Column<int>(type: "int", nullable: false),
-                    TransactionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    BuyerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BuyerContact = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BuyerAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TaxRate = table.Column<int>(type: "int", nullable: true),
-                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    Profit = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Amount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -280,6 +276,29 @@ namespace FSMotorsShowroom.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "applications",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    higEducation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Age = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    careerId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_applications", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_applications_careers_careerId",
+                        column: x => x.careerId,
+                        principalTable: "careers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "cars",
                 columns: table => new
                 {
@@ -364,7 +383,12 @@ namespace FSMotorsShowroom.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "e73e7228-0e57-4db7-ae41-b1b66d90a352", 0, null, "e7d5329d-6f54-463e-aeb4-d898de844584", "ApplicationUser", "Admin@gmail.com", true, "Hamza", "Khan", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEEgNmy+cPvNjr5XhQQzfompx7X6Ft08Zws/wmrU2Tdzy5ouqO12OmcP1XdmFMZS+4g==", null, false, "Admin", "b2cb286d-1b2c-4126-8495-ee0f1fe837be", false, "Admin@gmail.com" });
+                values: new object[] { "70b9155b-126a-414f-b7f5-d01286f9b933", 0, null, "0a163740-8ce5-4f75-943f-a4afcbfe8cd7", "ApplicationUser", "Admin@gmail.com", true, "Hamza", "Khan", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEPVQJYJP1dbA/mFHzUdvpxAIv7syiNPnm/Xqao6PKUP1liTB+8jjfcd7vQTtZyMuIg==", null, false, "Admin", "6fd3394b-713f-4e67-87e6-dbfc0db8c511", false, "Admin@gmail.com" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_applications_careerId",
+                table: "applications",
+                column: "careerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -425,6 +449,9 @@ namespace FSMotorsShowroom.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "applications");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -438,9 +465,6 @@ namespace FSMotorsShowroom.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "careers");
 
             migrationBuilder.DropTable(
                 name: "feedbacks");
@@ -459,6 +483,9 @@ namespace FSMotorsShowroom.Migrations
 
             migrationBuilder.DropTable(
                 name: "workShops");
+
+            migrationBuilder.DropTable(
+                name: "careers");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
