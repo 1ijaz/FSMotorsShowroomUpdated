@@ -5,13 +5,62 @@
     ViewData["Title"] = "Log in";
     Layout = "~/Areas/Identity/Pages/_AuthLayout.cshtml";
 }
-<h1>@ViewData["Title"]</h1>
+
+<style>
+    body {
+        background: linear-gradient(to right, #4A00E0, #8E2DE2);
+        color: #fff;
+    }
+
+    #account {
+        max-width: 400px;
+        margin: auto;
+        margin-top: 50px;
+        background: linear-gradient(to right, #e96443, #904e95);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    h4 {
+        text-align: center;
+        color: #fff;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    hr {
+        border-color: #fff;
+    }
+
+    .form-floating {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        color: #fff;
+    }
+
+    .btn-primary {
+        background: linear-gradient(to right, #6A3093, #A044FF);
+        border: none;
+    }
+
+        .btn-primary:hover {
+            background: linear-gradient(to right, #5C2E8D, #7B1FA2);
+        }
+
+    .checkbox label {
+        color: #fff;
+    }
+</style>
+
 <div class="row">
-    <div class="col-md-12">
-        <section>
-            <form id="account" method="post">
-                <h4>Fill The Form To Log in.</h4>
-                <hr />
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div id="account">
+            <h4>Log in</h4>
+            <hr />
+            <form method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                 <div class="form-floating mb-3">
                     <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
@@ -29,22 +78,15 @@
                         @Html.DisplayNameFor(m => m.Input.RememberMe)
                     </label>
                 </div>
+              
                 <div>
                     <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
                 </div>
-                @* <div>
-                <p>
-                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                </p>
-                <p>
-                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                </p>
-                <p>
-                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                </p>
-                </div>*@
             </form>
-        </section>
+            <div class="back-to-home">
+                <a href="/home/index" style="color:white">Back to Home</a>
+            </div>
+        </div>
     </div>
 </div>
 
