@@ -53,6 +53,7 @@ namespace FSMotorsShowroom.Controllers
         {
             ViewData["CarModelId"] = new SelectList(_context.carModels, "CarModelId", "CarModelName");
             ViewBag.TransmissionTypes = GetTransmissionTypes();
+            ViewBag.investorInfo = GetInvestorInfo();
             ViewBag.CarStatusEnum = GetCarStatusEnum();
             return View();
         }
@@ -190,6 +191,19 @@ namespace FSMotorsShowroom.Controllers
                 return uniqueFileName;
             }
             return null;
+        }
+        private List<SelectListItem> GetInvestorInfo()
+        {
+            // Assuming Investor is the entity representing your "investors" table
+            var investors = _context.investors.ToList();
+
+            var items = investors.Select(investor => new SelectListItem
+            {
+                Text = investor.InvestorName, 
+                Value = investor.InvestorEmail
+            }).ToList();
+
+            return items;
         }
         private List<SelectListItem> GetTransmissionTypes()
         {

@@ -98,7 +98,8 @@ namespace FSMotorsShowroom.Models
             Showroom,
             Sold
         }
-        public string? CarStatus { get; set; } //sold, showroom, worksop
+        public string? CarStatus { get; set; }
+        public string? CarInvestor { get; set; } 
 
 
 

@@ -12,13 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FSMotorsShowroom.Migrations
 {
     [DbContext(typeof(FSDbContext))]
-<<<<<<< HEAD:FSMotorsShowroom/Migrations/20231111074136_feed.Designer.cs
-    [Migration("20231111074136_feed")]
-    partial class feed
-=======
-    [Migration("20231111081343_news added")]
-    partial class newsadded
->>>>>>> 15 nov changes:FSMotorsShowroom/Migrations/20231111081343_news added.Designer.cs
+    [Migration("20231115171904_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -80,6 +75,9 @@ namespace FSMotorsShowroom.Migrations
 
                     b.Property<decimal>("BuyingPrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("CarInvestor")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("CarModeilId")
                         .HasColumnType("int");
@@ -656,29 +654,17 @@ namespace FSMotorsShowroom.Migrations
                     b.HasData(
                         new
                         {
-<<<<<<< HEAD:FSMotorsShowroom/Migrations/20231111074136_feed.Designer.cs
-                            Id = "70b9155b-126a-414f-b7f5-d01286f9b933",
+                            Id = "bd5c6816-3454-4682-9a9f-97d8a4861e38",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0a163740-8ce5-4f75-943f-a4afcbfe8cd7",
-=======
-                            Id = "f165e0e9-e662-4b69-bdc1-49af2e90ea9f",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "3794e008-d0ec-4cba-935e-ab8a01f6e6c3",
->>>>>>> 15 nov changes:FSMotorsShowroom/Migrations/20231111081343_news added.Designer.cs
+                            ConcurrencyStamp = "1375d9de-a16d-4a0b-8916-0956bcbc667a",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-<<<<<<< HEAD:FSMotorsShowroom/Migrations/20231111074136_feed.Designer.cs
-                            PasswordHash = "AQAAAAIAAYagAAAAEPVQJYJP1dbA/mFHzUdvpxAIv7syiNPnm/Xqao6PKUP1liTB+8jjfcd7vQTtZyMuIg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOLEtmiEODBmEM+GL80LbHcKiaoCNrPTgOmFGDQOyT3+8MmKXKjBeeabLncWIF57UA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6fd3394b-713f-4e67-87e6-dbfc0db8c511",
-=======
-                            PasswordHash = "AQAAAAIAAYagAAAAEK2xL04Xq6AVaN3OYGDedpGXvDFb6+gfChpey46RHt1J2peTT42d5LPk4SDvwCTLTQ==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "283d9d96-4c13-4b4d-9c93-393b48648b5d",
->>>>>>> 15 nov changes:FSMotorsShowroom/Migrations/20231111081343_news added.Designer.cs
+                            SecurityStamp = "a2bc500f-494b-4000-bf63-945317c80fc3",
                             TwoFactorEnabled = false,
                             UserName = "Admin@gmail.com",
                             FirstName = "Hamza",

@@ -6,11 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FSMotorsShowroom.Migrations
 {
     /// <inheritdoc />
-<<<<<<< HEAD:FSMotorsShowroom/Migrations/20231111074136_feed.cs
-    public partial class feed : Migration
-=======
-    public partial class newsadded : Migration
->>>>>>> 15 nov changes:FSMotorsShowroom/Migrations/20231111081343_news added.cs
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -353,7 +349,8 @@ namespace FSMotorsShowroom.Migrations
                     InteriorImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EngineImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BodyImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CarStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CarStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CarInvestor = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -402,11 +399,7 @@ namespace FSMotorsShowroom.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-<<<<<<< HEAD:FSMotorsShowroom/Migrations/20231111074136_feed.cs
-                values: new object[] { "70b9155b-126a-414f-b7f5-d01286f9b933", 0, null, "0a163740-8ce5-4f75-943f-a4afcbfe8cd7", "ApplicationUser", "Admin@gmail.com", true, "Hamza", "Khan", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEPVQJYJP1dbA/mFHzUdvpxAIv7syiNPnm/Xqao6PKUP1liTB+8jjfcd7vQTtZyMuIg==", null, false, "Admin", "6fd3394b-713f-4e67-87e6-dbfc0db8c511", false, "Admin@gmail.com" });
-=======
-                values: new object[] { "f165e0e9-e662-4b69-bdc1-49af2e90ea9f", 0, null, "3794e008-d0ec-4cba-935e-ab8a01f6e6c3", "ApplicationUser", "Admin@gmail.com", true, "Hamza", "Khan", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEK2xL04Xq6AVaN3OYGDedpGXvDFb6+gfChpey46RHt1J2peTT42d5LPk4SDvwCTLTQ==", null, false, "Admin", "283d9d96-4c13-4b4d-9c93-393b48648b5d", false, "Admin@gmail.com" });
->>>>>>> 15 nov changes:FSMotorsShowroom/Migrations/20231111081343_news added.cs
+                values: new object[] { "bd5c6816-3454-4682-9a9f-97d8a4861e38", 0, null, "1375d9de-a16d-4a0b-8916-0956bcbc667a", "ApplicationUser", "Admin@gmail.com", true, "Hamza", "Khan", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEOLEtmiEODBmEM+GL80LbHcKiaoCNrPTgOmFGDQOyT3+8MmKXKjBeeabLncWIF57UA==", null, false, "Admin", "a2bc500f-494b-4000-bf63-945317c80fc3", false, "Admin@gmail.com" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_applications_careerId",
