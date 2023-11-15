@@ -4730,6 +4730,8 @@ ul.nav-tabs li.active a {
 
 .side-content .side-blog img.alignleft {
 	margin: 6px 15px 0 0px;
+	height:100px;
+	width:100px;
 }
 
 .side-content .list h3 {
@@ -6291,8 +6293,10 @@ div.secect_costom4 {
 }
 
 .blog-list .thumb-image {
+	margin-right:20px;
 	float: left;
-	height: 100%;
+	height: 100px;
+	width:100px;
 	overflow: hidden;
 }
 
@@ -6637,7 +6641,7 @@ img.aligncenter {
 }
 
 .recent_blog_posts li {
-	margin-bottom: 1px;
+	margin-bottom: 20px;
 }
 
 .blog-list div[class*="col-"] {

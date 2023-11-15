@@ -24,6 +24,7 @@ namespace FSMotorsShowroom.Models
         public DbSet<UserType> userTypes { get; set; }
         public DbSet<WorkShop> workShops { get; set; }
         public DbSet<Investment> investments { get; set; }
+        public DbSet<NewsModel> newsModels { get; set; }
         public DbSet<Showroom> Showroom { get; set; } = default!;
 
         //public DbSet<FSMotorsShowroom.Models.Category> Category { get; set; } = default!;
@@ -55,6 +56,9 @@ namespace FSMotorsShowroom.Models
             
 
         }
+
+        //public DbSet<FSMotorsShowroom.Models.Category> Category { get; set; } = default!;
+        public DbSet<FSMotorsShowroom.Models.NewsModel> NewsModel { get; set; } = default!;
 
     }
 

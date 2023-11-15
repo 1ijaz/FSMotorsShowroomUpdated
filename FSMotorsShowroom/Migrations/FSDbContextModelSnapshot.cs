@@ -318,12 +318,43 @@ namespace FSMotorsShowroom.Migrations
                     b.ToTable("investors");
                 });
 
+            modelBuilder.Entity("FSMotorsShowroom.Models.NewsModel", b =>
+                {
+                    b.Property<int>("NewsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NewsId"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NewsImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NewsTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("NewsId");
+
+                    b.ToTable("NewsModel");
+                });
+
             modelBuilder.Entity("FSMotorsShowroom.Models.Showroom", b =>
                 {
                     b.Property<int>("ShowroomId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+<<<<<<< HEAD
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+=======
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShowroomId"));
 
                     b.Property<string>("ShowroomAddress")
@@ -350,6 +381,7 @@ namespace FSMotorsShowroom.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+>>>>>>> 15 nov changes
                     b.HasKey("Id");
 
                     b.ToTable("transactions");
@@ -624,17 +656,29 @@ namespace FSMotorsShowroom.Migrations
                     b.HasData(
                         new
                         {
+<<<<<<< HEAD
                             Id = "70b9155b-126a-414f-b7f5-d01286f9b933",
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "0a163740-8ce5-4f75-943f-a4afcbfe8cd7",
+=======
+                            Id = "f165e0e9-e662-4b69-bdc1-49af2e90ea9f",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "3794e008-d0ec-4cba-935e-ab8a01f6e6c3",
+>>>>>>> 15 nov changes
                             Email = "Admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
+<<<<<<< HEAD
                             PasswordHash = "AQAAAAIAAYagAAAAEPVQJYJP1dbA/mFHzUdvpxAIv7syiNPnm/Xqao6PKUP1liTB+8jjfcd7vQTtZyMuIg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "6fd3394b-713f-4e67-87e6-dbfc0db8c511",
+=======
+                            PasswordHash = "AQAAAAIAAYagAAAAEK2xL04Xq6AVaN3OYGDedpGXvDFb6+gfChpey46RHt1J2peTT42d5LPk4SDvwCTLTQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "283d9d96-4c13-4b4d-9c93-393b48648b5d",
+>>>>>>> 15 nov changes
                             TwoFactorEnabled = false,
                             UserName = "Admin@gmail.com",
                             FirstName = "Hamza",
