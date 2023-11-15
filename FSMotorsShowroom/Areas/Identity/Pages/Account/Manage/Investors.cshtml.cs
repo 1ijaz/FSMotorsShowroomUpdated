@@ -1,27 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 using FSMotorsShowroom.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace FSMotorsShowroom.Areas.Identity.Pages.Account.Manage
 {
-    public partial class IndexModel : PageModel
+    public partial class InvestorsModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly FSDbContext _context;
-        
 
-        public IndexModel(
+        public InvestorsModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            FSDbContext context )
+            FSDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -30,11 +27,11 @@ namespace FSMotorsShowroom.Areas.Identity.Pages.Account.Manage
 
         public string Username { get; set; }
         public List<IdentityUser> Users { get; set; }
+
         public async Task GetAllUsersAsync()
         {
             Users = await _context.Users.ToListAsync();
         }
-
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -70,17 +67,38 @@ namespace FSMotorsShowroom.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            await LoadAsync(user);
             await GetAllUsersAsync();
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnGetEditAsync(string id)
         {
-            var user = await _userManager.GetUserAsync(User);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound();
+            }
+
+            await LoadAsync(user);
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
             }
 
             if (!ModelState.IsValid)
@@ -103,6 +121,32 @@ namespace FSMotorsShowroom.Areas.Identity.Pages.Account.Manage
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
+        }
+
+        public async Task<IActionResult> OnPostDeleteAsync(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var result = await _userManager.DeleteAsync(user);
+            if (result.Succeeded)
+            {
+                StatusMessage = "User deleted successfully.";
+                return RedirectToPage();
+            }
+            else
+            {
+                StatusMessage = "Error deleting user.";
+                return RedirectToPage();
+            }
         }
     }
 }

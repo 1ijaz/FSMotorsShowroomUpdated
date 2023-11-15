@@ -11,10 +11,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
 builder.Services.AddDbContext<FSDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+//builder.Services.AddDefaultIdentity<IdentityUser>()
+//                    .AddEntityFrameworkStores<FSDbContext>().AddDefaultTokenProviders().AddDefaultUI();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<FSDbContext>();
+//builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<FSDbContext>();
 
-//builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<FSDbContext>();
+
 //builder.Services.AddIdentity<User, IdentityRole>()
 //    .AddEntityFrameworkStores<FSDbContext>()
 //    .AddDefaultTokenProviders();
@@ -22,7 +24,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 //    .AddRoles<IdentityRole>()
 //    .AddEntityFrameworkStores<FSDbContext>();
 //builder.Services.AddDefaultIdentity<IdentityUser>().AddDefaultTokenProviders() (options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<FSDbContext>();
-
+builder.Services.AddRazorPages();
 var app = builder.Build();
 
 

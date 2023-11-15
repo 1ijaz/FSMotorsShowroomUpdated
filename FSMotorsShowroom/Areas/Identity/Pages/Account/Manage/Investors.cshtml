@@ -1,0 +1,47 @@
+﻿@page
+@model FSMotorsShowroom.Areas.Identity.Pages.Account.Manage.InvestorsModel
+@{
+
+    ViewData["Title"] = "Investors";
+  
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>User Name</th>
+            @* <th>First Name</th>
+            <th>Last Name</th> *@
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Active</th>
+           @*  <th>Roles</th> *@
+            <th>Action</th>
+        </tr>
+    </thead>  
+
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.UserName</td>
+              @*   <td>@user.UserName</td> <!-- Replace 'FirstName' with the actual property name -->
+                <td>@user.UserName</td>  <!-- Replace 'LastName' with the actual property name --> *@
+                <td>@user.Email</td>
+                <td>@user.PhoneNumber</td>
+                <td>@user.EmailConfirmed</td>
+               @*  <td>@user.UserName</td> <!-- Replace 'Roles' with the actual property name --> *@
+                <td>
+                    <a asp-page-handler="Edit" asp-route-id="@user.Id">Edit</a> |
+                    <a asp-page-handler="Delete" asp-route-id="@user.Id" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a>
+                </td>
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
