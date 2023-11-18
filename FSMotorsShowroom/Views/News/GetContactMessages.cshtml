@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "GetContactMessages";
+    Layout = "~/Views/Shared/_Layout_Admin.cshtml";
+}
+@model List<ContactMessage>
+<h>Contact Messages</h>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Message</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var message in Model)
+        {
+            <tr>
+                <td>@message.Name</td>
+                <td>@message.Email</td>
+                <td>@message.Message</td>
+            </tr>
+        }
+    </tbody>
+</table>

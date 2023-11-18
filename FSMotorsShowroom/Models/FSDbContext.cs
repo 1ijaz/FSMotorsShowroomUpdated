@@ -19,6 +19,7 @@ namespace FSMotorsShowroom.Models
         public DbSet<Career> careers { get; set; }
         public DbSet<Feedback> feedbacks { get; set; }
         public DbSet<Investor> investors { get; set; }
+        public DbSet<ContactMessage> ContactMessage { get; set; }
         public DbSet<Transaction> transactions { get; set; }
         public DbSet<ApplicationUser> applicationUsers { get; set; }
         public DbSet<UserType> userTypes { get; set; }

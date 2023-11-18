@@ -195,5 +195,35 @@ namespace FSMotorsShowroom.Controllers
            // HttpContext.Session.SetString("GetAllNewsList", System.Text.Json.JsonSerializer.Serialize(newsList));
             return Json(newsList);
         }
+        [HttpPost]
+        public IActionResult SaveContactMessage([FromBody] ContactMessage contactMessage)
+        {
+            try
+            {
+                // Validate and save the contact message to the database
+                if (ModelState.IsValid)
+                {
+                    // You can save data to the database here using _context
+                    _context.ContactMessage.Add(contactMessage);
+                    _context.SaveChanges();
+
+                    return Json(new { success = true, message = "Message saved successfully." });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Invalid data. Please check your input." });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = $"Error: {ex.Message}" });
+            }
+        }
+        public IActionResult GetContactMessages()
+        {
+            var contactMessages = _context.ContactMessage.ToList();
+
+            return View(contactMessages);
+        }
     }
 }
