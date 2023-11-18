@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "FindInvestors";
+    Layout = "~/Views/Shared/_Layout_Investor.cshtml";
+}
+
+@model List<Investor>
+
+@{
+    ViewData["Title"] = "Investor List";
+}
+
+<h4>My Investment</h4>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Investor Name</th>
+            <th>Email</th>
+            <th>Contact #</th>
+            <th>Address</th>
+            <th>Total Invest Amount</th>
+            <th>Invest Amount</th>
+            <th>Not Invest Amount</th>
+            <th>Total Profit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var investor in Model)
+        {
+            <tr>
+                <td>@investor.InvestorName</td>
+                <td>@investor.InvestorEmail</td>
+                <td>@investor.InvestorContact</td>
+                <td>@investor.InvestorAddress</td>
+                <td>@investor.TotalInvestAmount</td>
+                <td>@investor.InvestAllocatedAmount</td>
+                <td>@investor.InvestUnallocatedAmount</td>
+                <td>@investor.Profit</td>
+              
+            </tr>
+        }
+    </tbody>
+</table>
+

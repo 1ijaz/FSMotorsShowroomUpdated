@@ -4,6 +4,7 @@ using FSMotorsShowroom.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FSMotorsShowroom.Migrations
 {
     [DbContext(typeof(FSDbContext))]
-    partial class FSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231118103816_firsts")]
+    partial class firsts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,9 +143,6 @@ namespace FSMotorsShowroom.Migrations
 
                     b.Property<int>("PassengerCapacity")
                         .HasColumnType("int");
-
-                    b.Property<decimal?>("ProfitPriceOfCarCost")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("RegistrationNumber")
                         .IsRequired()
@@ -691,17 +691,17 @@ namespace FSMotorsShowroom.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "743ec831-b35c-469f-90e7-41186f715b5e",
+                            Id = "2e35a59d-3f2e-4ceb-96fd-bf3ba64fe9fb",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "16b17105-d121-4382-a527-331b86d62d15",
+                            ConcurrencyStamp = "f854aa96-144b-4376-9dc8-14cdf269409b",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPFKRWRTxeWCtzflecyM3yRI7H3KkvErfzFJ3EPrL1Jpn9yiKmVAtC2wa7CtW8eWww==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBUqtm5d67/vI+TJ1QE2jsGKvO4AqOEprjRo5wGT2PxSn/XrlM9RVKe2cDb8hi/Pag==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7faea65a-f7ca-4cea-af19-1dab7a235e32",
+                            SecurityStamp = "e92df0c8-17fb-4718-8907-868755b8255d",
                             TwoFactorEnabled = false,
                             UserName = "Admin@gmail.com",
                             FirstName = "Hamza",

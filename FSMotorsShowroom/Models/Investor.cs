@@ -27,7 +27,18 @@ namespace FSMotorsShowroom.Models
         public decimal? InvestUnallocatedAmount { get; set; }
       
         [Display(Name = "Total Invest Amount")]
-        public decimal? TotalInvestAmount { get; set; }
+        public decimal? TotalInvestAmount { get; set; } 
 
+        [Display(Name = "Allocated Invest Amount")]
+        public decimal? InvestAllocatedAmount { get; set; }
+      
+        [Display(Name = "Profit")]
+        public decimal? Profit { get; set; }
+        public string? Status { get; set; }
+        public enum StatusList
+        {
+            Active,
+            DeActive
+        }
     }
 }

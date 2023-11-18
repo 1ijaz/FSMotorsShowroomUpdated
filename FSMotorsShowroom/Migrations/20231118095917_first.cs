@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FSMotorsShowroom.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class first : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -108,7 +108,10 @@ namespace FSMotorsShowroom.Migrations
                     InvestorContact = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InvestorAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InvestUnallocatedAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    TotalInvestAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                    TotalInvestAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    InvestAllocatedAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Profit = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -148,13 +151,20 @@ namespace FSMotorsShowroom.Migrations
                 name: "transactions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    TransactionId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Amount = table.Column<int>(type: "int", nullable: false)
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CarId = table.Column<int>(type: "int", nullable: true),
+                    CarName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    From = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    To = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TransactionType = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_transactions", x => x.Id);
+                    table.PrimaryKey("PK_transactions", x => x.TransactionId);
                 });
 
             migrationBuilder.CreateTable(
@@ -399,7 +409,7 @@ namespace FSMotorsShowroom.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "bd5c6816-3454-4682-9a9f-97d8a4861e38", 0, null, "1375d9de-a16d-4a0b-8916-0956bcbc667a", "ApplicationUser", "Admin@gmail.com", true, "Hamza", "Khan", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEOLEtmiEODBmEM+GL80LbHcKiaoCNrPTgOmFGDQOyT3+8MmKXKjBeeabLncWIF57UA==", null, false, "Admin", "a2bc500f-494b-4000-bf63-945317c80fc3", false, "Admin@gmail.com" });
+                values: new object[] { "bdb203aa-8382-4920-9f35-e907da96c49c", 0, null, "1a9635dc-42e3-4efc-ae48-6f83bee9fb8e", "ApplicationUser", "Admin@gmail.com", true, "Hamza", "Khan", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEAhy02x4vhJIvif6O9+J5rRD3GQ0+sP5CWzrz/LtTn7wa7RobI1HgyQCPBdpkKjc/g==", null, false, "Admin", "7cd0224b-baa7-47aa-a2ac-eebbbbd7a5b1", false, "Admin@gmail.com" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_applications_careerId",

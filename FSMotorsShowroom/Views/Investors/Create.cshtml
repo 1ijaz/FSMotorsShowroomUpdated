@@ -16,42 +16,58 @@
 
             <div class="row">
                 <div class="col-md-6">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="InvestorName" class="control-label"></label>
-                <input asp-for="InvestorName" class="form-control" />
-                <span asp-validation-for="InvestorName" class="text-danger"></span>
-            </div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="InvestorName" class="control-label"></label>
+                        <input asp-for="InvestorName" class="form-control" />
+                        <span asp-validation-for="InvestorName" class="text-danger"></span>
+                    </div>
                 </div>
 
-           
+
                 <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="InvestorEmail" class="control-label"></label>
-                <input asp-for="InvestorEmail" class="form-control" />
-                <span asp-validation-for="InvestorEmail" class="text-danger"></span>
-            </div>
-            </div>
+                    <div class="form-group">
+                        <label asp-for="InvestorEmail" class="control-label"></label>
+                        <input asp-for="InvestorEmail" class="form-control" />
+                        <span asp-validation-for="InvestorEmail" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="InvestorContact" class="control-label"></label>
-                <input asp-for="InvestorContact" class="form-control" />
-                <span asp-validation-for="InvestorContact" class="text-danger"></span>
-            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="InvestorContact" class="control-label"></label>
+                        <input asp-for="InvestorContact" class="form-control" />
+                        <span asp-validation-for="InvestorContact" class="text-danger"></span>
                     </div>
-                    <div class="col-md-6">
-            <div class="form-group">
-                <label asp-for="InvestorAddress" class="control-label"></label>
-                <input asp-for="InvestorAddress" class="form-control" />
-                <span asp-validation-for="InvestorAddress" class="text-danger"></span>
-            </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="InvestorAddress" class="control-label"></label>
+                        <input asp-for="InvestorAddress" class="form-control" />
+                        <span asp-validation-for="InvestorAddress" class="text-danger"></span>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="TotalInvestAmount" class="control-label"></label>
+                        <input asp-for="TotalInvestAmount" class="form-control" />
+                        <span asp-validation-for="TotalInvestAmount" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="InvestAllocatedAmount" class="control-label"></label>
+                        <input asp-for="InvestAllocatedAmount" class="form-control" />
+                        <span asp-validation-for="InvestAllocatedAmount" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
 
-@*             <div class="row">
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="InvestUnallocatedAmount" class="control-label"></label>
@@ -61,15 +77,26 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label asp-for="TotalInvestAmount" class="control-label"></label>
-                        <input asp-for="TotalInvestAmount" class="form-control" />
-                        <span asp-validation-for="TotalInvestAmount" class="text-danger"></span>
+                        <label asp-for="Profit" class="control-label"></label>
+                        <input asp-for="Profit" class="form-control" />
+                        <span asp-validation-for="Profit" class="text-danger"></span>
                     </div>
                 </div>
-            </div> *@
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            </div> 
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Status">Status</label>
+                        <select asp-for="Status" asp-items="ViewBag.StatusList" class="form-control"></select>
+                    </div>
+                </div>
+                <div class="col-md-6" style="margin-top:25px">
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
             </div>
+            
         </form>
     </div>
 </div>

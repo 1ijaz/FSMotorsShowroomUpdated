@@ -138,6 +138,11 @@ namespace FSMotorsShowroom.Controllers
             var model = new InventoryModel { Id = id };
             return View("~/Views/Home/inventory-listing_5.cshtml", model);
         }
+        public IActionResult inventory_listing_inv(int id)
+        {
+            var model = new InventoryModel { Id = id };
+            return View("~/Views/Home/inventory-listing_inv.cshtml", model);
+        }
         public IActionResult inventory_wide_fullwidth()
         {
             return View("~/Views/Home/inventory-wide-fullwidth.cshtml");
@@ -145,6 +150,10 @@ namespace FSMotorsShowroom.Controllers
         public IActionResult cars_in_worksop()
         {
             return View("~/Views/Home/cars_in_worksop.cshtml");
+        } 
+        public IActionResult cars_investors()
+        {
+            return View("~/Views/Home/cars_investors.cshtml");
         } 
         public IActionResult sold_cars()
         {
@@ -157,6 +166,10 @@ namespace FSMotorsShowroom.Controllers
         public IActionResult our_team()
         {
             return View("~/Views/Home/our-team.cshtml");
+        } 
+        public IActionResult invest_policy()
+        {
+            return View("~/Views/Home/invest_policy.cshtml");
         }
         public IActionResult page_fullwidth()
         {
@@ -266,6 +279,14 @@ namespace FSMotorsShowroom.Controllers
             var workshopCars = _context.cars.Where(car => car.CarStatus == "Workshop").ToList();
             HttpContext.Session.SetString("GetAllWorkshopCars", System.Text.Json.JsonSerializer.Serialize(workshopCars));
             return Json(workshopCars);
+        } 
+        [HttpGet]
+        public IActionResult GetAllInvestorCars()
+        {
+            var userEmail = HttpContext.Session.GetString("userEmail");
+            var investorsCars = _context.cars.Where(car => car.CarInvestor == userEmail).ToList();
+            HttpContext.Session.SetString("GetAllInvestorCars", System.Text.Json.JsonSerializer.Serialize(investorsCars));
+            return Json(investorsCars);
         } 
         [HttpGet]
         public IActionResult GetAllSoldCars()

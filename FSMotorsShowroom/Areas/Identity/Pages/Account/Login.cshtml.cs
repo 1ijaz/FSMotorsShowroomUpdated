@@ -90,6 +90,7 @@ namespace FSMotorsShowroom.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     var user = await _userManager.FindByEmailAsync(Input.Email) as ApplicationUser;
+                    HttpContext.Session.SetString("userEmail", Input.Email);    
 
                     if (user != null && user.Role == "Admin")
                     {

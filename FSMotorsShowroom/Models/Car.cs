@@ -43,6 +43,8 @@ namespace FSMotorsShowroom.Models
         public decimal? SellingPrice { get; set; }
         [DisplayName("Maintanance Cost")]
         public decimal? MaintananceCost { get; set; }
+        public decimal? ProfitPriceOfCarCost { get; set; }
+
         [DisplayName("Showroom Cost")]
         public decimal? ShowroomCost { get; set; }
         [DisplayName("Sales Tax")]

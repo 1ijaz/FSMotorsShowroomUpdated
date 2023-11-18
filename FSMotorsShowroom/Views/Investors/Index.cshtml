@@ -34,12 +34,22 @@
             <th>
                 @Html.DisplayNameFor(model => model.InvestorAddress)
             </th>
-            @*  <th>
+              <th>
+                @Html.DisplayNameFor(model => model.TotalInvestAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvestAllocatedAmount)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.InvestUnallocatedAmount)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TotalInvestAmount)
-            </th> *@
+                @Html.DisplayNameFor(model => model.Profit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+           
             <th></th>
         </tr>
     </thead>
@@ -58,12 +68,25 @@
             <td>
                 @Html.DisplayFor(modelItem => item.InvestorAddress)
             </td>
-@*                 <td>
-                    @Html.DisplayFor(modelItem => item.InvestUnallocatedAmount)
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TotalInvestAmount)
-                </td> *@
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvestAllocatedAmount)
+                </td>  
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvestUnallocatedAmount)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Profit)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td> 
             <td>
                 <a asp-action="Edit" asp-route-id="@item.InvestorId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.InvestorId">Details</a> |

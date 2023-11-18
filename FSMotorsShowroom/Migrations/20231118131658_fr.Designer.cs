@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FSMotorsShowroom.Migrations
 {
     [DbContext(typeof(FSDbContext))]
-    [Migration("20231115171904_initial")]
-    partial class initial
+    [Migration("20231118131658_fr")]
+    partial class fr
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -143,6 +143,9 @@ namespace FSMotorsShowroom.Migrations
 
                     b.Property<int>("PassengerCapacity")
                         .HasColumnType("int");
+
+                    b.Property<decimal?>("ProfitPriceOfCarCost")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("RegistrationNumber")
                         .IsRequired()
@@ -297,6 +300,9 @@ namespace FSMotorsShowroom.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InvestorId"));
 
+                    b.Property<decimal?>("InvestAllocatedAmount")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal?>("InvestUnallocatedAmount")
                         .HasColumnType("decimal(18,2)");
 
@@ -314,6 +320,12 @@ namespace FSMotorsShowroom.Migrations
 
                     b.Property<string>("InvestorName")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("Profit")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal?>("TotalInvestAmount")
@@ -371,16 +383,44 @@ namespace FSMotorsShowroom.Migrations
 
             modelBuilder.Entity("FSMotorsShowroom.Models.Transaction", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("TransactionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionId"));
 
-                    b.Property<int>("Amount")
+                    b.Property<decimal?>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("CarId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<string>("CarName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("From")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("To")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransactionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransactionType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TransactionId");
 
                     b.ToTable("transactions");
                 });
@@ -654,17 +694,17 @@ namespace FSMotorsShowroom.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "bd5c6816-3454-4682-9a9f-97d8a4861e38",
+                            Id = "743ec831-b35c-469f-90e7-41186f715b5e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1375d9de-a16d-4a0b-8916-0956bcbc667a",
+                            ConcurrencyStamp = "16b17105-d121-4382-a527-331b86d62d15",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOLEtmiEODBmEM+GL80LbHcKiaoCNrPTgOmFGDQOyT3+8MmKXKjBeeabLncWIF57UA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPFKRWRTxeWCtzflecyM3yRI7H3KkvErfzFJ3EPrL1Jpn9yiKmVAtC2wa7CtW8eWww==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a2bc500f-494b-4000-bf63-945317c80fc3",
+                            SecurityStamp = "7faea65a-f7ca-4cea-af19-1dab7a235e32",
                             TwoFactorEnabled = false,
                             UserName = "Admin@gmail.com",
                             FirstName = "Hamza",

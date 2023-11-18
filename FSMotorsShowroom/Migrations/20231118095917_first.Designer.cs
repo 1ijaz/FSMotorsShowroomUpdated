@@ -4,6 +4,7 @@ using FSMotorsShowroom.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FSMotorsShowroom.Migrations
 {
     [DbContext(typeof(FSDbContext))]
-    partial class FSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231118095917_first")]
+    partial class first
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,9 +143,6 @@ namespace FSMotorsShowroom.Migrations
 
                     b.Property<int>("PassengerCapacity")
                         .HasColumnType("int");
-
-                    b.Property<decimal?>("ProfitPriceOfCarCost")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("RegistrationNumber")
                         .IsRequired()
@@ -407,10 +407,6 @@ namespace FSMotorsShowroom.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("To")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TransactionName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -691,17 +687,17 @@ namespace FSMotorsShowroom.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "743ec831-b35c-469f-90e7-41186f715b5e",
+                            Id = "bdb203aa-8382-4920-9f35-e907da96c49c",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "16b17105-d121-4382-a527-331b86d62d15",
+                            ConcurrencyStamp = "1a9635dc-42e3-4efc-ae48-6f83bee9fb8e",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPFKRWRTxeWCtzflecyM3yRI7H3KkvErfzFJ3EPrL1Jpn9yiKmVAtC2wa7CtW8eWww==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAhy02x4vhJIvif6O9+J5rRD3GQ0+sP5CWzrz/LtTn7wa7RobI1HgyQCPBdpkKjc/g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7faea65a-f7ca-4cea-af19-1dab7a235e32",
+                            SecurityStamp = "7cd0224b-baa7-47aa-a2ac-eebbbbd7a5b1",
                             TwoFactorEnabled = false,
                             UserName = "Admin@gmail.com",
                             FirstName = "Hamza",

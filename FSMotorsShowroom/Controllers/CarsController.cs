@@ -17,6 +17,7 @@ namespace FSMotorsShowroom.Controllers
     {
         private readonly FSDbContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
+        decimal profitPriceCar = 0;
         public CarsController(FSDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
@@ -71,9 +72,13 @@ namespace FSMotorsShowroom.Controllers
                 car.InteriorImage = await UploadFileAsync(car.InteriorImageFile, "Uploads");
                 car.EngineImage = await UploadFileAsync(car.EngineImageFile, "Uploads");
                 car.BodyImage = await UploadFileAsync(car.BodyImageFile, "Uploads");
+
                 car.TotalPrice = car.BuyingPrice + car.MaintananceCost + car.ShowroomCost  + car.SalesTax;
+            profitPriceCar = (decimal)(car.SellingPrice - car.TotalPrice);
+            car.ProfitPriceOfCarCost = profitPriceCar;
                 _context.Add(car);
             await _context.SaveChangesAsync();
+            await UpdateInvestorProfit(profitPriceCar, car.CarInvestor);
             return RedirectToAction(nameof(Index));
        // }
             return View(car);
@@ -81,6 +86,10 @@ namespace FSMotorsShowroom.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewData["CarModelId"] = new SelectList(_context.carModels, "CarModelId", "CarModelName");
+            ViewBag.TransmissionTypes = GetTransmissionTypes();
+            ViewBag.investorInfo = GetInvestorInfo();
+            ViewBag.CarStatusEnum = GetCarStatusEnum();
             if (id == null || _context.cars == null)
             {
                 return NotFound();
@@ -97,7 +106,7 @@ namespace FSMotorsShowroom.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CarId,Name,Color,TransmissionMode,FuelType,FuelMilage,Features,Description,EngineNo,BuyingPrice,SellingPrice,MaintananceCost,ShowroomCost,SalesTax,MakeCompany,MakeYear,NoOfCylinders,HorsePower,TransmissionMode,TankCapacity,Doors,PassengerCapacity,FrontImage,BackImage,InteriorImage,EngineImage,BodyImage,CarStatus")] Car car)
+        public async Task<IActionResult> Edit(int id, Car car)
         {
             if (id != car.CarId)
             {
@@ -109,8 +118,12 @@ namespace FSMotorsShowroom.Controllers
                 try
                 {
                     car.TotalPrice = car.BuyingPrice + car.MaintananceCost + car.ShowroomCost + car.SalesTax;
+                     profitPriceCar = (decimal)(car.SellingPrice - car.TotalPrice);
+                    car.ProfitPriceOfCarCost = profitPriceCar;
                     _context.Update(car);
                     await _context.SaveChangesAsync();
+                    // Assuming investorId is the ID of the investor related to this car
+                    await UpdateInvestorProfit(profitPriceCar, car.CarInvestor);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -221,6 +234,41 @@ namespace FSMotorsShowroom.Controllers
 
             return items;
         }
+        public async Task UpdateInvestorProfit(decimal profitValue, string investorId)
+        {
+            try
+            {
+                var investor = await _context.investors.Where(inv => inv.InvestorEmail == investorId).FirstOrDefaultAsync();
+
+                if (investor != null)
+                {
+                    var profitValueCalcluated = profitValue /2;
+                    if (investor.Profit == null)
+                    {
+                        investor.Profit = 0;
+                        investor.Profit += profitValueCalcluated;
+                    }
+                    else
+                    {
+                        investor.Profit += profitValueCalcluated;
+                    }
+                    _context.Update(investor);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    // Handle the case where the investor with the given ID is not found.
+                    // You may throw an exception, log an error, or handle it according to your application's requirements.
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions here, log or rethrow as needed.
+                // You may want to add more specific exception handling based on your application's requirements.
+                Console.WriteLine($"Error updating investor profit: {ex.Message}");
+            }
+        }
+
     }
 
 }

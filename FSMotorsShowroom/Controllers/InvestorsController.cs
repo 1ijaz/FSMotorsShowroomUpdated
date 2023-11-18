@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FSMotorsShowroom.Models;
 using Microsoft.AspNetCore.Authorization;
+using static FSMotorsShowroom.Models.Car;
+using static FSMotorsShowroom.Models.Investor;
 
 namespace FSMotorsShowroom.Controllers
 {
@@ -28,6 +30,12 @@ namespace FSMotorsShowroom.Controllers
                           Problem("Entity set 'FSDbContext.investors'  is null.");
         }
         [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetInvestor()
+        {
+            return _context.investors != null ?
+                        View(await _context.investors.ToListAsync()) :
+                        Problem("Entity set 'FSDbContext.investors'  is null.");
+        }
         // GET: Investors/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -49,20 +57,22 @@ namespace FSMotorsShowroom.Controllers
         // GET: Investors/Create
         public IActionResult Create()
         {
+            ViewBag.StatusList = GetStatusList();
             return View();
         }
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("InvestorId,InvestorName,InvestorEmail,InvestorContact,InvestorAddress,InvestUnallocatedAmount,TotalInvestAmount")] Investor investor)
+        public async Task<IActionResult> Create(Investor investor)
         {
-            if (ModelState.IsValid)
-            {
+            //  if (ModelState.IsValid)
+            //  {
+            investor.InvestUnallocatedAmount = investor.TotalInvestAmount - investor.InvestAllocatedAmount;
                 _context.Add(investor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(investor);
+         //   }
+          //  return View(investor);
         }
 
         [Authorize(Roles = "Admin")]
@@ -72,18 +82,19 @@ namespace FSMotorsShowroom.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.StatusList = GetStatusList();
             var investor = await _context.investors.FindAsync(id);
             if (investor == null)
             {
                 return NotFound();
             }
+            investor.InvestUnallocatedAmount = investor.TotalInvestAmount - investor.InvestAllocatedAmount;
             return View(investor);
         }
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("InvestorId,InvestorName,InvestorEmail,InvestorContact,InvestorAddress,InvestUnallocatedAmount,TotalInvestAmount")] Investor investor)
+        public async Task<IActionResult> Edit(int id,Investor investor)
         {
             if (id != investor.InvestorId)
             {
@@ -94,6 +105,7 @@ namespace FSMotorsShowroom.Controllers
             {
                 try
                 {
+                    investor.InvestUnallocatedAmount = investor.TotalInvestAmount - investor.InvestAllocatedAmount;
                     _context.Update(investor);
                     await _context.SaveChangesAsync();
                 }
@@ -156,6 +168,26 @@ namespace FSMotorsShowroom.Controllers
         public IActionResult InvestorDashboard()
         {
             return View();
+        }
+        private List<SelectListItem> GetStatusList()
+        {
+            var statusList = Enum.GetValues(typeof(StatusList)).Cast<StatusList>();
+            var items = statusList.Select(type => new SelectListItem
+            {
+                Text = type.ToString(),
+                Value = type.ToString()
+            }).ToList();
+
+            return items;
+        }
+        public IActionResult FindInvestors(decimal minProfit)
+        {
+            var userEmail = HttpContext.Session.GetString("userEmail");
+            var investors = _context.investors
+                                     .Where(i => i.InvestorEmail == userEmail)
+                                     .ToList();
+
+            return View(investors);
         }
     }
 }
