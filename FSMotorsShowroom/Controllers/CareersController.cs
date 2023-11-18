@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FSMotorsShowroom.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FSMotorsShowroom.Controllers
 {
@@ -18,7 +19,7 @@ namespace FSMotorsShowroom.Controllers
             _context = context;
         }
 
-        // GET: Careers
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
               return _context.careers != null ? 
@@ -32,7 +33,7 @@ namespace FSMotorsShowroom.Controllers
                           Problem("Entity set 'FSDbContext.careers'  is null.");
         }
 
-        // GET: Careers/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.careers == null)
@@ -56,11 +57,9 @@ namespace FSMotorsShowroom.Controllers
             return View();
         }
 
-        // POST: Careers/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,Position,Description")] Career career)
         {
             if (ModelState.IsValid)
@@ -72,7 +71,7 @@ namespace FSMotorsShowroom.Controllers
             return View(career);
         }
 
-        // GET: Careers/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.careers == null)
@@ -87,12 +86,9 @@ namespace FSMotorsShowroom.Controllers
             }
             return View(career);
         }
-
-        // POST: Careers/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Position,Description")] Career career)
         {
             if (id != career.Id)
@@ -122,8 +118,7 @@ namespace FSMotorsShowroom.Controllers
             }
             return View(career);
         }
-
-        // GET: Careers/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.careers == null)
@@ -140,8 +135,7 @@ namespace FSMotorsShowroom.Controllers
 
             return View(career);
         }
-
-        // POST: Careers/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -9,9 +9,11 @@ using FSMotorsShowroom.Models;
 using System.Runtime.ConstrainedExecution;
 using Microsoft.Extensions.Hosting;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FSMotorsShowroom.Controllers
 {
+
     public class NewsController : Controller
     {
         private readonly FSDbContext _context;
@@ -21,7 +23,7 @@ namespace FSMotorsShowroom.Controllers
             this._hostEnvironment = hostEnvironment;
             _context = context;
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: News
         public async Task<IActionResult> Index()
         {
@@ -29,7 +31,7 @@ namespace FSMotorsShowroom.Controllers
                           View(await _context.NewsModel.ToListAsync()) :
                           Problem("Entity set 'FSDbContext.NewsModel'  is null.");
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: News/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -47,7 +49,7 @@ namespace FSMotorsShowroom.Controllers
 
             return View(newsModel);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: News/Create
         public IActionResult Create()
         {
@@ -58,6 +60,7 @@ namespace FSMotorsShowroom.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(NewsModel newsModel)
         {
@@ -72,6 +75,7 @@ namespace FSMotorsShowroom.Controllers
         }
 
         // GET: News/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.NewsModel == null)
@@ -92,6 +96,7 @@ namespace FSMotorsShowroom.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, NewsModel newsModel)
         {
@@ -122,7 +127,7 @@ namespace FSMotorsShowroom.Controllers
             }
             return View(newsModel);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: News/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -140,7 +145,7 @@ namespace FSMotorsShowroom.Controllers
 
             return View(newsModel);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: News/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

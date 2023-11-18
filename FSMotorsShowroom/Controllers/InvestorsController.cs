@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FSMotorsShowroom.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FSMotorsShowroom.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class InvestorsController : Controller
     {
         private readonly FSDbContext _context;

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FSMotorsShowroom.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FSMotorsShowroom.Controllers
 {
@@ -18,14 +19,14 @@ namespace FSMotorsShowroom.Controllers
             _context = context;
         }
 
-        // GET: Applications
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var fSDbContext = _context.applications.Include(a => a.Career);
             return View(await fSDbContext.ToListAsync());
         }
 
-        // GET: Applications/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.applications == null)
@@ -44,7 +45,7 @@ namespace FSMotorsShowroom.Controllers
             return View(application);
         }
 
-        // GET: Applications/Create
+        
         public IActionResult Create()
         {
             ViewData["careerId"] = new SelectList(_context.careers, "Id", "Position");
@@ -75,7 +76,7 @@ namespace FSMotorsShowroom.Controllers
             return View(application);
         }
 
-        // GET: Applications/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.applications == null)
@@ -147,7 +148,7 @@ namespace FSMotorsShowroom.Controllers
             return View(application);
         }
 
-        // POST: Applications/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

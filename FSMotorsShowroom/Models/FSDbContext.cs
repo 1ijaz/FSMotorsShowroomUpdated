@@ -57,7 +57,6 @@ namespace FSMotorsShowroom.Models
 
         }
 
-        //public DbSet<FSMotorsShowroom.Models.Category> Category { get; set; } = default!;
         public DbSet<FSMotorsShowroom.Models.NewsModel> NewsModel { get; set; } = default!;
 
     }

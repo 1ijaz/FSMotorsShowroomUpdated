@@ -13,7 +13,7 @@ builder.Services.AddDbContext<FSDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 //builder.Services.AddDefaultIdentity<IdentityUser>()
 //                    .AddEntityFrameworkStores<FSDbContext>().AddDefaultTokenProviders().AddDefaultUI();
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<FSDbContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>().AddDefaultTokenProviders().AddRoles<IdentityRole>().AddEntityFrameworkStores<FSDbContext>();
 //builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<FSDbContext>();
 
 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FSMotorsShowroom.Controllers
 {
-    [Authorize]
+  //  [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly FSDbContext _context;

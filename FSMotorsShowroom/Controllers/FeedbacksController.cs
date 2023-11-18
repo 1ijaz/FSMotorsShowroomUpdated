@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FSMotorsShowroom.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FSMotorsShowroom.Controllers
 {
@@ -17,7 +18,7 @@ namespace FSMotorsShowroom.Controllers
         {
             _context = context;
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Feedbacks
         public async Task<IActionResult> Index()
         {
@@ -27,6 +28,7 @@ namespace FSMotorsShowroom.Controllers
         }
 
         // GET: Feedbacks/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.feedbacks == null)
@@ -72,7 +74,7 @@ namespace FSMotorsShowroom.Controllers
             }
             return View(feedback);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Feedbacks/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -92,6 +94,7 @@ namespace FSMotorsShowroom.Controllers
         // POST: Feedbacks/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Contact,Description")] Feedback feedback)
@@ -123,7 +126,7 @@ namespace FSMotorsShowroom.Controllers
             }
             return View(feedback);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Feedbacks/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -141,7 +144,7 @@ namespace FSMotorsShowroom.Controllers
 
             return View(feedback);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Feedbacks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

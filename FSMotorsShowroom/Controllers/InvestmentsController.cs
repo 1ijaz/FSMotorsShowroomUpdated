@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FSMotorsShowroom.Models;
 using static FSMotorsShowroom.Models.Car;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FSMotorsShowroom.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class InvestmentsController : Controller
     {
         private readonly FSDbContext _context;
@@ -20,6 +23,8 @@ namespace FSMotorsShowroom.Controllers
         }
 
         // GET: Investments
+       // [Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> Index()
         {
             var fSDbContext = _context.investments.Include(i => i.Car).Include(i => i.Investor);
@@ -27,6 +32,7 @@ namespace FSMotorsShowroom.Controllers
         }
 
         // GET: Investments/Details/5
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.investments == null)

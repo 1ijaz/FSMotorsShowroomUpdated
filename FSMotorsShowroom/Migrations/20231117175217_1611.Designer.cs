@@ -4,6 +4,7 @@ using FSMotorsShowroom.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FSMotorsShowroom.Migrations
 {
     [DbContext(typeof(FSDbContext))]
-    partial class FSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231117175217_1611")]
+    partial class _1611
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -651,17 +654,17 @@ namespace FSMotorsShowroom.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2551ecf4-210a-44a1-b1ef-19b939883135",
+                            Id = "af1f29cc-4fc4-4b57-81e5-21910eb6ef17",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "874de4c9-1e1b-4c29-a572-5ada6858b75c",
+                            ConcurrencyStamp = "361b3e48-d9d2-4bde-9c98-79d407b9db00",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFbzvyHOxA6tXajGH9xqKUZQ7OVkYQga4TCjZZ56i9to9VX/nDb143Kre6VMLIGgXw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOtJ3sZo1MeA3U6EaVU5EHx8AvRpPvOe9cCFC6ZTJ34ZT7epOiEsve+psS+1DmU9sg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "52a44368-fa87-40d8-8999-a0539c68cb59",
+                            SecurityStamp = "bfc6c294-7234-44cb-9cd1-f2f372e7c6f7",
                             TwoFactorEnabled = false,
                             UserName = "Admin@gmail.com",
                             FirstName = "Hamza",

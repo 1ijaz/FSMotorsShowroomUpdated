@@ -9,6 +9,7 @@ using FSMotorsShowroom.Models;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using static FSMotorsShowroom.Models.Car;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FSMotorsShowroom.Controllers
 {
@@ -22,15 +23,14 @@ namespace FSMotorsShowroom.Controllers
             this._hostEnvironment = hostEnvironment;
         }
 
-        // GET: Cars added comment
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             return _context.cars != null ?
                         View(await _context.cars.ToListAsync()) :
                         Problem("Entity set 'FSDbContext.cars'  is null.");
         }
-
-        // GET: Cars/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.cars == null)
@@ -48,7 +48,7 @@ namespace FSMotorsShowroom.Controllers
             return View(car);
         }
 
-        // GET: Cars/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["CarModelId"] = new SelectList(_context.carModels, "CarModelId", "CarModelName");
@@ -58,9 +58,7 @@ namespace FSMotorsShowroom.Controllers
             return View();
         }
 
-        // POST: Cars/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Car car)
@@ -80,7 +78,7 @@ namespace FSMotorsShowroom.Controllers
        // }
             return View(car);
     }
-        // GET: Cars/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.cars == null)
@@ -96,9 +94,7 @@ namespace FSMotorsShowroom.Controllers
             return View(car);
         }
 
-        // POST: Cars/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CarId,Name,Color,TransmissionMode,FuelType,FuelMilage,Features,Description,EngineNo,BuyingPrice,SellingPrice,MaintananceCost,ShowroomCost,SalesTax,MakeCompany,MakeYear,NoOfCylinders,HorsePower,TransmissionMode,TankCapacity,Doors,PassengerCapacity,FrontImage,BackImage,InteriorImage,EngineImage,BodyImage,CarStatus")] Car car)
@@ -131,8 +127,7 @@ namespace FSMotorsShowroom.Controllers
             }
             return View(car);
         }
-
-        // GET: Cars/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.cars == null)
@@ -149,8 +144,7 @@ namespace FSMotorsShowroom.Controllers
 
             return View(car);
         }
-
-        // POST: Cars/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

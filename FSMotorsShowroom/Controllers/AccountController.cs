@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FSMotorsShowroom.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AccountController : Controller
     {
         private readonly FSDbContext _context;
