@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using FSMotorsShowroom.Models;
 using static FSMotorsShowroom.Models.Investor;
 using static FSMotorsShowroom.Models.Transaction;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FSMotorsShowroom.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TransactionsController : Controller
     {
         private readonly FSDbContext _context;
@@ -54,9 +56,7 @@ namespace FSMotorsShowroom.Controllers
             return View();
         }
 
-        // POST: Transactions/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Transaction transaction)

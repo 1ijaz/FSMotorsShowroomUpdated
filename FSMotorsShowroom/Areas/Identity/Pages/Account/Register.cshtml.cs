@@ -122,7 +122,7 @@ namespace FSMotorsShowroom.Areas.Identity.Pages.Account
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
+                        "identity/Account/Manage/Investors",
                         pageHandler: null,
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
@@ -136,8 +136,9 @@ namespace FSMotorsShowroom.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        //await _signInManager.SignInAsync(user, isPersistent: false);
+                        string returnUrll = "/identity/Account/Manage/Investors";
+                        return LocalRedirect(returnUrll);
                     }
                 }
                 foreach (var error in result.Errors)

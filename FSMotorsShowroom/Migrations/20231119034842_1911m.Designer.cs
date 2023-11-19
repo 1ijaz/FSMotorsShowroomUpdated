@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FSMotorsShowroom.Migrations
 {
     [DbContext(typeof(FSDbContext))]
-    [Migration("20231118185615_updated")]
-    partial class updated
+    [Migration("20231119034842_1911m")]
+    partial class _1911m
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -719,17 +719,17 @@ namespace FSMotorsShowroom.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4b393f32-7a95-46a3-b010-3d0cd8c3c12f",
+                            Id = "45320547-9d84-4688-9762-9fd1017eb8d7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "eaa18fa5-5563-4be8-9f7c-705679b2091a",
+                            ConcurrencyStamp = "10b51709-b181-4db7-a41c-a568732658d2",
                             Email = "Admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAELxKlpNPiUqRJO0g1pqI7vBz1OqTEOxpQ+cYloQb2CopFVqbLLQKzBFZIOXQQmdEVg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMGt/QwCqzFO3cEzuL8ZMVn4XOYw7p5ARMdMy4V19ebNCQ6bbe8zrTQ1BxzjZJ1wwA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "59369b44-090f-4113-8b62-406b027f98ba",
+                            SecurityStamp = "be107db8-1176-4728-8263-7256c4274e44",
                             TwoFactorEnabled = false,
                             UserName = "Admin@gmail.com",
                             FirstName = "Hamza",

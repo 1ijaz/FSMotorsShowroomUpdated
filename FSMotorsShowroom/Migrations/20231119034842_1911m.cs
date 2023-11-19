@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FSMotorsShowroom.Migrations
 {
     /// <inheritdoc />
-    public partial class first : Migration
+    public partial class _1911m : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -83,6 +83,21 @@ namespace FSMotorsShowroom.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ContactMessage",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContactMessage", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "feedbacks",
                 columns: table => new
                 {
@@ -153,6 +168,7 @@ namespace FSMotorsShowroom.Migrations
                 {
                     TransactionId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    TransactionName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CarId = table.Column<int>(type: "int", nullable: true),
                     CarName = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -343,6 +359,7 @@ namespace FSMotorsShowroom.Migrations
                     BuyingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SellingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     MaintananceCost = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    ProfitPriceOfCarCost = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     ShowroomCost = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     SalesTax = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
@@ -409,7 +426,7 @@ namespace FSMotorsShowroom.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "bdb203aa-8382-4920-9f35-e907da96c49c", 0, null, "1a9635dc-42e3-4efc-ae48-6f83bee9fb8e", "ApplicationUser", "Admin@gmail.com", true, "Hamza", "Khan", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEAhy02x4vhJIvif6O9+J5rRD3GQ0+sP5CWzrz/LtTn7wa7RobI1HgyQCPBdpkKjc/g==", null, false, "Admin", "7cd0224b-baa7-47aa-a2ac-eebbbbd7a5b1", false, "Admin@gmail.com" });
+                values: new object[] { "45320547-9d84-4688-9762-9fd1017eb8d7", 0, null, "10b51709-b181-4db7-a41c-a568732658d2", "ApplicationUser", "Admin@gmail.com", true, "Hamza", "Khan", false, null, "ADMIN@GMAIL.COM", "ADMIN@GMAIL.COM", "AQAAAAIAAYagAAAAEMGt/QwCqzFO3cEzuL8ZMVn4XOYw7p5ARMdMy4V19ebNCQ6bbe8zrTQ1BxzjZJ1wwA==", null, false, "Admin", "be107db8-1176-4728-8263-7256c4274e44", false, "Admin@gmail.com" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_applications_careerId",
@@ -491,6 +508,9 @@ namespace FSMotorsShowroom.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "ContactMessage");
 
             migrationBuilder.DropTable(
                 name: "feedbacks");
