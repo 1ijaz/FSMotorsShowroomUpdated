@@ -137,6 +137,11 @@ namespace FSMotorsShowroom.Controllers
         {
             var model = new InventoryModel { Id = id };
             return View("~/Views/Home/inventory-listing_5.cshtml", model);
+        } 
+        public IActionResult inventory_listing_6(int id)
+        {
+            var model = new InventoryModel { Id = id };
+            return View("~/Views/Home/inventory-listing_6.cshtml", model);
         }
         public IActionResult inventory_listing_inv(int id)
         {
@@ -158,6 +163,10 @@ namespace FSMotorsShowroom.Controllers
         public IActionResult sold_cars()
         {
             return View("~/Views/Home/sold_cars.cshtml");
+        }   
+        public IActionResult sold_cars_investor()
+        {
+            return View("~/Views/Home/sold_cars_investor.cshtml");
         }
         public IActionResult inventory_wide_sidebar_right()
         {
