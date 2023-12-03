@@ -78,7 +78,10 @@ namespace FSMotorsShowroom.Controllers
             car.ProfitPriceOfCarCost = profitPriceCar;
                 _context.Add(car);
             await _context.SaveChangesAsync();
-            await UpdateInvestorProfit(profitPriceCar, car.CarInvestor);
+            if (car.CarStatus == "Sold")
+            {
+                await UpdateInvestorProfit(profitPriceCar, car.CarInvestor);
+            }
             return RedirectToAction(nameof(Index));
        // }
             return View(car);
@@ -100,6 +103,7 @@ namespace FSMotorsShowroom.Controllers
             {
                 return NotFound();
             }
+            HttpContext.Session.SetString("EditCar", System.Text.Json.JsonSerializer.Serialize(car));
             return View(car);
         }
 
@@ -108,22 +112,83 @@ namespace FSMotorsShowroom.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Car car)
         {
+            var serializedCar = HttpContext.Session.GetString("EditCar");
+
+            // Check if the data is not null or empty
+        
+                var editCar = System.Text.Json.JsonSerializer.Deserialize<Car>(serializedCar);
             if (id != car.CarId)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 try
                 {
+                    if (car.FrontImageFile != null)
+                    {
+                        car.FrontImage = await UploadFileAsync(car.FrontImageFile, "Uploads");
+
+                    }
+                    else
+                    {
+                        car.FrontImage = editCar.FrontImage;
+
+                    }
+                    if (car.BackImageFile != null)
+                    {
+                        car.BackImage = await UploadFileAsync(car.BackImageFile, "Uploads");
+
+                    }
+                    else
+                    {
+                        car.BackImage = editCar.BackImage;
+
+                    }
+
+                    if (car.InteriorImageFile != null)
+                    {
+                        car.InteriorImage = await UploadFileAsync(car.InteriorImageFile, "Uploads");
+
+                    }
+                    else
+                    {
+                        car.InteriorImage = editCar.InteriorImage;
+
+                    }
+                    if (car.EngineImageFile != null)
+                    {
+                        car.EngineImage = await UploadFileAsync(car.EngineImageFile, "Uploads");
+
+                    }
+                    else
+                    {
+                        car.EngineImage = editCar.EngineImage;
+
+                    }
+                    if (car.BodyImageFile != null)
+                    {
+                        car.BodyImage = await UploadFileAsync(car.BodyImageFile, "Uploads");
+
+                    }
+                    else
+                    {
+                        car.BodyImage = editCar.BodyImage;
+
+                    }
                     car.TotalPrice = car.BuyingPrice + car.MaintananceCost + car.ShowroomCost + car.SalesTax;
                      profitPriceCar = (decimal)(car.SellingPrice - car.TotalPrice);
                     car.ProfitPriceOfCarCost = profitPriceCar;
+
+                   
                     _context.Update(car);
                     await _context.SaveChangesAsync();
-                    // Assuming investorId is the ID of the investor related to this car
+                // Assuming investorId is the ID of the investor related to this car
+                if (car.CarStatus == "Sold")
+                {
                     await UpdateInvestorProfit(profitPriceCar, car.CarInvestor);
+                }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -137,7 +202,7 @@ namespace FSMotorsShowroom.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
+           // }
             return View(car);
         }
         [Authorize(Roles = "Admin")]
