@@ -84,11 +84,13 @@ namespace FSMotorsShowroom.Controllers
             }
 
             var newsModel = await _context.NewsModel.FindAsync(id);
+            HttpContext.Session.SetString("NewsModel", System.Text.Json.JsonSerializer.Serialize(newsModel));
+
             if (newsModel == null)
             {
                 return NotFound();
             }
-            newsModel.NewsImageFile = new FormFile(new MemoryStream(Encoding.UTF8.GetBytes(newsModel.NewsImage)), 0, newsModel.NewsImage.Length, "NewsImage", newsModel.NewsImage);
+          
             return View(newsModel);
         }
 
@@ -100,16 +102,30 @@ namespace FSMotorsShowroom.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, NewsModel newsModel)
         {
+            var serializedNews = HttpContext.Session.GetString("NewsModel");
+
+            // Check if the data is not null or empty
+
+            var newsVar = System.Text.Json.JsonSerializer.Deserialize<NewsModel>(serializedNews);
             if (id != newsModel.NewsId)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+           
                 try
                 {
-                    _context.Update(newsModel);
+                if (newsModel.NewsImageFile != null)
+                {
+                    newsModel.NewsImage = await UploadFileAsync(newsModel.NewsImageFile, "Uploads");
+
+                }
+                else
+                {
+                    newsModel.NewsImage = newsVar.NewsImage;
+
+                }
+                _context.Update(newsModel);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -124,7 +140,7 @@ namespace FSMotorsShowroom.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
+           
             return View(newsModel);
         }
         [Authorize(Roles = "Admin")]
