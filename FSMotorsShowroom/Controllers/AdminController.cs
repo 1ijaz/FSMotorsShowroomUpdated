@@ -1,15 +1,9 @@
 ﻿using FSMotorsShowroom.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FSMotorsShowroom.Controllers
 {
-  //  [Authorize(Roles = "Admin")]
+    //  [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly FSDbContext _context;
@@ -24,9 +18,9 @@ namespace FSMotorsShowroom.Controllers
     {
            new RecordCountModel { Name = "Total Cars", CountNumber = _context.cars.Count(), Link = "/cars/index" },
             new RecordCountModel { Name = "Total Investors", CountNumber = _context.investors.Count(), Link = "/investors/index" },
-            new RecordCountModel { Name = "Total Users", CountNumber = _context.applicationUsers.Count(), Link = "link3" },
-            new RecordCountModel { Name = "Total Showrooms", CountNumber = _context.workShops.Count(), Link = "link4" },
-            new RecordCountModel { Name = "Total Workshops", CountNumber = _context.Showroom.Count(), Link = "link5" },
+            new RecordCountModel { Name = "Total Transactions", CountNumber = _context.transactions.Count(), Link = "/Transactions/index" },
+            new RecordCountModel { Name = "Total Car Model", CountNumber = _context.carModels.Count(), Link = "/CarModels/index" },
+            new RecordCountModel { Name = "Total Feedbacks", CountNumber = _context.feedbacks.Count(), Link = "/Feedbacks/index" },
         // Add more tables as needed
     };
 
