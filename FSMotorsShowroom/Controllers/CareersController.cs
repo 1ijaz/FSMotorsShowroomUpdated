@@ -33,7 +33,6 @@ namespace FSMotorsShowroom.Controllers
                           Problem("Entity set 'FSDbContext.careers'  is null.");
         }
 
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.careers == null)
