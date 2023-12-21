@@ -1,12 +1,6 @@
 ﻿using FSMotorsShowroom.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FSMotorsShowroom.Controllers
 {
@@ -19,15 +13,16 @@ namespace FSMotorsShowroom.Controllers
             _logger = logger;
             _context = context;
         }
-     
+
         public IActionResult Index()
         {
             if (User.Identity.IsAuthenticated)
             {
                 Response.Redirect("/Admin/Index");
             }
-            else { 
-                return View(); 
+            else
+            {
+                return View();
             }
             return View();
         }
@@ -40,7 +35,7 @@ namespace FSMotorsShowroom.Controllers
         {
             return View("~/Views/Home/Careers.cshtml");
         }
-         public IActionResult CEOMessage()
+        public IActionResult CEOMessage()
         {
             return View("~/Views/Home/CEOMessage.cshtml");
         }
@@ -127,17 +122,17 @@ namespace FSMotorsShowroom.Controllers
         {
             var model = new InventoryModel { Id = id };
             return View("~/Views/Home/inventory-listing_3.cshtml", model);
-        } 
+        }
         public IActionResult inventory_listing_4(int id)
         {
             var model = new InventoryModel { Id = id };
             return View("~/Views/Home/inventory-listing_4.cshtml", model);
-        }  
+        }
         public IActionResult inventory_listing_5(int id)
         {
             var model = new InventoryModel { Id = id };
             return View("~/Views/Home/inventory-listing_5.cshtml", model);
-        } 
+        }
         public IActionResult inventory_listing_6(int id)
         {
             var model = new InventoryModel { Id = id };
@@ -155,15 +150,15 @@ namespace FSMotorsShowroom.Controllers
         public IActionResult cars_in_worksop()
         {
             return View("~/Views/Home/cars_in_worksop.cshtml");
-        } 
+        }
         public IActionResult cars_investors()
         {
             return View("~/Views/Home/cars_investors.cshtml");
-        } 
+        }
         public IActionResult sold_cars()
         {
             return View("~/Views/Home/sold_cars.cshtml");
-        }   
+        }
         public IActionResult sold_cars_investor()
         {
             return View("~/Views/Home/sold_cars_investor.cshtml");
@@ -175,7 +170,7 @@ namespace FSMotorsShowroom.Controllers
         public IActionResult our_team()
         {
             return View("~/Views/Home/our-team.cshtml");
-        } 
+        }
         public IActionResult invest_policy()
         {
             return View("~/Views/Home/invest_policy.cshtml");
@@ -184,10 +179,10 @@ namespace FSMotorsShowroom.Controllers
         {
             return View("~/Views/Home/page-fullwidth.cshtml");
         }
-            public IActionResult page_sidebar()
-            {
-                return View("~/Views/Home/page-sidebar.cshtml");
-            }
+        public IActionResult page_sidebar()
+        {
+            return View("~/Views/Home/page-sidebar.cshtml");
+        }
         public IActionResult portfolio_2_column()
         {
             return View("~/Views/Home/portfolio-2-column.cshtml");
@@ -213,52 +208,53 @@ namespace FSMotorsShowroom.Controllers
             return View("~/Views/Home/portfolio-4-column-details.cshtml");
         }
         public IActionResult portfolio_single_project_split()
-            {
-                return View("~/Views/Home/portfolio-single-project-split.cshtml");
-            }
+        {
+            return View("~/Views/Home/portfolio-single-project-split.cshtml");
+        }
         public IActionResult portfolio_single_project_wide()
         {
             return View("~/Views/Home/portfolio-single-project-wide.cshtml");
         }
         public IActionResult pricing_tables()
-            {
-                return View("~/Views/Home/pricing-tables.cshtml");
-            }
-            public IActionResult services()
-            {
-                return View("~/Views/Home/services.cshtml");
-            }
+        {
+            return View("~/Views/Home/pricing-tables.cshtml");
+        }
+        public IActionResult services()
+        {
+            return View("~/Views/Home/services.cshtml");
+        }
         public IActionResult Search_car_list()
         {
             return View("~/Views/Home/search_car_list.cshtml");
         }
         [HttpPost]
-        public IActionResult getCar(PostCar searchParams)
+        public IActionResult GetCar(PostCar searchParams)
         {
-            IQueryable<Car> query = _context.cars;
+            FormattableString sql = $@"EXEC SearchCars 
+    @MakeCompany = {(searchParams.MakeCompany != null ? $"'{searchParams.MakeCompany}'" : "NULL")}, 
+    @Name = {(searchParams.Name != null ? $"'{searchParams.Name}'" : "NULL")}, 
+    @Color = {(searchParams.Color != null ? $"'{searchParams.Color}'" : "NULL")}, 
+    @CarModel = {(searchParams.CarModel != null ? $"'{searchParams.CarModel}'" : "NULL")}, 
+    @TransmissionMode = {(searchParams.TransmissionMode != null ? $"'{searchParams.TransmissionMode}'" : "NULL")}, 
+    @FuelMilageMinimum = {(searchParams.FuelMilageMinimum > 0 ? searchParams.FuelMilageMinimum.ToString() : "NULL")}, 
+    @FuelMilageMaximum = {(searchParams.FuelMilageMaximum > 0 ? searchParams.FuelMilageMaximum.ToString() : "NULL")}, 
+    @TotalPriceMinimum = {(searchParams.TotalPriceMinimum > 0 ? searchParams.TotalPriceMinimum.ToString() : "NULL")}, 
+    @TotalPriceMaximum = {(searchParams.TotalPriceMaximum > 0 ? searchParams.TotalPriceMaximum.ToString() : "NULL")}, 
+    @MakeYear = {(searchParams.MakeYear != null ? searchParams.MakeYear.ToString() : "NULL")}";
 
-            // Applying conditions based on search parameters
-            if (!string.IsNullOrEmpty(searchParams.MakeCompany))
-            {
-                query = query.Where(car => car.MakeCompany.Contains(searchParams.MakeCompany));
-            }
-            if (!string.IsNullOrEmpty(searchParams.Name))
-            {
-                query = query.Where(car => car.Name.Contains(searchParams.Name));
-            }
-
-            // Assuming the MakeYear is stored as a DateTime and we are filtering by the year part
-            // query = query.Where(car => car.MakeYear.Year == searchParams.MakeYearMinimum);
-            if (searchParams.FuelMilageMinimum > 0 && searchParams.FuelMilageMaximum > 0)
-            {
-                query = query.Where(car => car.FuelMilage >= searchParams.FuelMilageMinimum && car.FuelMilage <= searchParams.FuelMilageMaximum);
-            }
-            if (searchParams.TotalPriceMinimum > 0 && searchParams.TotalPriceMaximum > 0)
-            {
-                query = query.Where(car => car.TotalPrice >= searchParams.TotalPriceMinimum && car.TotalPrice <= searchParams.TotalPriceMaximum);
-            }
-
-            var foundCar = query.FirstOrDefault();
+            var foundCar = _context.cars
+    .Where(c =>
+        (searchParams.MakeCompany == null || EF.Functions.Like(c.MakeCompany, $"%{searchParams.MakeCompany}%")) &&
+        (searchParams.Name == null || EF.Functions.Like(c.Name, $"%{searchParams.Name}%")) &&
+        (searchParams.Color == null || EF.Functions.Like(c.ExteriorColor, $"%{searchParams.Color}%")) &&
+        //(searchParams.CarModel == null || c.car == searchParams.CarModel) &&
+        (searchParams.TransmissionMode == null || EF.Functions.Like(c.TransmissionMode, $"%{searchParams.TransmissionMode}%")) &&
+        (searchParams.FuelMilageMinimum == null || c.FuelMilage >= searchParams.FuelMilageMinimum) &&
+        (searchParams.FuelMilageMaximum == null || c.FuelMilage <= searchParams.FuelMilageMaximum) &&
+        (searchParams.TotalPriceMinimum == null || c.TotalPrice >= searchParams.TotalPriceMinimum) &&
+        (searchParams.TotalPriceMaximum == null || c.TotalPrice <= searchParams.TotalPriceMaximum) &&
+        (searchParams.MakeYear == null || EF.Functions.Like(c.MakeYear.ToString(), $"%{searchParams.MakeYear}%")))
+    .FirstOrDefault();
 
             if (foundCar != null)
             {
@@ -266,29 +262,30 @@ namespace FSMotorsShowroom.Controllers
                 return Json(new { redirectUrl = Url.Action("Search_car_list", "Home") });
             }
 
-            return Json(new { error = "Car not found" }); // Handle error scenario
+            return Json(new { error = "Car not found" });
         }
+
         [HttpGet]
         public IActionResult GetTenCars()
         {
             var tenCars = _context.cars.Take(10).ToList();
             HttpContext.Session.SetString("FoundTenCar", System.Text.Json.JsonSerializer.Serialize(tenCars));
             return Json(tenCars);
-        }  
+        }
         [HttpGet]
         public IActionResult GetAllAvailableCars()
         {
             var availableCars = _context.cars.Where(car => car.CarStatus == "Showroom").ToList();
             HttpContext.Session.SetString("GetAllAvailableCars", System.Text.Json.JsonSerializer.Serialize(availableCars));
             return Json(availableCars);
-        } 
+        }
         [HttpGet]
         public IActionResult GetAllWorkshopCars()
         {
             var workshopCars = _context.cars.Where(car => car.CarStatus == "Workshop").ToList();
             HttpContext.Session.SetString("GetAllWorkshopCars", System.Text.Json.JsonSerializer.Serialize(workshopCars));
             return Json(workshopCars);
-        } 
+        }
         [HttpGet]
         public IActionResult GetAllInvestorCars()
         {
@@ -296,7 +293,7 @@ namespace FSMotorsShowroom.Controllers
             var investorsCars = _context.cars.Where(car => car.CarInvestor == userEmail).ToList();
             HttpContext.Session.SetString("GetAllInvestorCars", System.Text.Json.JsonSerializer.Serialize(investorsCars));
             return Json(investorsCars);
-        } 
+        }
         [HttpGet]
         public IActionResult GetAllSoldCars()
         {

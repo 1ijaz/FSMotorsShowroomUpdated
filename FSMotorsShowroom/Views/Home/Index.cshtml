@@ -370,98 +370,21 @@
         <div class="search-form margin-top-20 padding-vertical-20">
             <form id="carSearchForm" method="post" action="#">
                 <div class="select-wrapper row clearfix">
-                    <div class="col-md-6">
-                        <div class="min-price select-dropdown">
-                            <div class="my-dropdown min-price-dropdown min-dropdown">
-                                <select id="minYear" name="min-year" class="css-dropdowns" tabindex="1">
-                                    <option value="">Min Year</option>
-                                    <option value="2023">2023</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2019">2019</option>
-                                    <option value="2018">2018</option>
-                                    <option value="2017">2017</option>
-                                    <option value="2016">2016</option>
-                                    <option value="2015">2015</option>
-                                    <option value="2014">2014</option>
-                                    <option value="2013">2013</option>
-                                    <option value="2012">2012</option>
-                                    <option value="2011">2011</option>
-                                    <option value="2010">2010</option>
-                                    <option value="2009">2009</option>
-                                    <option value="2008">2008</option>
-                                    <option value="2007">2007</option>
-                                    <option value="2006">2006</option>
-                                    <option value="2005">2005</option>
-                                    <option value="2004">2004</option>
-                                    <option value="2003">2003</option>
-                                    <option value="2002">2002</option>
-                                    <option value="2001">2001</option>
-                                    <option value="2000">2000</option>
-                                </select>
-                            </div>
-                            <span class="my-dropdown">to</span>
-                            <div class="my-dropdown max-price-dropdown min-dropdown">
-                                <select id="maxYear" name="max-year" class="css-dropdowns" tabindex="1">
-
-                                    <option value="">Max Year</option>
-                                    <option value="2023">2023</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2019">2019</option>
-                                    <option value="2018">2018</option>
-                                    <option value="2017">2017</option>
-                                    <option value="2016">2016</option>
-                                    <option value="2015">2015</option>
-                                    <option value="2014">2014</option>
-                                    <option value="2013">2013</option>
-                                    <option value="2012">2012</option>
-                                    <option value="2011">2011</option>
-                                    <option value="2010">2010</option>
-
-                                </select>
+                        <div class="col-md-6">
+                            <div class="my-dropdown">
+                                <input id="keywords" class="full-width" type="search" value="" placeholder="Refine with Car Name">
                             </div>
                         </div>
-                    </div>
                     <div class="col-md-6">
                         <div class="min-price select-dropdown">
                             <div class="my-dropdown min-price-dropdown min-dropdown">
-                                <select id="minPrice" name="min-price" class="css-dropdowns" tabindex="1">
-                                    <option value="">Min Price</option>
-                                    <option value="0">0</option>
-                                    <option value="100000">100,000</option>
-                                    <option value="200000">200,000</option>
-                                    <option value="300000">300,000</option>
-                                    <option value="400000">400,000</option>
-                                    <option value="500000">500,000</option>
-                                    <option value="600000">600,000</option>
-                                    <option value="700000">700,000</option>
-                                    <option value="800000">800,000</option>
-                                    <option value="900000">900,000</option>
-                                    <option value="1000000">1,000,000</option>
-                                    <option value="1200000">1,200,000</option>
-                                    <option value="1500000">1,500,000</option>
-                                </select>
+                                    <input id="minPrice" class="full-width" type="search" value="" placeholder="Min Price AED">
+
                             </div>
                             <span class="my-dropdown">to</span>
                             <div class="my-dropdown max-price-dropdown min-dropdown">
-                                <select id="maxPrice" name="max-price" class="css-dropdowns" tabindex="1">
-                                    <option value="">Max Price</option>
-                                    <option value="1000000">100,0000</option>
-                                    <option value="2000000">200,0000</option>
-                                    <option value="30000000">3,0000,000</option>
-                                    <option value="40000000">4,0000,000</option>
-                                    <option value="50000000">5,0000,000</option>
-                                    <option value="60000000">6,0000,000</option>
-                                    <option value="700000000">7,00000,000</option>
-                                    <option value="80000000">8,0000,000</option>
-                                    <option value="90000000">9,0000,000</option>
-                                    <option value="100000000">10,0000,000</option>
-                                    <option value="120000000">12,0000,000</option>
-                                    <option value="150000000">15,0000,000</option>
-                                </select>
+                                    <input id="maxPrice" class="full-width" type="search" value="" placeholder="Max Price AED">
+
                             </div>
                         </div>
                     </div>
@@ -470,44 +393,21 @@
                     <div class="col-md-6">
                         <div class="min-price select-dropdown">
                             <div class="my-dropdown min-price-dropdown min-dropdown">
-                                <select id="minMileage" name="min-mileage" class="css-dropdowns" tabindex="1">
-                                    <option value="">Min Mileage</option>
-                                    <option value="0">0</option>
-                                    <option value="100">100</option>
-                                    <option value="2000">2000</option>
-                                    <option value="3000">3000</option>
-                                    <option value="4000">4000</option>
-                                    <option value="5000">5000</option>
-                                    <option value="6000">6000</option>
-                                    <option value="7000">7000</option>
-                                    <option value="8000">8000</option>
-                                    <option value="9000">9000</option>
-                                    <option value="10000">10000</option>
-                                    <option value="12000">12000</option>
-                                    <option value="15000">15000</option>
-                                </select>
+                                    <input id="minMileage" class="full-width" type="search" value="" placeholder="min Mileage">
+
                             </div>
                             <span class="my-dropdown">to</span>
                             <div class="my-dropdown max-price-dropdown min-dropdown">
-                                <select id="maxMileage" name="max-mileage" class="css-dropdowns" tabindex="1">
-                                    <option value="">Max Mileage</option>
-                                    <option value="0">0</option>
-                                    <option value="1000">1000</option>
-                                    <option value="20000">20000</option>
-                                    <option value="30000">30000</option>
-                                    <option value="40000">40000</option>
-                                    <option value="50000">50000</option>
-                                    <option value="60000">60000</option>
-                                    <option value="70000">70000</option>
-                                    <option value="80000">80000</option>
-                                    <option value="90000">90000</option>
-                                    <option value="100000">100000</option>
-                                    <option value="120000">120000</option>
-                                    <option value="150000">150000</option>
-                                </select>
+                                    <input id="maxMileage" class="full-width" type="search" value="" placeholder="max Mileage">
+
                             </div>
                         </div>
                     </div>
+                        <div class="col-md-6">
+                            <div class="my-dropdown">
+                                <input id="color" class="full-width" type="search" value="" placeholder="Color">
+                            </div>
+                        </div>
                 </div>
                 <div class="select-wrapper row clearfix">
                     <div class="col-md-6">
@@ -547,11 +447,11 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="my-dropdown">
-                            <input id="keywords" class="full-width" type="search" value="" placeholder="Refine with Car Name">
+                  
+                        <div class="col-md-6">
+                            <input id="dateRange" class="full-width" type="search" value="" placeholder="Year Range">
+
                         </div>
-                    </div>
                 </div>
                 <div class="clear"></div>
                 <div class="select-wrapper row clearfix">
@@ -559,10 +459,10 @@
                         <input id="certified" type="checkbox" name="certified">
                         <label for="certified">Certified</label>
                     </div>
-                    <div class="form-element">
+                  @*   <div class="form-element">
                         <input id="carfaxVerified" type="checkbox" name="carfax-verified">
                         <label for="carfaxVerified">CARFAX&reg; Verified</label>
-                    </div>
+                    </div> *@
                     <div class="form-element">
                         <input id="brandNew" type="checkbox" name="brand-new">
                         <label for="brandNew">Brand New</label>
@@ -964,16 +864,18 @@
             // Show loader before the AJAX request
             $('.loader').show();
             var formData = {
-                MakeYearMinimum: $('#minYear').val(),
-                MakeYearMaximum: $('#maxYear').val(),
+                
+           
                 TotalPriceMinimum: $('#minPrice').val(),
                 TotalPriceMaximum: $('#maxPrice').val(),
                 FuelMilageMinimum: $('#minMileage').val(),
                 FuelMilageMaximum: $('#maxMileage').val(),
-                maxPrice: $('#model').val(),
-                TransmissionType: $('#transmission').val(),
+                CarModel: $('#model').val(),
+                TransmissionMode: $('#transmission').val(),
                 MakeCompany: $('#make').val(),
                 Name: $('#keywords').val(),
+                Color: $('#color').val(),
+                MakeYear: $('#dateRange').val(),
             };
             console.log("formData", formData)
             // Ajax call with form data
